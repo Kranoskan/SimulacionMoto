@@ -19,14 +19,14 @@ public class EditorArchivos {
     
     ArrayList<ArrayList<Float>> circuito;
     public ArrayList<Integer> valores_motoybms;
-    int volt_max_bateria;
-    int volt_max_celulas;
-    int intensidad;
-    int velocidad_max;
-    int potencia_motor;
-    int temperatura_max;
-    int peso;
-    int capacidad;
+    public int volt_max_bateria;
+    public int volt_max_celulas;
+    public int intensidad;
+    public int velocidad_max;
+    public int potencia_motor;
+    public int temperatura_max;
+    public int peso;
+    public int capacidad;
     
     public EditorArchivos(){
         circuito = new ArrayList<>();
@@ -49,7 +49,7 @@ public class EditorArchivos {
             // Lectura del fichero
             String linea = null;
             while((linea=br.readLine())!=null){
-                String[] fila=linea.split("\\t");   //separamos por la tabulación
+                String[] fila=linea.split(",");   //separamos por la tabulación
                 ArrayList<Float> nuevo=new ArrayList<>();
                 for (int i = 0; i < fila.length; i++) {
                     nuevo.add(Float.valueOf(fila[i]));
@@ -91,13 +91,13 @@ public class EditorArchivos {
             String linea = null;
             while((linea=br.readLine())!=null){
                 String[] fila=linea.split(",");   //separamos por coma
-                Integer nuevo=null;
+                Integer valor=null;
                 
-                nuevo=(Integer.valueOf(fila[1]));
+                valor=(Integer.valueOf(fila[1]));
                 System.out.print(fila[0]+": ");
                 System.out.println(fila[1]);
                 
-                this.valores_motoybms.add(nuevo);
+                this.valores_motoybms.add(valor);
             }
             this.volt_max_bateria=this.valores_motoybms.get(0);
             this.volt_max_celulas=this.valores_motoybms.get(1);
@@ -128,6 +128,43 @@ public class EditorArchivos {
     public ArrayList<ArrayList<Float>> getCircuito(){
         return circuito;
     }
+
+    public ArrayList<Integer> getValores_motoybms() {
+        return valores_motoybms;
+    }
+
+    public int getVolt_max_bateria() {
+        return volt_max_bateria;
+    }
+
+    public int getVolt_max_celulas() {
+        return volt_max_celulas;
+    }
+
+    public int getIntensidad() {
+        return intensidad;
+    }
+
+    public int getVelocidad_max() {
+        return velocidad_max;
+    }
+
+    public int getPotencia_motor() {
+        return potencia_motor;
+    }
+
+    public int getTemperatura_max() {
+        return temperatura_max;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+    
     
 
     void cargaDatosPiloto(ArrayList<Pilotos> pilotosBase, String rutaPiloto) {
