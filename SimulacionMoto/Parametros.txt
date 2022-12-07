@@ -1,5 +1,5 @@
-rutaCircuito="Circuito.csv";
-rutaMotoyBMS="MotoBMS.csv";
+rutaCircuito="..\\Circuito.csv";
+rutaMotoyBMS="..\\MotoBMS.csv";
 pesoMoto=190.0;
 adherencia=0.095;
 nPilotos=20;

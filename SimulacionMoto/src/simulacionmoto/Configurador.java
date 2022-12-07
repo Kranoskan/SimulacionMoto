@@ -26,6 +26,12 @@ public class Configurador {
     
     Configurador(String ruta){
         rutaCircuito = new ArrayList<>();
+        rutaMBMS = new ArrayList<>();
+        rutaPiloto = new ArrayList<>();
+        nBMS = new ArrayList<>();
+        nPilotos = new ArrayList<>();
+        pesoMoto = new ArrayList<>();
+        adherencia = new ArrayList<>();
         FileReader f=null;
         String linea;
         try{
@@ -35,45 +41,45 @@ public class Configurador {
                 String[] split=linea.split("=");
                 switch(split[0]){
                     case "rutaCircuito":
-                        String[] v=split[1].split(":");
+                        String[] v=split[1].split(";");
                         for(int i=0;i<v.length;i++){
                             rutaCircuito.add(v[i]);
                         }
                         break;
                     case "rutaMotoyBMS":
-                        String[] v2=split[1].split(":");
+                        String[] v2=split[1].split(";");
                         for(int i=0;i<v2.length;i++){
                             rutaMBMS.add((v2[i]));
                         }
                         break;
                     case "rutaPiloto":
-                        String[] v3=split[1].split(":");
+                        String[] v3=split[1].split(";");
                         for(int i=0;i<v3.length;i++){
                             rutaPiloto.add(v3[i]);
                         }
                         break;
                     case "nPilotos":
-                        String[] v4=split[1].split(":");
+                        String[] v4=split[1].split(";");
                         for(int i=0;i<v4.length;i++){
                             nPilotos.add(Integer.parseInt(v4[i]));
                         }
                         break;
                     case "nBMS":
-                        String[] v5=split[1].split(":");
+                        String[] v5=split[1].split(";");
                         for(int i=0;i<v5.length;i++){
                             nBMS.add(Integer.parseInt(v5[i]));
                         }
                         break;
                     case "pesoMoto":
-                        String[] v6=split[1].split(":");
+                        String[] v6=split[1].split(";");
                         for(int i=0;i<v6.length;i++){
-                            nBMS.add(Float.parseFloat(v6[i]));
+                            pesoMoto.add(Float.parseFloat(v6[i]));
                         }
                         break;
                     case "adherencia":
-                        String[] v7=split[1].split(":");
+                        String[] v7=split[1].split(";");
                         for(int i=0;i<v7.length;i++){
-                            Float.add(Integer.parseFloat(v7[i]));
+                            adherencia.add(Float.parseFloat(v7[i]));
                         }
                         break;
                 }
