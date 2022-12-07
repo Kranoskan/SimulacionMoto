@@ -19,6 +19,7 @@ public class SimulacionMoto {
      */
     public static void main(String[] args) {
         //Declaracion de variables
+        System.out.println("Inicio");
         Configurador confi=new Configurador("Parametros.txt");
         ArrayList<ArrayList<Float>> circuito= new ArrayList<>();
         int nPilotos= confi.getNPilotos();
@@ -31,10 +32,13 @@ public class SimulacionMoto {
         Moto moto= new Moto();
         Carrera simulador= new Carrera();
         
-        //lectura de datos
+        //lectura de datos circuito
         String rutaCircuito=confi.getRutaCircuito();
         EditorArchivos editor = new EditorArchivos();
         editor.cargaDatosCircuito(rutaCircuito);
+        
+        //Lectura de datos motoyBMS
+        editor.cargaDatosMotoYBMS(confi.getRutaMotoYBMS());
         
         String rutaPiloto=confi.getRutaPiloto();
         editor.cargaDatosPiloto(pilotosBase, rutaPiloto);
@@ -50,6 +54,7 @@ public class SimulacionMoto {
         
         simulador.Simular(circuito,pilotos,controladores,moto);
         simulador.Resultado();
+        System.out.println("Fin");
     }
     
 }
