@@ -1,0 +1,7 @@
+rutaCircuito="Circuito.csv";
+rutaMotoyBMS="MotoBMS.csv";
+pesoMoto=190.0;
+adherencia=0.095;
+nPilotos=20;
+nBMS=20;
+rutaPiloto="";
