@@ -41,7 +41,7 @@ public class EditorArchivos {
             // Lectura del fichero
             String linea = null;
             while((linea=br.readLine())!=null){
-                String[] fila=linea.split("\\t");   //separamos por la tabulación
+                String[] fila=linea.split(",");   //separamos por la tabulación
                 ArrayList<Float> nuevo=new ArrayList<>();
                 for (int i = 0; i < fila.length; i++) {
                     nuevo.add(Float.valueOf(fila[i]));

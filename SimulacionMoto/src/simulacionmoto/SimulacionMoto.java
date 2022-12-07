@@ -19,7 +19,7 @@ public class SimulacionMoto {
      */
     public static void main(String[] args) {
         //Declaracion de variables
-        Configurador confi=new Configurador(args[0]);
+        Configurador confi=new Configurador("Parametros.txt");
         ArrayList<ArrayList<Float>> circuito= new ArrayList<>();
         int nPilotos= confi.getNPilotos();
         int nBMS= confi.getNBMS();
