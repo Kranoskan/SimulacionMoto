@@ -9,6 +9,7 @@ package simulacionmoto;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -33,6 +34,8 @@ public class EditorArchivos {
         valores_motoybms = new ArrayList<>();
         
     }
+    
+    
     
     public void cargaDatosCircuito(String ruta){
         File archivo = null;
@@ -165,8 +168,6 @@ public class EditorArchivos {
         return capacidad;
     }
     
-    
-
     void cargaDatosPiloto(ArrayList<Pilotos> pilotosBase, String rutaPiloto) {
         
     }

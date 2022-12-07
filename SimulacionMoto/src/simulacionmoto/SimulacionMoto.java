@@ -18,12 +18,12 @@ public class SimulacionMoto {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Inicio");
         //Declaracion de variables
-        Parametros parametros = new Parametros();
+        System.out.println("Inicio");
+        Configurador confi=new Configurador("Parametros.txt");
         ArrayList<ArrayList<Float>> circuito= new ArrayList<>();
-        int nPilotos= parametros.nPilotos;
-        int nBMS= parametros.nBMS;
+        int nPilotos= confi.getNPilotos();
+        int nBMS= confi.getNBMS();
         ArrayList<Pilotos> pilotos= new ArrayList<>();
         ArrayList<Pilotos> pilotosBase= new ArrayList<>();
         ArrayList<BMS> controladores= new ArrayList<>();
@@ -32,18 +32,16 @@ public class SimulacionMoto {
         Moto moto= new Moto();
         Carrera simulador= new Carrera();
         
-        //lectura de datos
-        String rutaCircuito=parametros.rutaCircuito;
+        //lectura de datos circuito
+        String rutaCircuito=confi.getRutaCircuito();
         EditorArchivos editor = new EditorArchivos();
         editor.cargaDatosCircuito(rutaCircuito);
         
-        String rutaMotoyBMS=parametros.rutaMotoyBMS;
-        editor.cargaDatosMotoYBMS(rutaMotoyBMS);
+        //Lectura de datos motoyBMS
+        editor.cargaDatosMotoYBMS(confi.getRutaMotoYBMS());
         
-        String rutaPiloto=parametros.rutaPiloto;
+        String rutaPiloto=confi.getRutaPiloto();
         editor.cargaDatosPiloto(pilotosBase, rutaPiloto);
-        
-        
         
         
         
@@ -56,7 +54,6 @@ public class SimulacionMoto {
         
         simulador.Simular(circuito,pilotos,controladores,moto);
         simulador.Resultado();
-        
         System.out.println("Fin");
     }
     
