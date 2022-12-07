@@ -9,6 +9,7 @@ package simulacionmoto;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -18,10 +19,12 @@ import java.util.ArrayList;
 public class EditorArchivos {
     
     ArrayList<ArrayList<Float>> circuito;
-    
-    public EditorArchivos(){
+
+    public EditorArchivos() {
         circuito = new ArrayList<>();
     }
+    
+    
     
     public void cargaDatosCircuito(String ruta){
         File archivo = null;
@@ -61,6 +64,8 @@ public class EditorArchivos {
          }
       }
     }
+    
+    
     
     public ArrayList<ArrayList<Float>> getCircuito(){
         return circuito;
