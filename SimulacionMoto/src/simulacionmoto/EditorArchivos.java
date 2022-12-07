@@ -19,10 +19,19 @@ public class EditorArchivos {
     
     ArrayList<ArrayList<Float>> circuito;
     public ArrayList<Integer> valores_motoybms;
+    int volt_max_bateria;
+    int volt_max_celulas;
+    int intensidad;
+    int velocidad_max;
+    int potencia_motor;
+    int temperatura_max;
+    int peso;
+    int capacidad;
     
     public EditorArchivos(){
         circuito = new ArrayList<>();
         valores_motoybms = new ArrayList<>();
+        
     }
     
     public void cargaDatosCircuito(String ruta){
@@ -83,12 +92,22 @@ public class EditorArchivos {
             while((linea=br.readLine())!=null){
                 String[] fila=linea.split(",");   //separamos por coma
                 Integer nuevo=null;
-                //for (int i = 0; i < fila.length; i++) {
-                    //nuevo=(Integer.valueOf(fila[1]));
-                    System.out.println(fila[1]);
-                //}
+                
+                nuevo=(Integer.valueOf(fila[1]));
+                System.out.print(fila[0]+": ");
+                System.out.println(fila[1]);
+                
                 this.valores_motoybms.add(nuevo);
             }
+            this.volt_max_bateria=this.valores_motoybms.get(0);
+            this.volt_max_celulas=this.valores_motoybms.get(1);
+            this.intensidad=this.valores_motoybms.get(2);
+            this.velocidad_max=this.valores_motoybms.get(3);
+            this.potencia_motor=this.valores_motoybms.get(4);
+            this.temperatura_max=this.valores_motoybms.get(5);
+            this.peso=this.valores_motoybms.get(6);
+            this.capacidad=this.valores_motoybms.get(7);
+            
       }
       catch(Exception e){
          e.printStackTrace();
@@ -109,6 +128,7 @@ public class EditorArchivos {
     public ArrayList<ArrayList<Float>> getCircuito(){
         return circuito;
     }
+    
 
     void cargaDatosPiloto(ArrayList<Pilotos> pilotosBase, String rutaPiloto) {
         
