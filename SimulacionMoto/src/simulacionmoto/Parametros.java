@@ -10,7 +10,7 @@ package simulacionmoto;
  * @author ismae
  */
 class Parametros {
-    public String rutaCircuito="C:\\Users\\ismae\\Desktop\\Circuito.txt";
+    public String rutaCircuito="Circuito.txt";
     public float pesoMoto=(float) 190.0; //moto + piloto
     public float adherencia=(float) 0.095;
     int nPilotos=20;
