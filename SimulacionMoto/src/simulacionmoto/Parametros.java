@@ -11,6 +11,7 @@ package simulacionmoto;
  */
 class Parametros {
     public String rutaCircuito="Circuito.txt";
+    public String rutaMotoyBMS="MotoBMS.csv";
     public float pesoMoto=(float) 190.0; //moto + piloto
     public float adherencia=(float) 0.095;
     int nPilotos=20;

@@ -36,6 +36,8 @@ public class SimulacionMoto {
         EditorArchivos editor = new EditorArchivos();
         editor.cargaDatosCircuito(rutaCircuito);
         
+        
+        
         String rutaPiloto=parametros.rutaPiloto;
         editor.cargaDatosPiloto(pilotosBase, rutaPiloto);
         
