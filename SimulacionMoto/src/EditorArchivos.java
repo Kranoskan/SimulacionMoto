@@ -16,12 +16,12 @@ import java.util.ArrayList;
  */
 public class EditorArchivos {
     
-    ArrayList<ArrayList<Float>> circuito;
-    ArrayList<Integer> valores_max_motoybms;
+    public ArrayList<ArrayList<Float>> circuito;
+    public ArrayList<Integer> valores_motoybms;
     
     public EditorArchivos(){
         circuito = new ArrayList<>();
-        valores_max_motoybms = new ArrayList<>();
+        valores_motoybms = new ArrayList<>();
     }
     
     public void cargaDatosCircuito(String ruta){
@@ -45,45 +45,6 @@ public class EditorArchivos {
                     nuevo.add(Float.valueOf(fila[i]));
                 }
                 circuito.add(nuevo);
-            }
-      }
-      catch(Exception e){
-         e.printStackTrace();
-      }finally{
-         // En el finally cerramos el fichero, para asegurarnos
-         // que se cierra tanto si todo va bien como si salta 
-         // una excepcion.
-         try{                    
-            if( null != fr ){   
-               fr.close();     
-            }                  
-         }catch (Exception e2){ 
-            e2.printStackTrace();
-         }
-      }
-    }
-    
-    public void cargaDatosMotoYBMS(String ruta){
-        File archivo = null;
-        FileReader fr = null;
-        BufferedReader br = null;
-        this.valores_max_motoybms.clear();         //se borra el circuito anterior, si lo hubiese
-        try {
-            // Apertura del fichero y creacion de BufferedReader para poder
-            // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File (ruta);
-            fr = new FileReader (archivo);
-            br = new BufferedReader(fr);
-
-            // Lectura del fichero
-            String linea = null;
-            while((linea=br.readLine())!=null){
-                String[] fila=linea.split(",");   //separamos por coma
-                Integer nuevo=null;
-                //for (int i = 0; i < fila.length; i++) {
-                    nuevo=(Integer.valueOf(fila[1]));
-                //}
-                this.valores_max_motoybms.add(nuevo);
             }
       }
       catch(Exception e){

@@ -18,6 +18,7 @@ public class SimulacionMoto {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.out.println("Inicio");
         //Declaracion de variables
         Parametros parametros = new Parametros();
         ArrayList<ArrayList<Float>> circuito= new ArrayList<>();
@@ -36,10 +37,13 @@ public class SimulacionMoto {
         EditorArchivos editor = new EditorArchivos();
         editor.cargaDatosCircuito(rutaCircuito);
         
-        
+        String rutaMotoyBMS=parametros.rutaMotoyBMS;
+        editor.cargaDatosMotoYBMS(rutaMotoyBMS);
         
         String rutaPiloto=parametros.rutaPiloto;
         editor.cargaDatosPiloto(pilotosBase, rutaPiloto);
+        
+        
         
         
         
@@ -52,6 +56,8 @@ public class SimulacionMoto {
         
         simulador.Simular(circuito,pilotos,controladores,moto);
         simulador.Resultado();
+        
+        System.out.println("Fin");
     }
     
 }
