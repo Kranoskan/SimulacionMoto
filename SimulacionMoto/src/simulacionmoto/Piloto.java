@@ -51,6 +51,10 @@ class Piloto {
             if(moto.getVelocidad()<circuito.getVelocidadMaximaCalculada().get(0) && moto.hayBateria()){
                 generaRand=new Random();
                 Float rand=generaRand.nextFloat();
+                while(!moto.esFactible(rand,"Acelerar")){//Puede haber casos que acelerando se pase de velocidad 
+                    generaRand=new Random();
+                    rand=generaRand.nextFloat();
+                }
                 System.out.println(rand);
                 distanciaAceleradaSector.add(i,rand);
                 moto.acelerar(rand);
@@ -58,6 +62,7 @@ class Piloto {
             }else{
                 generaRand=new Random();
                 Float rand=generaRand.nextFloat();
+                
                 moto.frenar(rand);
                 distanciaFrenadaSector.add(i,rand);
             }

@@ -97,6 +97,11 @@ class Moto {
         aceleracion_S=newAceleracion;
         return decremento;
     }
+    
+    boolean esFactible(Float rand,String tipo){
+        //if se supera la velocidad con ese 
+        return true;
+    }
 
     float getVelocidadMax() {
         return velMax_S;
