@@ -30,7 +30,7 @@ class GeneradorPilotos {
     void Generar(ArrayList<Piloto> pilotos, Circuito circuito, ArrayList<Piloto> pilotosBase, Moto moto) {
         random= new Random();
         for (int i = 0; i < numPilotos; i++) {
-            Piloto newPiloto= new Piloto(moto);
+            Piloto newPiloto= new Piloto(moto,restricciones);
             newPiloto.setConfiguracion(circuito,random.nextFloat());
             pilotos.add(newPiloto);
         }

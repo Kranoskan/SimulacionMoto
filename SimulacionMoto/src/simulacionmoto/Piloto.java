@@ -20,18 +20,20 @@ class Piloto {
     ArrayList<Float> distanciaFrenadaSector;
     int tiempo;//tiempo en segundos
     Float bateriaRestante;
+    Moto moto;
 
-    public Piloto(BMS bms, Float bateriaRestante) {
-        this.bms = bms;
+    public Piloto(Moto moto,RestriccionesMotoYBMS restricciones) {
+        this.moto = moto;
         this.bateriaUsadaAceleracioSector = new ArrayList<>();
         this.bateriaUsadaRefrigeracionSector = new ArrayList<>();
         this.distanciaAceleradaSector = new ArrayList<>();
         this.distanciaFrenadaSector = new ArrayList<>();
         this.tiempo = 0;
-        this.bateriaRestante = bateriaRestante;
+        //this.bateriaRestante = bateriaRestante;
+        moto=new Moto(restricciones);
     }
     
-    Moto moto;
+    
     
 
     void setConfiguracion(Circuito circuito) {
@@ -41,13 +43,14 @@ class Piloto {
             
             if(moto.getVelocidad()<circuito.getVelocidadMaximaCalculada().get(0) && moto.hayBateria()){
                 generaRand=new Random();
-                
-                moto.acelerar(generaRand.nextFloat());
-                distanciaAceleradaSector.add(generaRand);
+                Float rand=generaRand.nextFloat();
+                moto.acelerar(rand);
+                distanciaAceleradaSector.add(rand);
             }else{
                 generaRand=new Random();
-                moto.frenar(generaRand);
-                distanciaFrenadaSector.add(generaRand);
+                Float rand=generaRand.nextFloat();
+                moto.frenar(rand);
+                distanciaFrenadaSector.add(rand);
             }
         }
         actualizarEstado();

@@ -10,6 +10,7 @@ package simulacionmoto;
  * @author ismae
  */
 class Moto {
+
     //parametros iniciales, sirven para reiniciar los datos
     float velocidad;
     float bateria;
@@ -28,10 +29,10 @@ class Moto {
     float aceleMax;
     float voltMax;
 
-    void setParametros(ArrayList<Float> datosMoto) {
+    public Moto(RestriccionesMotoYBMS restricciones) {
         velocidad=0;
         aceleracion =0;
-        bateria=datosMoto.get(0);
+        bateria=datosMoto.get(0);restricciones.g
         velLimite=datosMoto.get(1);
         tempLimite=datosMoto.get(2);
         tempIni=datosMoto.get(3);
