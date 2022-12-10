@@ -1,7 +1,7 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in the lector.
  */
 package simulacionmoto;
 
@@ -19,9 +19,18 @@ public class SimulacionMoto {
      */
     public static void main(String[] args) {
         //Declaracion de variables
-        System.out.println("Inicio");
+        System.out.println("-----------------INICIO--------------------");
         Configurador confi=new Configurador("Parametros.txt");
-        ArrayList<ArrayList<Float>> circuito= new ArrayList<>();
+        Circuito circuito=new Circuito();
+
+        //Lectura de datos circuito
+        String rutaCircuito=confi.getRutaCircuito();
+        LectorArchivos lector = new LectorArchivos();
+        lector.cargaDatosCircuito(rutaCircuito);
+        
+        
+        
+        
         int nPilotos= confi.getNPilotos();
         int nBMS= confi.getNBMS();
         ArrayList<Pilotos> pilotos= new ArrayList<>();
@@ -32,29 +41,26 @@ public class SimulacionMoto {
         Moto moto= new Moto();
         Carrera simulador= new Carrera();
         
-        //lectura de datos circuito
-        String rutaCircuito=confi.getRutaCircuito();
-        EditorArchivos editor = new EditorArchivos();
-        editor.cargaDatosCircuito(rutaCircuito);
+        
         
         //Lectura de datos motoyBMS
-        editor.cargaDatosMotoYBMS(confi.getRutaMotoYBMS());
+        lector.cargaDatosMotoYBMS(confi.getRutaMotoYBMS());
         
         String rutaPiloto=confi.getRutaPiloto();
-        editor.cargaDatosPiloto(pilotosBase, rutaPiloto);
+        lector.cargaDatosPiloto(pilotosBase, rutaPiloto);
         
         
         
         //carga y creacion de datos
-        circuito.add((ArrayList<Float>) editor.getCircuito().clone());
-        generadorPilotos.Generar(pilotos,nPilotos,circuito,pilotosBase);
-        generadorControl.Generar(controladores,pilotos,moto);
+        //circuito.add((ArrayList<Float>) lector.getCircuito().clone());
+        //generadorPilotos.Generar(pilotos,nPilotos,circuito,pilotosBase);
+        //generadorControl.Generar(controladores,pilotos,moto);
         
-        simulador.Optimizar(circuito,pilotos,controladores,moto);
+        //simulador.Optimizar(circuito,pilotos,controladores,moto);
         
-        simulador.Simular(circuito,pilotos,controladores,moto);
-        simulador.Resultado();
-        System.out.println("Fin");
+        //simulador.Simular(circuito,pilotos,controladores,moto);
+        //simulador.Resultado();
+        System.out.println("----------------------FIN-------------------");
     }
     
 }
