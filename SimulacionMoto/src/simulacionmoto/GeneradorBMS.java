@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 class GeneradorBMS {
 
-    void Generar(ArrayList<BMS> controlador, ArrayList<Pilotos> pilotos, Moto moto) {
+    void Generar(ArrayList<BMS> controlador, ArrayList<Piloto> pilotos, Moto moto) {
         //comprueba los valores límites que toma cada piloto
         // y genera un BMS que se ajuste a su comportamiento
     }

@@ -5,10 +5,136 @@
  */
 package simulacionmoto;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ismae
  */
 class Moto {
+    //parametros iniciales, sirven para reiniciar los datos
+    float velocidad;
+    float bateria;
+    float velLimite;
+    float tempLimite;
+    float aceleracion;
+    float tempIni;
+    
+    //parametros de simulacion, estos serán modificados por el piloto
+    float velocidad_S;
+    float bateria_S;
+    float velMax_S;
+    float tempMax_S;
+    float aceleracion_S;
+    float temperatura;
+    float aceleMax;
+    float voltMax;
+
+    void setParametros(ArrayList<Float> datosMoto) {
+        velocidad=0;
+        aceleracion =0;
+        bateria=datosMoto.get(0);
+        velLimite=datosMoto.get(1);
+        tempLimite=datosMoto.get(2);
+        tempIni=datosMoto.get(3);
+    }
+
+    void iniciar() {//resetea los parámetros
+        velocidad_S=velocidad;
+        bateria_S=bateria;
+        velMax_S=0;
+        tempMax_S=0;
+        aceleracion_S=aceleracion;
+        temperatura=tempIni;
+        aceleMax=0;
+        voltMax=0;
+    }
+
+    Float getVelocidad() {
+        return velocidad_S;
+    }
+
+    boolean hayBateria() {
+        if(bateria_S/bateria >= 0.05){ //consideremos que esto es bateria baja 
+                                       // y que si llega a este porcentaje 
+                                       //entra en modo "ahorro de bateria"
+            return true;
+        }
+        return false;
+    }
+
+    float acelerar(float rand) {
+        //supongamos que la acceleracion máxima es 1, el 100%
+        float newAceleracion =aceleracion_S+ rand;
+        float incremento=0;
+        if (newAceleracion>1){ //para que no tome valores fuera del rango
+            newAceleracion=1;
+        }
+        incremento= newAceleracion-aceleracion_S;
+        //acotar la aceleracion deltro del voltaje máximo
+        incremento=incremetoEnVoltMax(incremento);
+        if(incremento>aceleMax){
+            aceleMax=incremento;
+        }
+        incrementarTemperatura(incremento);
+        incrementarVoltaje(incremento);
+        consumirbateria(incremento);
+        aceleracion_S=newAceleracion;
+        return incremento;
+    }
+
+    float frenar(float rand) {
+        //supongamos que la frenada máxima es -1, el 100%
+        float newAceleracion =aceleracion_S- rand;
+        float decremento=0;
+        if (newAceleracion<-1){
+            newAceleracion=-1;
+        }
+        decremento= newAceleracion-aceleracion_S;
+        if((-decremento)>aceleMax){
+            aceleMax=-decremento;
+        }
+        consumirbateria(decremento);
+        incrementarVoltaje(decremento);
+        incrementarTemperatura(decremento);
+        aceleracion_S=newAceleracion;
+        return decremento;
+    }
+
+    float getVelocidadMax() {
+        return velMax_S;
+    }
+
+    float getAceleracionMax() {
+        return aceleMax;
+    }
+
+    float getTemMax() {
+        return tempMax_S;
+    }
+
+    float getConsumo() {
+        return bateria-bateria_S;
+    }
+
+    float getVoltajeMax() {
+        return voltMax;
+    }
+
+    private void incrementarTemperatura(float incremento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void consumirbateria(float incremento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private float incremetoEnVoltMax(float incremento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void incrementarVoltaje(float incremento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

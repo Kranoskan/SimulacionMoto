@@ -23,8 +23,8 @@ public class SimulacionMoto {
         ArrayList<ArrayList<Float>> circuito= new ArrayList<>();
         int nPilotos= confi.getNPilotos();
         int nBMS= confi.getNBMS();
-        ArrayList<Pilotos> pilotos= new ArrayList<>();
-        ArrayList<Pilotos> pilotosBase= new ArrayList<>();
+        ArrayList<Piloto> pilotos= new ArrayList<>();
+        ArrayList<Piloto> pilotosBase= new ArrayList<>();
         ArrayList<BMS> controladores= new ArrayList<>();
         GeneradorPilotos generadorPilotos = new GeneradorPilotos();
         GeneradorBMS generadorControl = new GeneradorBMS();
@@ -39,11 +39,14 @@ public class SimulacionMoto {
         String rutaPiloto=confi.getRutaPiloto();
         editor.cargaDatosPiloto(pilotosBase, rutaPiloto);
         
-        
+        editor.leerDatosMoto(confi.getRutaMoto());
         
         //carga y creacion de datos
+        moto.setParametros(editor.getMoto());
         circuito.add((ArrayList<Float>) editor.getCircuito().clone());
-        generadorPilotos.Generar(pilotos,nPilotos,circuito,pilotosBase);
+        
+        generadorPilotos.Generar(pilotos,nPilotos,circuito,pilotosBase, moto);
+        
         generadorControl.Generar(controladores,pilotos,moto);
         
         simulador.Optimizar(circuito,pilotos,controladores,moto);
