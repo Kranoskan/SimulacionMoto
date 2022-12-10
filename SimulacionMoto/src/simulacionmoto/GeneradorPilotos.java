@@ -12,8 +12,19 @@ import java.util.ArrayList;
  * @author ismae
  */
 class GeneradorPilotos {
+    
+    Circuito circuito;
+    int numPilotos;
+    RestriccionesMotoYBMS restricciones;
 
-    void Generar(ArrayList<Pilotos> pilotos, int nPilotos, ArrayList<ArrayList<Float>> circuito, ArrayList<Pilotos> pilotosBase) {
+    public GeneradorPilotos(Circuito circuito, int numPilotos, RestriccionesMotoYBMS restricciones) {
+        this.circuito = circuito;
+        this.numPilotos = numPilotos;
+        this.restricciones = restricciones;
+    }
+
+    
+    void Generar() {
         // a partir del piloto base genera pilotos similares a este
     }
     

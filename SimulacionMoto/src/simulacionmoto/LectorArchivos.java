@@ -35,8 +35,6 @@ public class LectorArchivos {
         
     }
     
-    
-    
     public void cargaDatosCircuito(String ruta,Circuito cir ){
         File archivo = null;
         FileReader fr = null;
@@ -83,7 +81,7 @@ public class LectorArchivos {
       }
     }
     
-    public void cargaDatosMotoYBMS(String ruta){
+    public void cargaDatosMotoYBMS(String ruta,RestriccionesMotoYBMS restricciones){
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -104,20 +102,19 @@ public class LectorArchivos {
                 Integer valor=null;
                 
                 valor=(Integer.valueOf(fila[1]));
-                //System.out.print(fila[0]+": ");
-                //System.out.println(fila[1]);
+                System.out.print(fila[0]+": ");
+                System.out.println(fila[1]);
                 
                 this.valores_motoybms.add(valor);
             }
-            this.volt_max_bateria=this.valores_motoybms.get(0);
-            this.volt_max_celulas=this.valores_motoybms.get(1);
-            this.intensidad=this.valores_motoybms.get(2);
-            this.velocidad_max=this.valores_motoybms.get(3);
-            this.potencia_motor=this.valores_motoybms.get(4);
-            this.temperatura_max=this.valores_motoybms.get(5);
-            this.peso=this.valores_motoybms.get(6);
-            this.capacidad=this.valores_motoybms.get(7);
-            
+            restricciones.setVolt_max_bateria(this.valores_motoybms.get(0));
+            restricciones.setVolt_max_celulas(this.valores_motoybms.get(1));
+            restricciones.setIntensidad(this.valores_motoybms.get(2));
+            restricciones.setVelocidad_max(this.valores_motoybms.get(3));
+            restricciones.setPotencia_motor(this.valores_motoybms.get(4));
+            restricciones.setTemperatura_max(this.valores_motoybms.get(5));
+            restricciones.setPeso(this.valores_motoybms.get(6));
+            restricciones.setCapacidad(this.valores_motoybms.get(7));
             
       }
       catch(Exception e){
@@ -177,8 +174,5 @@ public class LectorArchivos {
     public int getCapacidad() {
         return capacidad;
     }
-    
-    void cargaDatosPiloto(ArrayList<Pilotos> pilotosBase, String rutaPiloto) {
-        
-    }
+   
 }

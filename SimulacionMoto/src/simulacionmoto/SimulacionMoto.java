@@ -29,29 +29,25 @@ public class SimulacionMoto {
         LectorArchivos lector = new LectorArchivos();
         lector.cargaDatosCircuito(rutaCircuito,circuito);
         //Lectura de datos motoyBMS
-        lector.cargaDatosMotoYBMS(confi.getRutaMotoYBMS());
+        RestriccionesMotoYBMS restricciones= new RestriccionesMotoYBMS();
+        lector.cargaDatosMotoYBMS(confi.getRutaMotoYBMS(),restricciones);
+        restricciones.mostrarRestricciones();
+        
         System.out.println("-----------------CALCULADO RANGO DE VELOCIDADES DE LOS SECTORES--------------------");
         circuito.calcularRangoVelocidades();
         circuito.mostrarPorPantalla();
         
-        int nPilotos= confi.getNPilotos();
-        int nBMS= confi.getNBMS();
-        ArrayList<Pilotos> pilotos= new ArrayList<>();
-        ArrayList<Pilotos> pilotosBase= new ArrayList<>();
-        ArrayList<BMS> controladores= new ArrayList<>();
-        GeneradorPilotos generadorPilotos = new GeneradorPilotos();
-        GeneradorBMS generadorControl = new GeneradorBMS();
-        Moto moto= new Moto();
-        Carrera simulador= new Carrera();
+        System.out.println("-----------------GENERANDO COMPORTAMIENTO PILOTOS--------------------");
+        int numPilotos= confi.getNPilotos();
+        GeneradorPilotos generadorPilotos = new GeneradorPilotos(circuito,numPilotos,restricciones);
         
+        ArrayList<Piloto> pilotos= new ArrayList<>();
         
+        //ArrayList<Piloto> pilotosBase= new ArrayList<>();
+        //ArrayList<BMS> controladores= new ArrayList<>();
         
-        
-        
-        String rutaPiloto=confi.getRutaPiloto();
-        lector.cargaDatosPiloto(pilotosBase, rutaPiloto);
-        
-        
+        //GeneradorBMS generadorControl = new GeneradorBMS();
+        //Carrera simulador= new Carrera();
         
         //carga y creacion de datos
         //circuito.add((ArrayList<Float>) lector.getCircuito().clone());

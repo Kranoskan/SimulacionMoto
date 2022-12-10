@@ -11,6 +11,6 @@ import java.util.ArrayList;
  *
  * @author ismae
  */
-class Pilotos {
+class Piloto {
     ArrayList<Float> comportamiento;
 }

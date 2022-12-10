@@ -12,13 +12,10 @@ import java.util.ArrayList;
  * @author ismae
  */
 class BMS {
-    ArrayList<Float> configuracion; 
-    
-    public void AjusteParametros(){
-        
+
+    void Generar(ArrayList<RestriccionesMotoYBMS> controlador, ArrayList<Piloto> pilotos, Moto moto) {
+        //comprueba los valores límites que toma cada piloto
+        // y genera un RestriccionesMotoYBMS que se ajuste a su comportamiento
     }
     
-    public boolean ConfiguracionPosible(){
-        return false;
-    }
 }
