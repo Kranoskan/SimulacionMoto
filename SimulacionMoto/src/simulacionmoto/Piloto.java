@@ -29,6 +29,32 @@ class Piloto {
         this.tiempo = 0;
         this.bateriaRestante = bateriaRestante;
     }
+    
+    Moto moto;
+    
+
+    void setConfiguracion(Circuito circuito, float rand) {
+        moto.iniciar();
+        for(int i=0;i<circuito.getDistanciaSectores().size();i++){
+        
+            //pilotoMicrosector newMicroSector= new pilotoMicrosector();
+            if(moto.getVelocidad()<circuito1.get(0) && moto.hayBateria()){
+                newMicroSector.set(moto.acelerar(rand));
+            }else{
+                newMicroSector.set(moto.frenar(rand));
+            }
+            comportamiento.add(newMicroSector);
+        }
+        actualizarEstado();
+    }
+
+    private void actualizarEstado() {
+        //bms.s=moto.getVelocidadMax();
+        //aceleracionMax=moto.getAceleracionMax();
+        bms.setVoltajeMax(moto.getVoltajeMax());
+        bms.setTemperaturaMax(moto.getTemMax());
+        //consumo= moto.getConsumo();
+    }
 
     /////////////////////GETTERS//////////////////////////
     public BMS getBms() {
