@@ -19,6 +19,7 @@ public class Configurador {
     ArrayList<String> rutaCircuito;
     ArrayList<String> rutaMBMS;
     ArrayList<String> rutaPiloto;
+    ArrayList<String> rutaMoto;
     ArrayList<Integer> nBMS;
     ArrayList<Integer> nPilotos;
     ArrayList<Float> pesoMoto;
@@ -26,6 +27,7 @@ public class Configurador {
     
     Configurador(String ruta){
         rutaCircuito = new ArrayList<>();
+        rutaMoto = new ArrayList<>();
         rutaMBMS = new ArrayList<>();
         rutaPiloto = new ArrayList<>();
         nBMS = new ArrayList<>();
@@ -82,6 +84,12 @@ public class Configurador {
                             adherencia.add(Float.parseFloat(v7[i]));
                         }
                         break;
+                    case "rutaMoto":
+                        String[] v8=split[1].split(";");
+                        for(int i=0;i<v8.length;i++){
+                            rutaPiloto.add(v8[i]);
+                        }
+                        break;
                 }
             }
         }catch(IOException e){
@@ -91,6 +99,10 @@ public class Configurador {
     
     String getRutaCircuito(){
         return this.rutaCircuito.get(0);
+    }
+    
+    String getRutaMoto(){
+        return this.rutaMoto.get(0);
     }
     
     String getRutaMotoYBMS(){
