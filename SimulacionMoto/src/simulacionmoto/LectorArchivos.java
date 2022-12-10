@@ -102,8 +102,8 @@ public class LectorArchivos {
                 Integer valor=null;
                 
                 valor=(Integer.valueOf(fila[1]));
-                System.out.print(fila[0]+": ");
-                System.out.println(fila[1]);
+                //System.out.print(fila[0]+": ");
+                //System.out.println(fila[1]);
                 
                 this.valores_motoybms.add(valor);
             }

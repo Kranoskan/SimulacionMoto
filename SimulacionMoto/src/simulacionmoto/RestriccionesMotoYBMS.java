@@ -100,7 +100,13 @@ class RestriccionesMotoYBMS {
     }
 
     void mostrarRestricciones(){
-        System.out.println(this.volt_max_bateria);
+        System.out.println("RestriccionesMotoYBMS{" + "volt_max_bateria=" + volt_max_bateria + ", volt_max_celulas=" + volt_max_celulas + ",\n intensidad=" + intensidad + ", velocidad_max=" + velocidad_max + ", potencia_motor=" + potencia_motor + ", temperatura_max=" + temperatura_max + ", peso=" + peso + ", capacidad=" + capacidad + '}');
+        
+    }
+
+    @Override
+    public String toString() {
+        return "RestriccionesMotoYBMS{" + "volt_max_bateria=" + volt_max_bateria + ", volt_max_celulas=" + volt_max_celulas + ", intensidad=" + intensidad + ", velocidad_max=" + velocidad_max + ", potencia_motor=" + potencia_motor + ", temperatura_max=" + temperatura_max + ", peso=" + peso + ", capacidad=" + capacidad + '}';
     }
     
     public boolean ConfiguracionPosible(){
