@@ -22,8 +22,7 @@ class Piloto {
     Float bateriaRestante;
     Moto moto;
 
-    public Piloto(Moto moto,RestriccionesMotoYBMS restricciones) {
-        this.moto = moto;
+    public Piloto(RestriccionesMotoYBMS restricciones) {
         this.bateriaUsadaAceleracioSector = new ArrayList<>();
         this.bateriaUsadaRefrigeracionSector = new ArrayList<>();
         this.distanciaAceleradaSector = new ArrayList<>();
@@ -31,29 +30,42 @@ class Piloto {
         this.tiempo = 0;
         //this.bateriaRestante = bateriaRestante;
         moto=new Moto(restricciones);
+        
+        
     }
     
-    
-    
 
-    void setConfiguracion(Circuito circuito) {
-        moto.iniciar();
+    void setComportamiento(Circuito circuito) {
+        //inicalizamos los vectores
+        for(int i=0;i<circuito.getNumSectores();i++){
+            this.distanciaAceleradaSector.add(Float.valueOf(0));
+            this.distanciaFrenadaSector.add(Float.valueOf(0));
+            this.bateriaUsadaAceleracioSector.add(Float.valueOf(0));
+            this.bateriaUsadaRefrigeracionSector.add(Float.valueOf(0));
+        }
+        
         Random generaRand;
+        
         for(int i=0;i<circuito.getDistanciaSectores().size();i++){
             
             if(moto.getVelocidad()<circuito.getVelocidadMaximaCalculada().get(0) && moto.hayBateria()){
                 generaRand=new Random();
                 Float rand=generaRand.nextFloat();
+                System.out.println(rand);
+                distanciaAceleradaSector.add(i,rand);
                 moto.acelerar(rand);
-                distanciaAceleradaSector.add(rand);
+                
             }else{
                 generaRand=new Random();
                 Float rand=generaRand.nextFloat();
                 moto.frenar(rand);
-                distanciaFrenadaSector.add(rand);
+                distanciaFrenadaSector.add(i,rand);
             }
+            System.out.println(distanciaAceleradaSector.toString());
+            
         }
-        actualizarEstado();
+        //actualizarEstado();
+      
     }
 
     private void actualizarEstado() {
@@ -124,8 +136,11 @@ class Piloto {
         this.bateriaRestante = bateriaRestante;
     }
     
-    
-    
-    
+    void mostrarComportamiento(){
+        System.out.println("Distancia acelerada en los sectore");
+        System.out.println(this.distanciaAceleradaSector.toString());
+        System.out.println("Distancia distancia frenada en los sectores");
+        System.out.println(this.distanciaFrenadaSector.toString());
+    }
  
 }

@@ -20,19 +20,19 @@ class GeneradorPilotos {
     Random random;
     ArrayList<Piloto> pilotos;
 
-    public GeneradorPilotos(Circuito circuito, int numPilotos, RestriccionesMotoYBMS restricciones) {
+    public GeneradorPilotos(Circuito circuito, int numPilotos, RestriccionesMotoYBMS restricciones,ArrayList<Piloto> pilotos) {
         this.circuito = circuito;
         this.numPilotos = numPilotos;
         this.restricciones = restricciones;
-        this.pilotos=new ArrayList<>();
+        this.pilotos=pilotos;
     }
 
-    void Generar(ArrayList<Piloto> pilotos, Circuito circuito, ArrayList<Piloto> pilotosBase, Moto moto) {
-        random= new Random();
+    void Generar() {
+        
         for (int i = 0; i < numPilotos; i++) {
-            Piloto newPiloto= new Piloto(moto,restricciones);
-            newPiloto.setConfiguracion(circuito,random.nextFloat());
-            pilotos.add(newPiloto);
+            Piloto newPiloto= new Piloto(restricciones);
+            newPiloto.setComportamiento(circuito);
+            //pilotos.add(newPiloto);
         }
     }
      

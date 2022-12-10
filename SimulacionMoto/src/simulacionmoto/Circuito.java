@@ -131,4 +131,8 @@ public class Circuito {
         System.out.println("Rangos de velocidades calculado");
     }
     
+    public int getNumSectores(){
+        return this.getCurvaSectores().size();
+    }
+    
 }

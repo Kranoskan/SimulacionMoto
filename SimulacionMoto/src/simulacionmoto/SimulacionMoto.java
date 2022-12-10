@@ -31,7 +31,7 @@ public class SimulacionMoto {
         //Lectura de datos motoyBMS
         RestriccionesMotoYBMS restricciones= new RestriccionesMotoYBMS();
         lector.cargaDatosMotoYBMS(confi.getRutaMotoYBMS(),restricciones);
-        restricciones.mostrarRestricciones();
+        System.out.println(restricciones.toString());
         
         System.out.println("-----------------CALCULADO RANGO DE VELOCIDADES DE LOS SECTORES--------------------");
         circuito.calcularRangoVelocidades();
@@ -39,9 +39,10 @@ public class SimulacionMoto {
         
         System.out.println("-----------------GENERANDO COMPORTAMIENTO PILOTOS--------------------");
         int numPilotos= confi.getNPilotos();
-        GeneradorPilotos generadorPilotos = new GeneradorPilotos(circuito,numPilotos,restricciones);
-        
         ArrayList<Piloto> pilotos= new ArrayList<>();
+        GeneradorPilotos generadorPilotos = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotos);
+        generadorPilotos.Generar();
+        //pilotos.get(0).mostrarComportamiento();
         
         //ArrayList<Piloto> pilotosBase= new ArrayList<>();
         //ArrayList<BMS> controladores= new ArrayList<>();

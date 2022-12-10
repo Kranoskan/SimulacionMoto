@@ -20,7 +20,8 @@ class RestriccionesMotoYBMS {
     public int potencia_motor;
     public int temperatura_max;
     public int peso;
-    public int capacidad;
+    public int capaciadBateria;
+    public int tem_inicial;
 
     public RestriccionesMotoYBMS() {
         this.volt_max_bateria = 0;
@@ -30,7 +31,8 @@ class RestriccionesMotoYBMS {
         this.potencia_motor = 0;
         this.temperatura_max = 0;
         this.peso = 0;
-        this.capacidad = 0;
+        this.capaciadBateria = 0;
+        this.tem_inicial=0;
     }
 
     ////////////////////////GETTERS//////////////////////////
@@ -62,8 +64,12 @@ class RestriccionesMotoYBMS {
         return peso;
     }
 
-    public int getCapacidad() {
-        return capacidad;
+    public int getCapacidadBateria() {
+        return capaciadBateria;
+    }
+
+    public int getTem_inicial() {
+        return tem_inicial;
     }
     
     //////////////////////////SETTERS/////////////////////////////
@@ -96,19 +102,19 @@ class RestriccionesMotoYBMS {
     }
 
     public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
+        this.capaciadBateria = capacidad;
     }
 
-    void mostrarRestricciones(){
-        System.out.println("RestriccionesMotoYBMS{" + "volt_max_bateria=" + volt_max_bateria + ", volt_max_celulas=" + volt_max_celulas + ",\n intensidad=" + intensidad + ", velocidad_max=" + velocidad_max + ", potencia_motor=" + potencia_motor + ", temperatura_max=" + temperatura_max + ", peso=" + peso + ", capacidad=" + capacidad + '}');
-        
+
+    public void setTem_inicial(int tem_inicial) {
+        this.tem_inicial = tem_inicial;
     }
 
     @Override
     public String toString() {
-        return "RestriccionesMotoYBMS{" + "volt_max_bateria=" + volt_max_bateria + ", volt_max_celulas=" + volt_max_celulas + ", intensidad=" + intensidad + ", velocidad_max=" + velocidad_max + ", potencia_motor=" + potencia_motor + ", temperatura_max=" + temperatura_max + ", peso=" + peso + ", capacidad=" + capacidad + '}';
+        return "RestriccionesMotoYBMS{" + "volt_max_bateria=" + volt_max_bateria + ", volt_max_celulas=" + volt_max_celulas + ", intensidad=" + intensidad + ", velocidad_max=" + velocidad_max + ", potencia_motor=" + potencia_motor + ", temperatura_max=" + temperatura_max + ", peso=" + peso + ", capaciadBateria=" + capaciadBateria + ", tem_inicial=" + tem_inicial + '}';
     }
-    
+
     public boolean ConfiguracionPosible(){
         return false;
     }
