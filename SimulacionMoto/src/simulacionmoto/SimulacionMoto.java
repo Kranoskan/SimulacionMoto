@@ -24,12 +24,15 @@ public class SimulacionMoto {
         Circuito circuito=new Circuito();
 
         //Lectura de datos circuito
+        System.out.println("-----------------LEYENDO DATOS--------------------");
         String rutaCircuito=confi.getRutaCircuito();
         LectorArchivos lector = new LectorArchivos();
-        lector.cargaDatosCircuito(rutaCircuito);
-        
-        
-        
+        lector.cargaDatosCircuito(rutaCircuito,circuito);
+        //Lectura de datos motoyBMS
+        lector.cargaDatosMotoYBMS(confi.getRutaMotoYBMS());
+        System.out.println("-----------------CALCULADO RANGO DE VELOCIDADES DE LOS SECTORES--------------------");
+        circuito.calcularRangoVelocidades();
+        circuito.mostrarPorPantalla();
         
         int nPilotos= confi.getNPilotos();
         int nBMS= confi.getNBMS();
@@ -43,8 +46,7 @@ public class SimulacionMoto {
         
         
         
-        //Lectura de datos motoyBMS
-        lector.cargaDatosMotoYBMS(confi.getRutaMotoYBMS());
+        
         
         String rutaPiloto=confi.getRutaPiloto();
         lector.cargaDatosPiloto(pilotosBase, rutaPiloto);

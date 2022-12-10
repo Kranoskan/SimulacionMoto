@@ -37,7 +37,7 @@ public class LectorArchivos {
     
     
     
-    public void cargaDatosCircuito(String ruta){
+    public void cargaDatosCircuito(String ruta,Circuito cir ){
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -54,10 +54,14 @@ public class LectorArchivos {
             while((linea=br.readLine())!=null){
                 String[] fila=linea.split(",");   //separamos por la tabulación
                 ArrayList<Float> nuevo=new ArrayList<>();
-                for (int i = 0; i < fila.length; i++) {
-                    nuevo.add(Float.valueOf(fila[i]));
-                }
-                circuito.add(nuevo);
+                //for (int i = 0; i < fila.length; i++) {
+                    //nuevo.add(Float.valueOf(fila[i]));
+                //}
+                cir.getDistanciaSectores().add(Float.valueOf(fila[0]));
+                cir.getCurvaSectores().add(Float.valueOf(fila[1]));
+                cir.getPendienteSectores().add(Float.valueOf(fila[2]));
+                
+                //circuito.add(nuevo);
             }
       }
       catch(Exception e){
@@ -69,9 +73,12 @@ public class LectorArchivos {
          try{                    
             if( null != fr ){   
                fr.close();     
+               System.out.println("Fichero "+ruta+" leído");
             }                  
          }catch (Exception e2){ 
             e2.printStackTrace();
+            System.out.println("Fichero "+ruta+" no leído");
+            
          }
       }
     }
@@ -82,7 +89,7 @@ public class LectorArchivos {
         BufferedReader br = null;
         this.valores_motoybms.clear();   
         //se borra el circuito anterior, si lo hubiese
-        System.out.println(ruta);
+        //System.out.println(ruta);
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
             // hacer una lectura comoda (disponer del metodo readLine()).
@@ -97,8 +104,8 @@ public class LectorArchivos {
                 Integer valor=null;
                 
                 valor=(Integer.valueOf(fila[1]));
-                System.out.print(fila[0]+": ");
-                System.out.println(fila[1]);
+                //System.out.print(fila[0]+": ");
+                //System.out.println(fila[1]);
                 
                 this.valores_motoybms.add(valor);
             }
@@ -111,6 +118,7 @@ public class LectorArchivos {
             this.peso=this.valores_motoybms.get(6);
             this.capacidad=this.valores_motoybms.get(7);
             
+            
       }
       catch(Exception e){
          e.printStackTrace();
@@ -120,10 +128,12 @@ public class LectorArchivos {
          // una excepcion.
          try{                    
             if( null != fr ){   
-               fr.close();     
+               fr.close();    
+               System.out.println("Fichero "+ruta+" leído");
             }                  
          }catch (Exception e2){ 
             e2.printStackTrace();
+            System.out.println("Fichero "+ruta+" no leído");
          }
       }
     }

@@ -13,49 +13,53 @@ import java.util.ArrayList;
  */
 public class Circuito {
      ArrayList<Float> distanciaSectores;
-     ArrayList<Float> curvaSector;
-     ArrayList<Float> pendienteSector;
+     ArrayList<Float> curvaSectores;
+     ArrayList<Float> pendienteSectores;
      ArrayList<Float> velocidadMaximaCalculada;
      ArrayList<Float> velocidadMinimaCalculada;
 
     public Circuito() {
         this.distanciaSectores = new ArrayList();
-        this.curvaSector = new ArrayList();
-        this.pendienteSector = new ArrayList();
+        this.curvaSectores = new ArrayList();
+        this.pendienteSectores = new ArrayList();
         this.velocidadMaximaCalculada = new ArrayList();
         this.velocidadMinimaCalculada = new ArrayList();
+  
     }
-
+    
+    ////////////////////////////////Getters/////////////////////////////
     public ArrayList<Float> getDistanciaSectores() {
         return distanciaSectores;
     }
 
-    public ArrayList<Float> getCurvaSector() {
-        return curvaSector;
+    public ArrayList<Float> getCurvaSectores() {
+        return curvaSectores;
     }
 
-    public ArrayList<Float> getPendienteSector() {
-        return pendienteSector;
+    public ArrayList<Float> getPendienteSectores() {
+        return pendienteSectores;
     }
 
     public ArrayList<Float> getVelocidadMaximaCalculada() {
         return velocidadMaximaCalculada;
     }
 
-    public ArrayList<Float> getVelocidadMinimaCalculada() {
+    
+    public ArrayList<Float> getVelocidadMinimaCalculada() {    
         return velocidadMinimaCalculada;
     }
 
+    ////////////////////////////////Setters/////////////////////////////
     public void setDistanciaSectores(ArrayList<Float> distanciaSectores) {
         this.distanciaSectores = distanciaSectores;
     }
 
     public void setCurvaSector(ArrayList<Float> curvaSector) {
-        this.curvaSector = curvaSector;
+        this.curvaSectores = curvaSector;
     }
 
     public void setPendienteSector(ArrayList<Float> pendienteSector) {
-        this.pendienteSector = pendienteSector;
+        this.pendienteSectores = pendienteSector;
     }
 
     public void setVelocidadMaximaCalculada(ArrayList<Float> velocidadMaximaCalculada) {
@@ -66,5 +70,27 @@ public class Circuito {
         this.velocidadMinimaCalculada = velocidadMinimaCalculada;
     }
 
+    void mostrarPorPantalla(){
+        for(int i=0;i<this.pendienteSectores.size();i++){
+            System.out.print("Sector: "+i);
+            System.out.print(" Dist: "+this.distanciaSectores.get(i));
+            System.out.print(" Curvatura: "+this.curvaSectores.get(i));
+            System.out.print(" Pendiente: "+this.getPendienteSectores().get(i));
+            if(this.getVelocidadMinimaCalculada().size()==0){
+                System.out.print(" Velocidad min calculada: "+"NO CALCULADA");
+                System.out.print(" Velocidad max calculada: "+"NO CALCULADA");
+            }else{
+                System.out.print(" Velocidad minima calculada: "+this.getVelocidadMinimaCalculada().get(i));
+                System.out.print(" Velocidad maxima calculada: "+this.getVelocidadMaximaCalculada().get(i));
+            }
+            
+            
+            System.out.println();
+        }
+    }
+    
+    void calcularRangoVelocidades(){
+        
+    }
     
 }
