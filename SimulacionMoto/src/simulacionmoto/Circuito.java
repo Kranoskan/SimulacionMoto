@@ -77,11 +77,11 @@ public class Circuito {
             System.out.print(" Curvatura: "+this.curvaSectores.get(i));
             System.out.print(" Pendiente: "+this.getPendienteSectores().get(i));
             if(this.getVelocidadMinimaCalculada().isEmpty()){
-                System.out.print(" Velocidad min calculada: "+"NO CALCULADA");
-                System.out.print(" Velocidad max calculada: "+"NO CALCULADA");
+                System.out.print(" Vel min calculada: "+"NO CALCULADA");
+                System.out.print(" Vel max calculada: "+"NO CALCULADA");
             }else{
-                System.out.print(" Velocidad minima calculada: "+this.getVelocidadMinimaCalculada().get(i));
-                System.out.print(" Velocidad maxima calculada: "+this.getVelocidadMaximaCalculada().get(i));
+                System.out.print(" Vel min calculada: "+this.getVelocidadMinimaCalculada().get(i));
+                System.out.print(" Vel max calculada: "+this.getVelocidadMaximaCalculada().get(i));
             }
             
             
@@ -91,8 +91,8 @@ public class Circuito {
     
     void calcularRangoVelocidades(){
         for(int i=0;i<this.distanciaSectores.size();i++){
-            
-            Double aceleracionLateral=Double.valueOf("9");//buscado en tabla de datos, parametrizar
+            //valor de aceleracion lateral de una moto
+            Double aceleracionLateral=Double.valueOf("9");//buscado en tabla de datos de una pagina, parametrizar
             Double constante=Double.valueOf("3.6");//Constante fija de la formula
             Double AR=aceleracionLateral*this.getCurvaSectores().get(i);
             Double vmax;
@@ -105,25 +105,27 @@ public class Circuito {
                 
                 if(pendiente<0){//Si es cuesta abajo
                     vmax=Double.valueOf("180");//aumentamos velocidad por la pendiente
-                    vmaxPendienteAplicada=Double.valueOf("180")*(pendiente+1);
+                    vmaxPendienteAplicada=Double.valueOf("180")*(1-pendiente);
                 }else{//Si es cuesta arriba
                     vmax=Double.valueOf("180");//disminuimos velocidad con por la pendiente
-                    vmaxPendienteAplicada=Double.valueOf("180")*(1-(pendiente*-1));
+                    vmaxPendienteAplicada=Double.valueOf("180")*(1-pendiente);
                 }
             }else{
           
                 if(pendiente<0){//Si es cuesta abajo
                     vmax=constante*Math.sqrt(AR);//aumentamos velocidad por la pendiente
-                    vmaxPendienteAplicada=constante*Math.sqrt(AR)*(pendiente+1);
+                    vmaxPendienteAplicada=constante*Math.sqrt(AR)*(1-pendiente);
                 }else{//Si es cuesta arriba
                     vmax=constante*Math.sqrt(AR);//disminuimos velocidad con por la pendiente
-                    vmaxPendienteAplicada=constante*Math.sqrt(AR)*(1-(pendiente*-1));
+                    vmaxPendienteAplicada=constante*Math.sqrt(AR)*(1-pendiente);
                 }
                 
             }
+            this.velocidadMaximaCalculada.add(vmaxPendienteAplicada);
+            this.velocidadMinimaCalculada.add(vmaxPendienteAplicada*Double.valueOf("0.5"));
 
-            System.out.print("Curvatura: "+this.getCurvaSectores().get(i)+" AR: "+AR+" Vmax "+vmax+" VmaxPendienteaplicada"+vmaxPendienteAplicada+" Pendiente: "+this.pendienteSectores.get(i));
-
+            //System.out.print("Curvatura: "+this.getCurvaSectores().get(i)+" AR: "+AR+" Vmax "+vmax+" VmaxPendienteaplicada"+vmaxPendienteAplicada+" Pendiente: "+this.pendienteSectores.get(i));
+            System.out.print("Pendiente: "+this.pendienteSectores.get(i)+" Vmax "+vmax+" pendiente aplicada -> "+vmaxPendienteAplicada);
             System.out.println();
         }
         System.out.println("Rangos de velocidades calculado");
