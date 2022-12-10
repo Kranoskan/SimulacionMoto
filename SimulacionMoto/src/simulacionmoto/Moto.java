@@ -5,13 +5,12 @@
  */
 package simulacionmoto;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author ismae
  */
 class Moto {
+
     //parametros iniciales, sirven para reiniciar los datos
     float velocidad;
     float bateria;
@@ -30,26 +29,24 @@ class Moto {
     float aceleMax;
     float voltMax;
 
-    void setParametros(ArrayList<Float> datosMoto) {
+    public Moto(RestriccionesMotoYBMS restricciones) {
         velocidad=0;
         aceleracion =0;
-        bateria=datosMoto.get(0);
-        velLimite=datosMoto.get(1);
-        tempLimite=datosMoto.get(2);
-        tempIni=datosMoto.get(3);
-    }
-
-    void iniciar() {//resetea los parámetros
-        velocidad_S=velocidad;
-        bateria_S=bateria;
+        bateria=restricciones.getCapacidadBateria();
+        velLimite=restricciones.getVelocidad_max();
+        tempLimite=restricciones.getTemperatura_max();
+        tempIni=restricciones.getTem_inicial();
+        
         velMax_S=0;
         tempMax_S=0;
-        aceleracion_S=aceleracion;
-        temperatura=tempIni;
         aceleMax=0;
         voltMax=0;
+        
+        velocidad_S=velocidad;
+        bateria_S=bateria;
+        aceleracion_S=aceleracion;
+        temperatura=tempIni;
     }
-
     Float getVelocidad() {
         return velocidad_S;
     }
@@ -100,6 +97,11 @@ class Moto {
         aceleracion_S=newAceleracion;
         return decremento;
     }
+    
+    boolean esFactible(Float rand,String tipo){
+        //if se supera la velocidad con ese 
+        return true;
+    }
 
     float getVelocidadMax() {
         return velMax_S;
@@ -122,19 +124,18 @@ class Moto {
     }
 
     private void incrementarTemperatura(float incremento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     private void consumirbateria(float incremento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     private float incremetoEnVoltMax(float incremento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
 
     private void incrementarVoltaje(float incremento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
-    
 }

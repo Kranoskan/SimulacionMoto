@@ -1,7 +1,7 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in the lector.
  */
 package simulacionmoto;
 
@@ -19,45 +19,47 @@ public class SimulacionMoto {
      */
     public static void main(String[] args) {
         //Declaracion de variables
-        System.out.println("Inicio");
+        System.out.println("-----------------INICIO--------------------");
         Configurador confi=new Configurador("Parametros.txt");
-        ArrayList<ArrayList<Float>> circuito= new ArrayList<>();
-        int nPilotos= confi.getNPilotos();
-        int nBMS= confi.getNBMS();
-        ArrayList<Piloto> pilotos= new ArrayList<>();
-        ArrayList<Piloto> pilotosBase= new ArrayList<>();
-        ArrayList<BMS> controladores= new ArrayList<>();
-        GeneradorPilotos generadorPilotos = new GeneradorPilotos();
-        GeneradorBMS generadorControl = new GeneradorBMS();
-        Moto moto= new Moto();
-        Carrera simulador= new Carrera();
-        
-        //lectura de datos circuito
+        Circuito circuito=new Circuito();
+
+        //Lectura de datos circuito
+        System.out.println("-----------------LEYENDO DATOS--------------------");
         String rutaCircuito=confi.getRutaCircuito();
-        EditorArchivos editor = new EditorArchivos();
-        editor.cargaDatosCircuito(rutaCircuito);
-        
+        LectorArchivos lector = new LectorArchivos();
+        lector.cargaDatosCircuito(rutaCircuito,circuito);
         //Lectura de datos motoyBMS
-        editor.cargaDatosMotoYBMS(confi.getRutaMotoYBMS());
+        RestriccionesMotoYBMS restricciones= new RestriccionesMotoYBMS();
+        lector.cargaDatosMotoYBMS(confi.getRutaMotoYBMS(),restricciones);
+        System.out.println(restricciones.toString());
         
-        String rutaPiloto=confi.getRutaPiloto();
-        editor.cargaDatosPiloto(pilotosBase, rutaPiloto);
+        System.out.println("-----------------CALCULADO RANGO DE VELOCIDADES DE LOS SECTORES--------------------");
+        circuito.calcularRangoVelocidades();
+        circuito.mostrarPorPantalla();
         
-        editor.leerDatosMoto(confi.getRutaMoto());
+        System.out.println("-----------------GENERANDO COMPORTAMIENTO PILOTOS--------------------");
+        int numPilotos= confi.getNPilotos();
+        ArrayList<Piloto> pilotos= new ArrayList<>();
+        GeneradorPilotos generadorPilotos = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotos);
+        generadorPilotos.Generar();
+        //pilotos.get(0).mostrarComportamiento();
+        
+        //ArrayList<Piloto> pilotosBase= new ArrayList<>();
+        //ArrayList<BMS> controladores= new ArrayList<>();
+        
+        //GeneradorBMS generadorControl = new GeneradorBMS();
+        //Carrera simulador= new Carrera();
         
         //carga y creacion de datos
-        moto.setParametros(editor.getMoto());
-        circuito.add((ArrayList<Float>) editor.getCircuito().clone());
+        //circuito.add((ArrayList<Float>) lector.getCircuito().clone());
+        //generadorPilotos.Generar(pilotos,nPilotos,circuito,pilotosBase);
+        //generadorControl.Generar(controladores,pilotos,moto);
         
-        generadorPilotos.Generar(pilotos,nPilotos,circuito,pilotosBase, moto);
+        //simulador.Optimizar(circuito,pilotos,controladores,moto);
         
-        generadorControl.Generar(controladores,pilotos,moto);
-        
-        simulador.Optimizar(circuito,pilotos,controladores,moto);
-        
-        simulador.Simular(circuito,pilotos,controladores,moto);
-        simulador.Resultado();
-        System.out.println("Fin");
+        //simulador.Simular(circuito,pilotos,controladores,moto);
+        //simulador.Resultado();
+        System.out.println("----------------------FIN-------------------");
     }
     
 }

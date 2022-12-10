@@ -13,15 +13,27 @@ import java.util.Random;
  * @author ismae
  */
 class GeneradorPilotos {
+    
+    Circuito circuito;
+    int numPilotos;
+    RestriccionesMotoYBMS restricciones;
     Random random;
+    ArrayList<Piloto> pilotos;
 
-    void Generar(ArrayList<Piloto> pilotos, int nPilotos, ArrayList<ArrayList<Float>> circuito, ArrayList<Piloto> pilotosBase, Moto moto) {
-        random= new Random();
-        for (int i = 0; i < nPilotos; i++) {
-            Piloto newPiloto= new Piloto(moto);
-            newPiloto.setConfiguracion(circuito,random.nextFloat());
-            pilotos.add(newPiloto);
+    public GeneradorPilotos(Circuito circuito, int numPilotos, RestriccionesMotoYBMS restricciones,ArrayList<Piloto> pilotos) {
+        this.circuito = circuito;
+        this.numPilotos = numPilotos;
+        this.restricciones = restricciones;
+        this.pilotos=pilotos;
+    }
+
+    void Generar() {
+        
+        for (int i = 0; i < numPilotos; i++) {
+            Piloto newPiloto= new Piloto(restricciones);
+            newPiloto.setComportamiento(circuito);
+            //pilotos.add(newPiloto);
         }
     }
-    
+     
 }

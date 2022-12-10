@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 class Carrera {
 
-    void Simular(ArrayList<ArrayList<Float>> circuito, ArrayList<Piloto> pilotos, ArrayList<BMS> controladores, Moto moto) {
-        //La idea es probar cada configuración del BMS (parametros de la simulacion
+    void Simular(ArrayList<ArrayList<Float>> circuito, ArrayList<Piloto> pilotos, ArrayList<RestriccionesMotoYBMS> controladores, Moto moto) {
+        //La idea es probar cada configuración del RestriccionesMotoYBMS (parametros de la simulacion
         //con cada piloto (población, entidades...)
         //usando el circuito como función de evaulacion
         //y guardar los resultados
@@ -24,8 +24,8 @@ class Carrera {
     
     }
 
-    void Optimizar(ArrayList<ArrayList<Float>> circuito, ArrayList<Piloto> pilotos, ArrayList<BMS> controladores, Moto moto) {
-        //genera nuevas cinfiguraciones del BMS 
+    void Optimizar(ArrayList<ArrayList<Float>> circuito, ArrayList<Piloto> pilotos, ArrayList<RestriccionesMotoYBMS> controladores, Moto moto) {
+        //genera nuevas cinfiguraciones del RestriccionesMotoYBMS 
         //para ello sigue alguna tecnica heuristica (cruces, vecino más cercano, greedy...)
         //para cada nueva configuración elimina las que no sean posibles o ajuasta los parámetros
         //y hace una simulación del circuito como función de evaulación

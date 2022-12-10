@@ -6,51 +6,146 @@
 package simulacionmoto;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
  * @author ismae
  */
 class Piloto {
-    ArrayList<pilotoMicrosector> comportamiento;
+    BMS bms;
+    ArrayList<Float> bateriaUsadaAceleracioSector;
+    ArrayList<Float> bateriaUsadaRefrigeracionSector;
+    ArrayList<Float> distanciaAceleradaSector;
+    ArrayList<Float> distanciaFrenadaSector;
+    int tiempo;//tiempo en segundos
+    Float bateriaRestante;
     Moto moto;
-    float velocidadMax;
-    float aceleracionMax;
-    float voltajeMax;
-    float temperaturaMax;
-    float consumo;
 
-    Piloto(Moto m) {
-        moto = new Moto();
-        moto=m;
-        velocidadMax=0;
-        aceleracionMax=0;
-        voltajeMax=0;
-        temperaturaMax=0;
-        consumo=0;
+    public Piloto(RestriccionesMotoYBMS restricciones) {
+        this.bateriaUsadaAceleracioSector = new ArrayList<>();
+        this.bateriaUsadaRefrigeracionSector = new ArrayList<>();
+        this.distanciaAceleradaSector = new ArrayList<>();
+        this.distanciaFrenadaSector = new ArrayList<>();
+        this.tiempo = 0;
+        //this.bateriaRestante = bateriaRestante;
+        moto=new Moto(restricciones);
+        
+        
     }
+    
 
-    void setConfiguracion(ArrayList<ArrayList<Float>> circuito, float rand) {
-        moto.iniciar();
-        comportamiento = new ArrayList<>();
-        circuito.forEach(circuito1 -> {
-            pilotoMicrosector newMicroSector= new pilotoMicrosector();
-            if(moto.getVelocidad()<circuito1.get(0) && moto.hayBateria()){
-                newMicroSector.set(moto.acelerar(rand));
+    void setComportamiento(Circuito circuito) {
+        //inicalizamos los vectores
+        for(int i=0;i<circuito.getNumSectores();i++){
+            this.distanciaAceleradaSector.add(Float.valueOf(0));
+            this.distanciaFrenadaSector.add(Float.valueOf(0));
+            this.bateriaUsadaAceleracioSector.add(Float.valueOf(0));
+            this.bateriaUsadaRefrigeracionSector.add(Float.valueOf(0));
+        }
+        
+        Random generaRand;
+        
+        for(int i=0;i<circuito.getDistanciaSectores().size();i++){
+            
+            if(moto.getVelocidad()<circuito.getVelocidadMaximaCalculada().get(0) && moto.hayBateria()){
+                generaRand=new Random();
+                Float rand=generaRand.nextFloat();
+                while(!moto.esFactible(rand,"Acelerar")){//Puede haber casos que acelerando se pase de velocidad 
+                    generaRand=new Random();
+                    rand=generaRand.nextFloat();
+                }
+                System.out.println(rand);
+                distanciaAceleradaSector.add(i,rand);
+                moto.acelerar(rand);
+                
             }else{
-                newMicroSector.set(moto.frenar(rand));
+                generaRand=new Random();
+                Float rand=generaRand.nextFloat();
+                
+                moto.frenar(rand);
+                distanciaFrenadaSector.add(i,rand);
             }
-            comportamiento.add(newMicroSector);
-        });
-        actualizarEstado();
+            System.out.println(distanciaAceleradaSector.toString());
+            
+        }
+        //actualizarEstado();
+      
     }
 
     private void actualizarEstado() {
-        velocidadMax=moto.getVelocidadMax();
-        aceleracionMax=moto.getAceleracionMax();
-        voltajeMax=moto.getVoltajeMax();
-        temperaturaMax=moto.getTemMax();
-        consumo= moto.getConsumo();
+        //bms.s=moto.getVelocidadMax();
+        //aceleracionMax=moto.getAceleracionMax();
+        bms.setVoltajeMax(moto.getVoltajeMax());
+        bms.setTemperaturaMax(moto.getTemMax());
+        //consumo= moto.getConsumo();
+    }
+
+    /////////////////////GETTERS//////////////////////////
+    public BMS getBms() {
+        return bms;
+    }
+
+    public ArrayList<Float> getBateriaUsadaAceleracioSector() {
+        return bateriaUsadaAceleracioSector;
+    }
+
+    public ArrayList<Float> getBateriaUsadaRefrigeracionSector() {
+        return bateriaUsadaRefrigeracionSector;
+    }
+
+    public ArrayList<Float> getDistanciaAceleradaSector() {
+        return distanciaAceleradaSector;
+    }
+
+    public ArrayList<Float> getDistanciaFrenadaSector() {
+        return distanciaFrenadaSector;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public Float getBateriaRestante() {
+        return bateriaRestante;
     }
     
+    
+    ////////////////////SETTERS/////////////////////////
+
+    public void setBms(BMS bms) {
+        this.bms = bms;
+    }
+
+    public void setBateriaUsadaAceleracioSector(ArrayList<Float> bateriaUsadaAceleracioSector) {
+        this.bateriaUsadaAceleracioSector = bateriaUsadaAceleracioSector;
+    }
+
+    public void setBateriaUsadaRefrigeracionSector(ArrayList<Float> bateriaUsadaRefrigeracionSector) {
+        this.bateriaUsadaRefrigeracionSector = bateriaUsadaRefrigeracionSector;
+    }
+
+    public void setDistanciaAceleradaSector(ArrayList<Float> distanciaAceleradaSector) {
+        this.distanciaAceleradaSector = distanciaAceleradaSector;
+    }
+
+    public void setDistanciaFrenadaSector(ArrayList<Float> distanciaFrenadaSector) {
+        this.distanciaFrenadaSector = distanciaFrenadaSector;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public void setBateriaRestante(Float bateriaRestante) {
+        this.bateriaRestante = bateriaRestante;
+    }
+    
+    void mostrarComportamiento(){
+        System.out.println("Distancia acelerada en los sectore");
+        System.out.println(this.distanciaAceleradaSector.toString());
+        System.out.println("Distancia distancia frenada en los sectores");
+        System.out.println(this.distanciaFrenadaSector.toString());
+    }
+ 
 }
