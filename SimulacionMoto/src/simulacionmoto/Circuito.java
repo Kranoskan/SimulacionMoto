@@ -15,8 +15,8 @@ public class Circuito {
      ArrayList<Float> distanciaSectores;
      ArrayList<Float> curvaSectores;
      ArrayList<Float> pendienteSectores;
-     ArrayList<Float> velocidadMaximaCalculada;
-     ArrayList<Float> velocidadMinimaCalculada;
+     ArrayList<Double> velocidadMaximaCalculada;
+     ArrayList<Double> velocidadMinimaCalculada;
 
     public Circuito() {
         this.distanciaSectores = new ArrayList();
@@ -40,12 +40,12 @@ public class Circuito {
         return pendienteSectores;
     }
 
-    public ArrayList<Float> getVelocidadMaximaCalculada() {
+    public ArrayList<Double> getVelocidadMaximaCalculada() {
         return velocidadMaximaCalculada;
     }
 
     
-    public ArrayList<Float> getVelocidadMinimaCalculada() {    
+    public ArrayList<Double> getVelocidadMinimaCalculada() {    
         return velocidadMinimaCalculada;
     }
 
@@ -62,21 +62,21 @@ public class Circuito {
         this.pendienteSectores = pendienteSector;
     }
 
-    public void setVelocidadMaximaCalculada(ArrayList<Float> velocidadMaximaCalculada) {
+    public void setVelocidadMaximaCalculada(ArrayList<Double> velocidadMaximaCalculada) {
         this.velocidadMaximaCalculada = velocidadMaximaCalculada;
     }
 
-    public void setVelocidadMinimaCalculada(ArrayList<Float> velocidadMinimaCalculada) {
+    public void setVelocidadMinimaCalculada(ArrayList<Double> velocidadMinimaCalculada) {
         this.velocidadMinimaCalculada = velocidadMinimaCalculada;
     }
 
     void mostrarPorPantalla(){
         for(int i=0;i<this.pendienteSectores.size();i++){
             System.out.print("Sector: "+i);
-            System.out.print(" Dist: "+this.distanciaSectores.get(i));
+            System.out.print(" Distancia: "+this.distanciaSectores.get(i));
             System.out.print(" Curvatura: "+this.curvaSectores.get(i));
             System.out.print(" Pendiente: "+this.getPendienteSectores().get(i));
-            if(this.getVelocidadMinimaCalculada().size()==0){
+            if(this.getVelocidadMinimaCalculada().isEmpty()){
                 System.out.print(" Velocidad min calculada: "+"NO CALCULADA");
                 System.out.print(" Velocidad max calculada: "+"NO CALCULADA");
             }else{
@@ -90,7 +90,14 @@ public class Circuito {
     }
     
     void calcularRangoVelocidades(){
-        
+        for(int i=0;i<this.distanciaSectores.size();i++){
+
+            Float vmax=this.getPendienteSectores().get(i)*this.getCurvaSectores().get(i);
+            //this.velocidadMaximaCalculada.add(i,vmax);
+            
+            System.out.println(vmax);
+        }
+        System.out.println("Rangos de velocidades calculado");
     }
     
 }
