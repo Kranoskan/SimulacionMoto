@@ -91,11 +91,40 @@ public class Circuito {
     
     void calcularRangoVelocidades(){
         for(int i=0;i<this.distanciaSectores.size();i++){
-
-            Float vmax=this.getPendienteSectores().get(i)*this.getCurvaSectores().get(i);
-            //this.velocidadMaximaCalculada.add(i,vmax);
             
-            System.out.println(vmax);
+            Double aceleracionLateral=Double.valueOf("9");//buscado en tabla de datos, parametrizar
+            Double constante=Double.valueOf("3.6");//Constante fija de la formula
+            Double AR=aceleracionLateral*this.getCurvaSectores().get(i);
+            Double vmax;
+            Double vmaxPendienteAplicada;
+            if(AR<0){
+                AR=AR*-1;
+            }
+            Double pendiente=Double.valueOf(this.pendienteSectores.get(i));
+            if(AR==0){//Si es una recta establecemos la velocidad maxima de la moto
+                
+                if(pendiente<0){//Si es cuesta abajo
+                    vmax=Double.valueOf("180");//aumentamos velocidad por la pendiente
+                    vmaxPendienteAplicada=Double.valueOf("180")*(pendiente+1);
+                }else{//Si es cuesta arriba
+                    vmax=Double.valueOf("180");//disminuimos velocidad con por la pendiente
+                    vmaxPendienteAplicada=Double.valueOf("180")*(1-(pendiente*-1));
+                }
+            }else{
+          
+                if(pendiente<0){//Si es cuesta abajo
+                    vmax=constante*Math.sqrt(AR);//aumentamos velocidad por la pendiente
+                    vmaxPendienteAplicada=constante*Math.sqrt(AR)*(pendiente+1);
+                }else{//Si es cuesta arriba
+                    vmax=constante*Math.sqrt(AR);//disminuimos velocidad con por la pendiente
+                    vmaxPendienteAplicada=constante*Math.sqrt(AR)*(1-(pendiente*-1));
+                }
+                
+            }
+
+            System.out.print("Curvatura: "+this.getCurvaSectores().get(i)+" AR: "+AR+" Vmax "+vmax+" VmaxPendienteaplicada"+vmaxPendienteAplicada+" Pendiente: "+this.pendienteSectores.get(i));
+
+            System.out.println();
         }
         System.out.println("Rangos de velocidades calculado");
     }
