@@ -6,6 +6,7 @@
 package simulacionmoto;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -33,17 +34,21 @@ class Piloto {
     Moto moto;
     
 
-    void setConfiguracion(Circuito circuito, float rand) {
+    void setConfiguracion(Circuito circuito) {
         moto.iniciar();
+        Random generaRand;
         for(int i=0;i<circuito.getDistanciaSectores().size();i++){
-        
-            //pilotoMicrosector newMicroSector= new pilotoMicrosector();
-            if(moto.getVelocidad()<circuito1.get(0) && moto.hayBateria()){
-                newMicroSector.set(moto.acelerar(rand));
+            
+            if(moto.getVelocidad()<circuito.getVelocidadMaximaCalculada().get(0) && moto.hayBateria()){
+                generaRand=new Random();
+                
+                moto.acelerar(generaRand.nextFloat());
+                distanciaAceleradaSector.add(generaRand);
             }else{
-                newMicroSector.set(moto.frenar(rand));
+                generaRand=new Random();
+                moto.frenar(generaRand);
+                distanciaFrenadaSector.add(generaRand);
             }
-            comportamiento.add(newMicroSector);
         }
         actualizarEstado();
     }

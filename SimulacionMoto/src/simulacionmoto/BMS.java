@@ -13,59 +13,59 @@ import java.util.ArrayList;
  */
 class BMS {
 
-    int voltajeMax;
-    int temperaturaMax;
-    int voltajeMaxCelulas;
-    int voltajeReactivación;
-    int temperaturaSegura;
+    Float voltajeMax;
+    Float temperaturaMax;
+    Float voltajeMaxCelulas;
+    Float voltajeReactivación;
+    Float temperaturaSegura;
 
     public BMS() {
-        this.voltajeMax = 0;
-        this.temperaturaMax = 0;
-        this.voltajeMaxCelulas = 0;
-        this.voltajeReactivación =0;
-        this.temperaturaSegura = 0;
+        this.voltajeMax = Float.valueOf(0);
+        this.temperaturaMax = Float.valueOf(0);
+        this.voltajeMaxCelulas = Float.valueOf(0);
+        this.voltajeReactivación = Float.valueOf(0);
+        this.temperaturaSegura = Float.valueOf(0);
     }
 
     //////////////////////////GETTERS//////////////////////////
-    public int getVoltajeMax() {
+    public float getVoltajeMax() {
         return voltajeMax;
     }
 
-    public int getTemperaturaMax() {
+    public float getTemperaturaMax() {
         return temperaturaMax;
     }
 
-    public int getVoltajeMaxCelulas() {
+    public float getVoltajeMaxCelulas() {
         return voltajeMaxCelulas;
     }
 
-    public int getVoltajeReactivación() {
+    public float getVoltajeReactivación() {
         return voltajeReactivación;
     }
 
-    public int getTemperaturaSegura() {
+    public float getTemperaturaSegura() {
         return temperaturaSegura;
     }
 
     /////////////////////SETTERS//////////////////////
-    public void setVoltajeMax(int voltajeMax) {
+    public void setVoltajeMax(float voltajeMax) {
         this.voltajeMax = voltajeMax;
     }
 
-    public void setTemperaturaMax(int temperaturaMax) {
+    public void setTemperaturaMax(float temperaturaMax) {
         this.temperaturaMax = temperaturaMax;
     }
 
-    public void setVoltajeMaxCelulas(int voltajeMaxCelulas) {
+    public void setVoltajeMaxCelulas(float voltajeMaxCelulas) {
         this.voltajeMaxCelulas = voltajeMaxCelulas;
     }
 
-    public void setVoltajeReactivación(int voltajeReactivación) {
+    public void setVoltajeReactivación(float voltajeReactivación) {
         this.voltajeReactivación = voltajeReactivación;
     }
 
-    public void setTemperaturaSegura(int temperaturaSegura) {
+    public void setTemperaturaSegura(float temperaturaSegura) {
         this.temperaturaSegura = temperaturaSegura;
     }
 
