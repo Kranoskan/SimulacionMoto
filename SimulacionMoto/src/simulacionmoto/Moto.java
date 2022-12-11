@@ -60,42 +60,52 @@ class Moto {
         return false;
     }
 
-    float acelerar(float rand) {
+    float acelerar(float distanciaAcelerada,float nuevaVelocidad) {
+        System.out.println("Velocidad nueva"+nuevaVelocidad);
+        //System.out.print(" Distancia"+distanciaAcelerada);
+        Float tiempo=distanciaAcelerada/nuevaVelocidad;
+        //System.out.print(" Tiempo"+tiempo);
+        System.out.println(" Velocidad anterior "+this.velocidad_S);
+        this.velocidad_S=nuevaVelocidad;
+    
+        //this.velocidad_S=(distanciaAcelerada/tiempoAcelerado)*3.6;
         //supongamos que la acceleracion máxima es 1, el 100%
-        float newAceleracion =aceleracion_S+ rand;
-        float incremento=0;
-        if (newAceleracion>1){ //para que no tome valores fuera del rango
-            newAceleracion=1;
-        }
-        incremento= newAceleracion-aceleracion_S;
-        //acotar la aceleracion deltro del voltaje máximo
-        incremento=incremetoEnVoltMax(incremento);
-        if(incremento>aceleMax){
-            aceleMax=incremento;
-        }
-        incrementarTemperatura(incremento);
-        incrementarVoltaje(incremento);
-        consumirbateria(incremento);
-        aceleracion_S=newAceleracion;
-        return incremento;
+        //float newAceleracion =aceleracion_S+ rand;
+        //float incremento=0;
+        //if (newAceleracion>1){ //para que no tome valores fuera del rango
+            //newAceleracion=1;
+        //}
+        //incremento= newAceleracion-aceleracion_S;
+        //acotar la nuevaVelocidad deltro del voltaje máximo
+        //incremento=incremetoEnVoltMax(incremento);
+        //if(incremento>aceleMax){
+            //aceleMax=incremento;
+        //}
+        //incrementarTemperatura(incremento);
+        //incrementarVoltaje(incremento);
+        //consumirbateria(incremento);
+        //aceleracion_S=newAceleracion;
+        return 0;
     }
 
-    float frenar(float rand) {
+    float frenar(float distanciaFrenada,float nuevaVelocidad) {
+        
         //supongamos que la frenada máxima es -1, el 100%
-        float newAceleracion =aceleracion_S- rand;
-        float decremento=0;
-        if (newAceleracion<-1){
-            newAceleracion=-1;
-        }
-        decremento= newAceleracion-aceleracion_S;
-        if((-decremento)>aceleMax){
-            aceleMax=-decremento;
-        }
-        consumirbateria(decremento);
-        incrementarVoltaje(decremento);
-        incrementarTemperatura(decremento);
-        aceleracion_S=newAceleracion;
-        return decremento;
+        //float newAceleracion =aceleracion_S- rand;
+        //float decremento=0;
+        //if (newAceleracion<-1){
+            //newAceleracion=-1;
+        //}
+        //decremento= newAceleracion-aceleracion_S;
+        //if((-decremento)>aceleMax){
+            //aceleMax=-decremento;
+        //}
+        //consumirbateria(decremento);
+        //incrementarVoltaje(decremento);
+        //incrementarTemperatura(decremento);
+        //aceleracion_S=newAceleracion;
+        //return decremento;
+        return 0;
     }
     
     boolean esFactible(Float rand,String tipo){
