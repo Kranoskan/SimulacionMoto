@@ -32,7 +32,7 @@ class GeneradorPilotos {
         for (int i = 0; i < numPilotos; i++) {
             Piloto newPiloto= new Piloto(restricciones);
             newPiloto.setComportamiento(circuito);
-            //pilotos.add(newPiloto);
+            
         }
     }
      
