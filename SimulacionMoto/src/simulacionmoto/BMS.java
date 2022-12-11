@@ -20,11 +20,11 @@ class BMS {
     Float temperaturaSegura;
 
     public BMS() {
-        this.voltajeMax = Float.valueOf(0);
-        this.temperaturaMax = Float.valueOf(0);
-        this.voltajeMaxCelulas = Float.valueOf(0);
-        this.voltajeReactivación = Float.valueOf(0);
-        this.temperaturaSegura = Float.valueOf(0);
+        this.voltajeMax = 0.0f;
+        this.temperaturaMax = 0.0f;
+        this.voltajeMaxCelulas = 0.0f;
+        this.voltajeReactivación = 0.0f;
+        this.temperaturaSegura = 0.0f;
     }
 
     //////////////////////////GETTERS//////////////////////////
