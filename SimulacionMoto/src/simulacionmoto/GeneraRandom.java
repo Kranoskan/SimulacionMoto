@@ -14,19 +14,18 @@ import java.util.Random;
  */
 public class GeneraRandom {
     
-    ArrayList<Float> parDistanciaEIntensidadGenerado;
+
     Random random;
 
     public GeneraRandom() {
-        this.parDistanciaEIntensidadGenerado=new ArrayList();
         random=new Random();
     }
     
     ArrayList<Float> generarAceleracionAleatoria(Float distanciaSector,Float velocidadActual, Double velocidadMaximaSector){
         ArrayList<Float> solucion=new ArrayList();
 
-        //Calculo de la distancia acelerada(un random entre 0 y distanciaSector)
-        Float distanciaAcelerada=random.nextFloat() * (distanciaSector - 0) + 0;
+        //Calculo de la distancia acelerada(un random entre distanciaSector*0,7 y distanciaSector) ya que interesa que acelere la mayor distancia 
+        Float distanciaAcelerada=random.nextFloat() * (distanciaSector - distanciaSector*0.75f) + distanciaSector*0.75f;
         solucion.add(Float.valueOf(distanciaAcelerada.toString()));
         
         //Calculo de la nueva velocidad,Generamos un random entre la velocidad actual y la velocidad maxima
@@ -45,6 +44,7 @@ public class GeneraRandom {
         solucion.add(Float.valueOf(distanciaFrenada.toString()));
         
         Float velocidad=random.nextFloat() * (velocidadActual - 0) + 0;
+        solucion.add(velocidad);
         
         return solucion;
     }

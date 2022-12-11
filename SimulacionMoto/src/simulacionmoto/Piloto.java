@@ -15,7 +15,7 @@ import java.util.Random;
 class Piloto {
     BMS bms;
     ArrayList<Float> distanciaAceleradaSector;
-    ArrayList<Float> aceleracionSector;
+    ArrayList<Float> velocidadSector;
     ArrayList<Float> distanciaFrenadaSector;
     ArrayList<Float> frenadaSector;
     
@@ -26,15 +26,14 @@ class Piloto {
 
     public Piloto(RestriccionesMotoYBMS restricciones) {
         this.distanciaAceleradaSector = new ArrayList<>();
-        this.aceleracionSector = new ArrayList<>();
+        this.velocidadSector = new ArrayList<>();
         this.distanciaFrenadaSector = new ArrayList<>();
         this.frenadaSector=new ArrayList<>();
         this.bateriaUsadaRefrigeracionSector = new ArrayList<>();
-            
+           
         this.tiempo = 0;
-        //this.bateriaRestante = bateriaRestante;
         moto=new Moto(restricciones);
-        
+        bms=new BMS();
         
     }
     
@@ -44,47 +43,55 @@ class Piloto {
         for(int i=0;i<circuito.getNumSectores();i++){
             this.distanciaAceleradaSector.add(Float.valueOf(0));
             this.distanciaFrenadaSector.add(Float.valueOf(0));
-            this.aceleracionSector.add(Float.valueOf(0));
+            this.velocidadSector.add(Float.valueOf(0));
+            this.frenadaSector.add(Float.valueOf(0));
             this.bateriaUsadaRefrigeracionSector.add(Float.valueOf(0));
         }
-        
-        Random generaRand;
+
         GeneraRandom generadorRandom=new GeneraRandom();
-        for(int i=0;i<circuito.getDistanciaSectores().size();i++){
+        for(int i=0;i<circuito.getNumSectores();i++){
             Double velocidadMaximaSector=circuito.getVelocidadMaximaCalculada().get(i);
             Float velocidadActual=moto.getVelocidad();
             Float distanciaSector=circuito.getDistanciaSectores().get(i);
-            if(velocidadActual<velocidadMaximaSector && moto.hayBateria()){
-                ArrayList<Float> aceleracion=generadorRandom.generarAceleracionAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector);
-                
-                distanciaAceleradaSector.add(i,aceleracion.get(0));
-                aceleracionSector.add(i,aceleracion.get(1));
-                moto.acelerar(aceleracion.get(0),aceleracion.get(1));
-                
+            if(velocidadActual<velocidadMaximaSector){
+                if(moto.hayBateria()){
+                    //Array que contiene la distancia acelerada y la velocidad tras acelerar en el sector
+                    ArrayList<Float> aceleracion=generadorRandom.generarAceleracionAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector);
+                    distanciaAceleradaSector.set(i,aceleracion.get(0));
+                    velocidadSector.set(i,aceleracion.get(1));
+                    moto.acelerar(aceleracion.get(0),aceleracion.get(1));
+                }else{
+                    
+                }
+                            
             }else{
+                //Array que contiene la distancia frenada y la velocidad tras frenar en el sector
                 ArrayList<Float> frenada=generadorRandom.generarFrenadaAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector);
-                
-
-                distanciaFrenadaSector.add(i,frenada.get(0));
-                //frenadaSector.add(i,frenada.get(1));
-                //moto.frenar(frenada.get(0),frenada.get(1));
+               
+                distanciaFrenadaSector.set(i,frenada.get(0));
+                velocidadSector.set(i,frenada.get(1));
+                moto.frenar(frenada.get(0),frenada.get(1));
 
             }
             
             
         }
         this.mostrarComportamiento();
+        moto.mostrarMayoresValores();
+        
         //System.out.println(distanciaAceleradaSector.toString());
-        //actualizarEstado();
+        actualizarEstado();
       
     }
 
     private void actualizarEstado() {
         //bms.s=moto.getVelocidadMax();
         //aceleracionMax=moto.getAceleracionMax();
-        bms.setVoltajeMax(moto.getVoltajeMax());
-        bms.setTemperaturaMax(moto.getTemMax());
+        //bms.setVoltajeMax();
+        //bms.setTemperaturaMax(moto.getTemMax());
         //consumo= moto.getConsumo();
+        bms.setTemperaturaMax(moto.getMayorTemperaturaAlcanzada());
+        bms.setVoltajeMax(moto.getMayorVoltajeAlcanzado());
     }
 
     /////////////////////GETTERS//////////////////////////
@@ -93,7 +100,7 @@ class Piloto {
     }
 
     public ArrayList<Float> getTiempoAceleradoSector() {
-        return aceleracionSector;
+        return velocidadSector;
     }
 
     public ArrayList<Float> getBateriaUsadaRefrigeracionSector() {
@@ -123,7 +130,7 @@ class Piloto {
     }
 
     public void setTiempoAceleradoSector(ArrayList<Float> bateriaUsadaAceleracioSector) {
-        this.aceleracionSector = bateriaUsadaAceleracioSector;
+        this.velocidadSector = bateriaUsadaAceleracioSector;
     }
 
     public void setBateriaUsadaRefrigeracionSector(ArrayList<Float> bateriaUsadaRefrigeracionSector) {
@@ -147,12 +154,14 @@ class Piloto {
     }
     
     void mostrarComportamiento(){
-        System.out.println("Distancia acelerada en los sectores");
+        System.out.println("-------------------------------------------------Piloto generado------------------------------------------");
+        System.out.println("Distancia acelerada en cada sector");
         System.out.println(this.distanciaAceleradaSector.toString());
-        System.out.println("Intesidad de la aceleracion en el sector (% de bateria usado)");
-        System.out.println(this.aceleracionSector.toString());
-        System.out.println("Distancia distancia frenada en los sectores");
+        System.out.println("Distancia distancia frenada en cada sector");
         System.out.println(this.distanciaFrenadaSector.toString());
+        System.out.println("Velocidad en cada sector");
+        System.out.println(this.velocidadSector.toString());
+        
     }
  
 }

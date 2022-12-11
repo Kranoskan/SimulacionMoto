@@ -42,7 +42,6 @@ public class SimulacionMoto {
         ArrayList<Piloto> pilotos= new ArrayList<>();
         GeneradorPilotos generadorPilotos = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotos);
         generadorPilotos.Generar();
-        //pilotos.get(0).mostrarComportamiento();
         
         //ArrayList<Piloto> pilotosBase= new ArrayList<>();
         //ArrayList<BMS> controladores= new ArrayList<>();
@@ -50,10 +49,6 @@ public class SimulacionMoto {
         //GeneradorBMS generadorControl = new GeneradorBMS();
         //Carrera simulador= new Carrera();
         
-        //carga y creacion de datos
-        //circuito.add((ArrayList<Float>) lector.getCircuito().clone());
-        //generadorPilotos.Generar(pilotos,nPilotos,circuito,pilotosBase);
-        //generadorControl.Generar(controladores,pilotos,moto);
         
         //simulador.Optimizar(circuito,pilotos,controladores,moto);
         
