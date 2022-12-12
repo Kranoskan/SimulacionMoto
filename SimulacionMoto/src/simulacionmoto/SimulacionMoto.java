@@ -39,23 +39,31 @@ public class SimulacionMoto {
         
         System.out.println("-----------------GENERANDO COMPORTAMIENTO PILOTOS--------------------");
         int numPilotos= confi.getNPilotos();
-        ArrayList<Piloto> pilotos= new ArrayList<>();
+        ArrayList<Piloto> pilotosFactibles= new ArrayList<>();
         
-        GeneradorPilotos generadorPilotos = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotos);
-        generadorPilotos.Generar();
+        GeneradorPilotos generadorPilotos = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotosFactibles);
+        generadorPilotos.generarSinBMS();
+        //Pilotos que cumplen las restricciones maximas de lamoto y bms
         System.out.println("-----------------PILOTOS FACTIBLES--------------------");
-        for(int i=0;i<pilotos.size();i++){
-            System.out.println("Piloto"+i);
-            pilotos.get(i).moto.mostrarMayoresValores();
-            System.out.println("tiempo"+pilotos.get(i).tiempo);
+        for(int i=0;i<pilotosFactibles.size();i++){
+            System.out.println("+++++++++++++++Piloto Factble "+i+" ++++++++++++: ");
+            pilotosFactibles.get(i).moto.mostrarMayoresValores();
+            System.out.println("Tiempo de vuelta: "+pilotosFactibles.get(i).tiempo+" s");
+            //pilotosFactibles.get(i).mostrarComportamiento();
+        }
+        //Por cada bms de cada piloto factible generamos mas pilotosFactibles aleatorios dados ese bms
+        //En un futuro se podria implementar con los pilotos que generen mejor tiempo pero actualmente genera muy pocos factibles
+        System.out.println("-----------------GENERANDO PILOTOS DADOS LOS BMS DE LOS MEJORES PLIOTOS--------------------");
+        for(int i=0;i<pilotosFactibles.size();i++){{
+            ArrayList<Piloto> pilotosFactibles2= new ArrayList<>();
+            BMS bms=new BMS();
+            bms.setTemperaturaMax(pilotosFactibles.get(i).bms.getTemperaturaMax());
+            bms.setVoltajeMax(pilotosFactibles.get(i).bms.getVoltajeMax());
+            //GeneradorPilotos generadorPilotos2 = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotosFactibles2);
+            //generadorPilotos.generarDadoUnBMS(bms);
         }
         
-        //ArrayList<Piloto> mejoresPilotos= generadorPilotos.;
-        //simulador.Optimizar(circuito,pilotos,controladores,moto);
-        
-        //simulador.Simular(circuito,pilotos,controladores,moto);
-        //simulador.Resultado();
         System.out.println("----------------------FIN-------------------");
     }
-    
+    }
 }
