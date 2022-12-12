@@ -27,18 +27,32 @@ class GeneradorPilotos {
         this.pilotos=pilotos;
     }
 
-    void Generar() {
+    void generarSinBMS() {
         
         for (int i = 0; i < numPilotos; i++) {
             Piloto newPiloto= new Piloto(restricciones);
             newPiloto.setComportamiento(circuito);
             if(newPiloto.esFactible(newPiloto.getBms(),restricciones)){
-                newPiloto.calcularTiempoVuelta();
+                newPiloto.calcularTiempoVuelta(circuito);
                 pilotos.add(newPiloto);
                 
             }
         }
     }
-   
-     
+    
+    void generarDadoUnBMS(BMS bms){
+        for (int i = 0; i < numPilotos; i++) {
+            Float temMax=bms.getTemperaturaMax();
+            Float voltajeMax=bms.getVoltajeMax();
+            restricciones.volt_max_bateria=Integer.valueOf(voltajeMax.toString());
+            restricciones.temperatura_max=Integer.valueOf(temMax.toString());
+            Piloto newPiloto= new Piloto(restricciones);
+            //newPiloto.setComportamiento(circuito);
+            //if(newPiloto.esFactible(newPiloto.getBms(),restricciones)){
+                //newPiloto.calcularTiempoVuelta(circuito);
+                //pilotos.add(newPiloto);
+                
+            }
+        }
+    
 }
