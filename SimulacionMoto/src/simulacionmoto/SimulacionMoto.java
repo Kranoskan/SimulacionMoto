@@ -40,16 +40,17 @@ public class SimulacionMoto {
         System.out.println("-----------------GENERANDO COMPORTAMIENTO PILOTOS--------------------");
         int numPilotos= confi.getNPilotos();
         ArrayList<Piloto> pilotos= new ArrayList<>();
+        
         GeneradorPilotos generadorPilotos = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotos);
         generadorPilotos.Generar();
+        System.out.println("-----------------PILOTOS FACTIBLES--------------------");
+        for(int i=0;i<pilotos.size();i++){
+            System.out.println("Piloto"+i);
+            pilotos.get(i).moto.mostrarMayoresValores();
+            System.out.println("tiempo"+pilotos.get(i).tiempo);
+        }
         
-        //ArrayList<Piloto> pilotosBase= new ArrayList<>();
-        //ArrayList<BMS> controladores= new ArrayList<>();
-        
-        //GeneradorBMS generadorControl = new GeneradorBMS();
-        //Carrera simulador= new Carrera();
-        
-        
+        //ArrayList<Piloto> mejoresPilotos= generadorPilotos.;
         //simulador.Optimizar(circuito,pilotos,controladores,moto);
         
         //simulador.Simular(circuito,pilotos,controladores,moto);

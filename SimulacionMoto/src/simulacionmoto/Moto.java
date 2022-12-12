@@ -65,13 +65,10 @@ class Moto {
         this.nuevaVelocidad(nuevaVelocidad);//Establecemos la nueva velocidad
         this.nuevaAceleracion(aceleracion);//Establecemos la nueva aceleracion
     
-        //Convertir la aceleracion a incremento
-        Float incremento=incremetoEnVoltMax(aceleracion);
+        consumirbateria(aceleracion,tiempo);
+        incrementarTemperatura(aceleracion,tiempo);
+        incrementarVoltaje(aceleracion,tiempo);
         
-        incrementarTemperatura(incremento);
-        incrementarVoltaje(incremento);
-        consumirbateria(incremento);
-
         return 0;
     }
 
@@ -83,12 +80,10 @@ class Moto {
         
         
         this.velocidad=nuevaVelocidad;
-        //Convertir la aceleracion a incremento
-        Float incremento=incremetoEnVoltMax(deceleracion);
-        
-        incrementarTemperatura(incremento);
-        incrementarVoltaje(incremento);
-        consumirbateria(incremento);
+       //No se si deberia comumir frenando, quizas deberia cargar la bateria
+        //incrementarTemperatura(incremento);
+        //incrementarVoltaje(incremento);
+        //consumirbateria(incremento);
         return 0;
     }
     
@@ -108,10 +103,6 @@ class Moto {
         this.aceleracion=nuevaAceleracion;
     }
     
-    boolean esFactible(){
-        
-        return true;
-    }
     //////////GETTERS//////////////////
     float getConsumo() {
         return cargaTotalBateria-bateriaActual;
@@ -169,31 +160,37 @@ class Moto {
         return mayorVoltajeAlcanzado;
     }
     
-    
-    
-
-    
     void mostrarMayoresValores(){
-        System.out.println("Mayor velocidad alcanzada: "+this.mayorVelocidadAlcanzada);
-        System.out.println("Mayor aceleración alcanzada: "+this.mayorAceleracionRealizada);
-        System.out.println("Mayor temperatura alcanzada: "+this.mayorTemperaturaAlcanzada);
-        System.out.println("Consumo: "+this.getConsumo());
-        System.out.println("Mayor voltaje alcanzado: "+this.mayorVoltajeAlcanzado);
+        System.out.println("Mayor velocidad alcanzada: "+this.mayorVelocidadAlcanzada+" Km/h");
+        System.out.println("Mayor aceleración alcanzada: "+this.mayorAceleracionRealizada+" m/s2");
+        System.out.println("Mayor temperatura alcanzada: "+this.mayorTemperaturaAlcanzada +" ºC");
+        System.out.println("Consumo: "+this.getConsumo()+ " A/h");
+        System.out.println("Mayor voltaje alcanzado: "+this.mayorVoltajeAlcanzado+" V");
     }
 
-    private void incrementarTemperatura(float incremento) {
-        
+    private void incrementarTemperatura(float aceleracion,float tiempo) {
+        Float kwPotenciaMotor=48.0f;
+        if(kwPotenciaMotor*tiempo*aceleracion>this.mayorTemperaturaAlcanzada){
+            this.mayorTemperaturaAlcanzada=kwPotenciaMotor*tiempo;
+        }
     }
 
-    private void consumirbateria(float incremento) {
-        
-    }
+    private void consumirbateria(float aceleracion,float tiempo) {
+        Float voltios=120.0f;
+        Float kwConsumoEnergia;
+        Float kwPotenciaMotor=48.0f;
+        Float constanteCoversion=10.0f;
 
-    private float incremetoEnVoltMax(float incremento) {
-        return 0;
+        Float kwUsados=aceleracion*tiempo*(kwPotenciaMotor/5);
+        Float amperiosUsados=1000*kwUsados/voltios;
+        //System.out.println("kw"+kwUsados+" "+amperiosUsados);
+        this.bateriaActual=this.bateriaActual-amperiosUsados;
     }
-
-    private void incrementarVoltaje(float incremento) {
-       
+    private void incrementarVoltaje(float aceleracion,float tiempo) {
+        Float kwPotenciaMotor=48.0f;
+        Float constanteConversion=2.0f;
+       if(aceleracion*tiempo*kwPotenciaMotor>this.mayorVoltajeAlcanzado){
+           this.mayorVoltajeAlcanzado=aceleracion*tiempo*kwPotenciaMotor*constanteConversion;
+       }
     }
 }
