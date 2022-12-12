@@ -23,6 +23,7 @@ class Piloto {
     Float tiempo;//tiempo en segundos
     Float bateriaRestante;
     Moto moto;
+    int numVueltas;
 
     public Piloto(RestriccionesMotoYBMS restricciones) {
         this.distanciaAceleradaSector = new ArrayList<>();
@@ -34,6 +35,7 @@ class Piloto {
         this.tiempo = 0.0f;
         moto=new Moto(restricciones);
         bms=new BMS();
+        numVueltas=6;
         
     }
     
@@ -49,58 +51,60 @@ class Piloto {
         }
 
         GeneraRandom generadorRandom=new GeneraRandom();
-        for(int i=0;i<circuito.getNumSectores();i++){
-            Double velocidadMaximaSector=circuito.getVelocidadMaximaCalculada().get(i);
-            Float velocidadActual=moto.getVelocidad();
-            Float distanciaSector=circuito.getDistanciaSectores().get(i);
-            if(velocidadActual<velocidadMaximaSector){
-                if(moto.hayBateria()){
-                    //Array que contiene la distancia acelerada y la velocidad tras acelerar en el sector
-                    ArrayList<Float> aceleracion=generadorRandom.generarAceleracionAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector);
-                    distanciaAceleradaSector.set(i,aceleracion.get(0));
-                    velocidadSector.set(i,aceleracion.get(1));
-                    moto.acelerar(aceleracion.get(0),aceleracion.get(1));
-                }else{
+        //for(int j=0;j<numVueltas;j++){//numero de vueltas (meter luego)
+            
+        
+            for(int i=0;i<circuito.getNumSectores();i++){
+                Double velocidadMaximaSector=circuito.getVelocidadMaximaCalculada().get(i);
+                Float velocidadActual=moto.getVelocidad();
+                Float distanciaSector=circuito.getDistanciaSectores().get(i);
+                if(velocidadActual<velocidadMaximaSector){
+                        //Array que contiene la distancia acelerada y la velocidad tras acelerar en el sector
+                        ArrayList<Float> aceleracion=generadorRandom.generarAceleracionAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector);
+                        distanciaAceleradaSector.set(i,aceleracion.get(0));
+                        velocidadSector.set(i,aceleracion.get(1));
+                        moto.acelerar(aceleracion.get(0),aceleracion.get(1));
                     
-                }
-                            
-            }else{
+                }else{
                 //Array que contiene la distancia frenada y la velocidad tras frenar en el sector
-                ArrayList<Float> frenada=generadorRandom.generarFrenadaAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector);
+                    ArrayList<Float> frenada=generadorRandom.generarFrenadaAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector);
                
-                distanciaFrenadaSector.set(i,frenada.get(0));
-                velocidadSector.set(i,frenada.get(1));
-                moto.frenar(frenada.get(0),frenada.get(1));
+                    distanciaFrenadaSector.set(i,frenada.get(0));
+                    velocidadSector.set(i,frenada.get(1));
+                    moto.frenar(frenada.get(0),frenada.get(1));
 
+                }
+            
+            
             }
-            
-            
-        }
+        //}
         this.mostrarComportamiento();
         moto.mostrarMayoresValores();
-        
+        //System.out.println(this.);
+      
         //System.out.println(distanciaAceleradaSector.toString());
         crearBMS();
       
     }
     
     void calcularTiempoVuelta(Circuito circuito){
-        Float sumaVelocidadesSectores=0.0f;
-        Float sumaDistanciaSectores=0.0f;
-        Float velocidadMedia=0.0f;
-        Float distanciaCircuito=0.0f;
+      
+        Float velocidadMS;
+        Float sumaVelocidades=0.0f;
+        Float sumaDistancia=0.0f;
         for(int i=0;i<circuito.getNumSectores();i++){
-            sumaVelocidadesSectores=sumaVelocidadesSectores+this.velocidadSector.get(i);
-            sumaDistanciaSectores=sumaDistanciaSectores+circuito.getDistanciaSectores().get(i);
+            sumaVelocidades=sumaVelocidades+this.velocidadSector.get(i);
+            sumaDistancia=sumaDistancia+circuito.getDistanciaSectores().get(i);
+            ///tiempo=tiempo+(circuito.getDistanciaSectores().get(i)/velocidadMS);
         }
-        velocidadMedia=sumaVelocidadesSectores/circuito.getNumSectores();
-        Float velocidadMS=velocidadMedia*3.6f; 
-        this.tiempo=sumaDistanciaSectores/velocidadMS;
-        System.out.println("tiempoooo"+tiempo);
-        
+        Float velocidadMedia=sumaVelocidades/velocidadSector.size();
+        System.out.println("velocidad media: "+velocidadMedia+" Km/H");
+        System.out.println("DistanciaRecorrida: "+sumaDistancia+" Metros");
+        tiempo=sumaDistancia/(velocidadMedia/3.6f); //Pasamos metros segundo a km hora
+        System.out.println("Tiempo: "+tiempo+" s");
     }
     
-    float getTiempo(){
+    float getTiempoVuelta(){
         return tiempo;
     }
 
@@ -124,10 +128,6 @@ class Piloto {
         }
         
         return false;
-    }
-    
-    public Float calcularTiempoVuelta(){
-       return 0.0f; 
     }
 
     /////////////////////GETTERS//////////////////////////
