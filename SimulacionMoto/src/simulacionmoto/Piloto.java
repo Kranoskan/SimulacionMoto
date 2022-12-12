@@ -20,7 +20,7 @@ class Piloto {
     ArrayList<Float> frenadaSector;
     
     ArrayList<Float> bateriaUsadaRefrigeracionSector;
-    int tiempo;//tiempo en segundos
+    Float tiempo;//tiempo en segundos
     Float bateriaRestante;
     Moto moto;
 
@@ -31,7 +31,7 @@ class Piloto {
         this.frenadaSector=new ArrayList<>();
         this.bateriaUsadaRefrigeracionSector = new ArrayList<>();
            
-        this.tiempo = 0;
+        this.tiempo = 0.0f;
         moto=new Moto(restricciones);
         bms=new BMS();
         
@@ -80,11 +80,31 @@ class Piloto {
         moto.mostrarMayoresValores();
         
         //System.out.println(distanciaAceleradaSector.toString());
-        actualizarEstado();
+        crearBMS();
       
     }
+    
+    void calcularTiempoVuelta(Circuito circuito){
+        Float sumaVelocidadesSectores=0.0f;
+        Float sumaDistanciaSectores=0.0f;
+        Float velocidadMedia=0.0f;
+        Float distanciaCircuito=0.0f;
+        for(int i=0;i<circuito.getNumSectores();i++){
+            sumaVelocidadesSectores=sumaVelocidadesSectores+this.velocidadSector.get(i);
+            sumaDistanciaSectores=sumaDistanciaSectores+circuito.getDistanciaSectores().get(i);
+        }
+        velocidadMedia=sumaVelocidadesSectores/circuito.getNumSectores();
+        Float velocidadMS=velocidadMedia*3.6f; 
+        this.tiempo=sumaDistanciaSectores/velocidadMS;
+        System.out.println("tiempoooo"+tiempo);
+        
+    }
+    
+    float getTiempo(){
+        return tiempo;
+    }
 
-    private void actualizarEstado() {
+    private void crearBMS() {
         //bms.s=moto.getVelocidadMax();
         //aceleracionMax=moto.getAceleracionMax();
         //bms.setVoltajeMax();
@@ -92,6 +112,22 @@ class Piloto {
         //consumo= moto.getConsumo();
         bms.setTemperaturaMax(moto.getMayorTemperaturaAlcanzada());
         bms.setVoltajeMax(moto.getMayorVoltajeAlcanzado());
+    }
+    //Comprobamos si son pilotos validos
+    public boolean esFactible(BMS bms,RestriccionesMotoYBMS restricciones){
+        if(moto.getMayorTemperaturaAlcanzada()<restricciones.getTemperatura_max()){
+            if(moto.getMayorVoltajeAlcanzado()<restricciones.getVolt_max_bateria()){
+                if(moto.getConsumo()<restricciones.getCapacidadBateria()){
+                    return true;
+                }
+            }   
+        }
+        
+        return false;
+    }
+    
+    public Float calcularTiempoVuelta(){
+       return 0.0f; 
     }
 
     /////////////////////GETTERS//////////////////////////
@@ -113,10 +149,6 @@ class Piloto {
 
     public ArrayList<Float> getDistanciaFrenadaSector() {
         return distanciaFrenadaSector;
-    }
-
-    public int getTiempo() {
-        return tiempo;
     }
 
     public Float getBateriaRestante() {
@@ -145,7 +177,7 @@ class Piloto {
         this.distanciaFrenadaSector = distanciaFrenadaSector;
     }
 
-    public void setTiempo(int tiempo) {
+    public void setTiempo(Float tiempo) {
         this.tiempo = tiempo;
     }
 

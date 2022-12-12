@@ -19,7 +19,7 @@ class GeneradorPilotos {
     RestriccionesMotoYBMS restricciones;
     Random random;
     ArrayList<Piloto> pilotos;
-
+    
     public GeneradorPilotos(Circuito circuito, int numPilotos, RestriccionesMotoYBMS restricciones,ArrayList<Piloto> pilotos) {
         this.circuito = circuito;
         this.numPilotos = numPilotos;
@@ -32,8 +32,13 @@ class GeneradorPilotos {
         for (int i = 0; i < numPilotos; i++) {
             Piloto newPiloto= new Piloto(restricciones);
             newPiloto.setComportamiento(circuito);
-            
+            if(newPiloto.esFactible(newPiloto.getBms(),restricciones)){
+                newPiloto.calcularTiempoVuelta();
+                pilotos.add(newPiloto);
+                
+            }
         }
     }
+   
      
 }
