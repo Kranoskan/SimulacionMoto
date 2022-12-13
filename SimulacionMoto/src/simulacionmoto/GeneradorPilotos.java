@@ -53,6 +53,7 @@ class GeneradorPilotos {
             newPiloto.calcularTiempoVuelta(circuito);
             pilotos.add(newPiloto);
                 
+            
         }
     }
     
