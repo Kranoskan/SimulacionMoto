@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class LectorArchivos {
     
     ArrayList<ArrayList<Float>> circuito;
-    public ArrayList<Integer> valores_motoybms;
+    public ArrayList<Float> valores_motoybms;
     public int volt_max_bateria;
     public int volt_max_celulas;
     public int intensidad;
@@ -99,9 +99,9 @@ public class LectorArchivos {
             String linea = null;
             while((linea=br.readLine())!=null){
                 String[] fila=linea.split(",");   //separamos por coma
-                Integer valor=null;
+                Float valor=null;
                 
-                valor=(Integer.valueOf(fila[1]));
+                valor=(Float.valueOf(fila[1]));
                 //System.out.print(fila[0]+": ");
                 //System.out.println(fila[1]);
                 
@@ -139,7 +139,7 @@ public class LectorArchivos {
         return circuito;
     }
 
-    public ArrayList<Integer> getValores_motoybms() {
+    public ArrayList<Float> getValores_motoybms() {
         return valores_motoybms;
     }
 

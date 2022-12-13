@@ -59,17 +59,20 @@ class Piloto {
             Float distanciaSector=circuito.getDistanciaSectores().get(i%numVueltas);
             if(velocidadActual<velocidadMaximaSector && (!hayBMS || moto.cumpleRestriccionesBMS(bms))){
                 //Array que contiene la distancia acelerada y la velocidad tras acelerar en el sector
-                ArrayList<Float> aceleracion=generadorRandom.generarAceleracionAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector);
-                distanciaAceleradaSector.set(i,aceleracion.get(0));
-                velocidadSector.set(i,aceleracion.get(1));
+                ArrayList<Float> aceleracion= (ArrayList<Float>)generadorRandom.generarAceleracionAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector).clone();
+                Float newDist=aceleracion.get(0);
+                distanciaAceleradaSector.add(newDist);
+                Float newVel=aceleracion.get(1);
+                velocidadSector.add(newVel);
                 moto.acelerar(aceleracion.get(0),aceleracion.get(1));
                     
             }else{
             //Array que contiene la distancia frenada y la velocidad tras frenar en el sector
-                ArrayList<Float> frenada=generadorRandom.generarFrenadaAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector);
-               
-                distanciaFrenadaSector.set(i,frenada.get(0));
-                velocidadSector.set(i,frenada.get(1));
+                ArrayList<Float> frenada=(ArrayList<Float>) generadorRandom.generarFrenadaAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector).clone();
+                Float newFren=frenada.get(0);
+                distanciaFrenadaSector.add(newFren);
+                Float newVel=frenada.get(1);
+                velocidadSector.add(newVel);
                 if(hayBMS){
                     moto.chequeoRefrigeracion();
                 }

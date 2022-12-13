@@ -13,104 +13,104 @@ import java.util.ArrayList;
  */
 class RestriccionesMotoYBMS {
     
-    public int volt_max_bateria;
-    public int volt_max_celulas;
-    public int intensidad;
-    public int velocidad_max;
-    public int potencia_motor;
-    public int temperatura_max;
-    public int peso;
-    public int capaciadBateria;
-    public int tem_inicial;
-    private final int cargasRefigerante;
-    private final int fuerzaRefirgerante;
+    public Float volt_max_bateria;
+    public Float volt_max_celulas;
+    public Float intensidad;
+    public Float velocidad_max;
+    public Float potencia_motor;
+    public Float temperatura_max;
+    public Float peso;
+    public Float capaciadBateria;
+    public Float tem_inicial;
+    public  int cargasRefigerante;
+    public Float fuerzaRefirgerante;
 
     public RestriccionesMotoYBMS() {
-        this.volt_max_bateria = 0;
-        this.volt_max_celulas = 0;
-        this.intensidad = 0;
-        this.velocidad_max = 0;
-        this.potencia_motor = 0;
-        this.temperatura_max = 0;
-        this.peso = 0;
-        this.capaciadBateria = 0;
-        this.tem_inicial=0;
+        this.volt_max_bateria = 0f;
+        this.volt_max_celulas = 0f;
+        this.intensidad = 0f;
+        this.velocidad_max = 0f;
+        this.potencia_motor = 0f;
+        this.temperatura_max = 0f;
+        this.peso = 120f;
+        this.capaciadBateria = 200f;
+        this.tem_inicial=30f;
         cargasRefigerante=0;
-        fuerzaRefirgerante=5;
+        fuerzaRefirgerante=5f;
     }
 
     ////////////////////////GETTERS//////////////////////////
-    public int getVolt_max_bateria() {
+    public Float getVolt_max_bateria() {
         return volt_max_bateria;
     }
 
-    public int getVolt_max_celulas() {
+    public Float getVolt_max_celulas() {
         return volt_max_celulas;
     }
 
-    public int getIntensidad() {
+    public Float getIntensidad() {
         return intensidad;
     }
 
-    public int getVelocidad_max() {
+    public Float getVelocidad_max() {
         return velocidad_max;
     }
 
-    public int getPotencia_motor() {
+    public Float getPotencia_motor() {
         return potencia_motor;
     }
 
-    public int getTemperatura_max() {
+    public Float getTemperatura_max() {
         return temperatura_max;
     }
 
-    public int getPeso() {
+    public Float getPeso() {
         return peso;
     }
 
-    public int getCapacidadBateria() {
+    public Float getCapacidadBateria() {
         return capaciadBateria;
     }
 
-    public int getTem_inicial() {
+    public Float getTem_inicial() {
         return tem_inicial;
     }
     
     //////////////////////////SETTERS/////////////////////////////
-    public void setVolt_max_bateria(int volt_max_bateria) {
+    public void setVolt_max_bateria(Float volt_max_bateria) {
         this.volt_max_bateria = volt_max_bateria;
     }
 
-    public void setVolt_max_celulas(int volt_max_celulas) {
+    public void setVolt_max_celulas(Float volt_max_celulas) {
         this.volt_max_celulas = volt_max_celulas;
     }
 
-    public void setIntensidad(int intensidad) {
+    public void setIntensidad(Float intensidad) {
         this.intensidad = intensidad;
     }
 
-    public void setVelocidad_max(int velocidad_max) {
+    public void setVelocidad_max(Float velocidad_max) {
         this.velocidad_max = velocidad_max;
     }
 
-    public void setPotencia_motor(int potencia_motor) {
+    public void setPotencia_motor(Float potencia_motor) {
         this.potencia_motor = potencia_motor;
     }
 
-    public void setTemperatura_max(int temperatura_max) {
+    public void setTemperatura_max(Float temperatura_max) {
         this.temperatura_max = temperatura_max;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(Float peso) {
         this.peso = peso;
     }
 
-    public void setCapacidad(int capacidad) {
+    public void setCapacidad(Float capacidad) {
         this.capaciadBateria = capacidad;
     }
 
 
-    public void setTem_inicial(int tem_inicial) {
+    public void setTem_inicial(Float tem_inicial) {
         this.tem_inicial = tem_inicial;
     }
 
