@@ -47,12 +47,12 @@ class GeneradorPilotos {
             restricciones.volt_max_bateria=Integer.valueOf(voltajeMax.toString());
             restricciones.temperatura_max=Integer.valueOf(temMax.toString());
             Piloto newPiloto= new Piloto(restricciones);
-            //newPiloto.setComportamiento(circuito);
-            //if(newPiloto.esFactible(newPiloto.getBms(),restricciones)){
-                //newPiloto.calcularTiempoVuelta(circuito);
-                //pilotos.add(newPiloto);
+            newPiloto.setBMSQ(true);
+            newPiloto.setComportamiento(circuito);
+            newPiloto.calcularTiempoVuelta(circuito);
+            pilotos.set(i,newPiloto);
                 
-            }
         }
+    }
     
 }

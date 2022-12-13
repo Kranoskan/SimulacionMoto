@@ -35,7 +35,7 @@ public class SimulacionMoto {
         
         System.out.println("-----------------CALCULADO RANGO DE VELOCIDADES DE LOS SECTORES--------------------");
         circuito.calcularRangoVelocidades();
-        circuito.mostrarPorPantalla();
+        //circuito.mostrarPorPantalla();
         
         System.out.println("-----------------GENERANDO COMPORTAMIENTO PILOTOS--------------------");
         int numPilotos= confi.getNPilotos();
@@ -54,13 +54,12 @@ public class SimulacionMoto {
         //Por cada bms de cada piloto factible generamos mas pilotosFactibles aleatorios dados ese bms
         //En un futuro se podria implementar con los pilotos que generen mejor tiempo pero actualmente genera muy pocos factibles
         System.out.println("-----------------GENERANDO PILOTOS DADOS LOS BMS DE LOS MEJORES PLIOTOS--------------------");
+        ArrayList<Piloto> pilotosFactibles2= new ArrayList<>();
+        ArrayList<BMS> configuracionesBMS=  new ArrayList<>();
         for(int i=0;i<pilotosFactibles.size();i++){{
-            ArrayList<Piloto> pilotosFactibles2= new ArrayList<>();
-            BMS bms=new BMS();
-            bms.setTemperaturaMax(pilotosFactibles.get(i).bms.getTemperaturaMax());
-            bms.setVoltajeMax(pilotosFactibles.get(i).bms.getVoltajeMax());
-            //GeneradorPilotos generadorPilotos2 = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotosFactibles2);
-            //generadorPilotos.generarDadoUnBMS(bms);
+            configuracionesBMS.add(pilotosFactibles.get(i).getBms());
+            GeneradorPilotos generadorPilotos2 = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotosFactibles2);
+            generadorPilotos2.generarDadoUnBMS(configuracionesBMS.get(i));
         }
         
         System.out.println("----------------------FIN-------------------");

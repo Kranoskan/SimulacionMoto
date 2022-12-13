@@ -22,6 +22,8 @@ class RestriccionesMotoYBMS {
     public int peso;
     public int capaciadBateria;
     public int tem_inicial;
+    private final int cargasRefigerante;
+    private final int fuerzaRefirgerante;
 
     public RestriccionesMotoYBMS() {
         this.volt_max_bateria = 0;
@@ -33,6 +35,8 @@ class RestriccionesMotoYBMS {
         this.peso = 0;
         this.capaciadBateria = 0;
         this.tem_inicial=0;
+        cargasRefigerante=0;
+        fuerzaRefirgerante=5;
     }
 
     ////////////////////////GETTERS//////////////////////////
@@ -117,5 +121,13 @@ class RestriccionesMotoYBMS {
 
     public boolean ConfiguracionPosible(){
         return false;
+    }
+
+    int getCapacidadEnfriado() {
+        return this.cargasRefigerante;
+    }
+
+    float getFuerzaEnfriado() {
+        return this.fuerzaRefirgerante;
     }
 }
