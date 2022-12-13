@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/Pc/Documents/GitHub/SimulacionMoto/SimulacionMoto/src/simulacionmoto/SimulacionMoto.java</file>
             <file>file:/C:/Users/Pc/Documents/GitHub/SimulacionMoto/SimulacionMoto/src/simulacionmoto/Moto.java</file>
             <file>file:/C:/Users/Pc/Documents/GitHub/SimulacionMoto/SimulacionMoto/src/simulacionmoto/Circuito.java</file>
@@ -13,6 +14,10 @@
             <file>file:/C:/Users/Pc/Documents/GitHub/SimulacionMoto/SimulacionMoto/src/simulacionmoto/LectorArchivos.java</file>
             <file>file:/C:/Users/Pc/Documents/GitHub/SimulacionMoto/SimulacionMoto/src/simulacionmoto/Piloto.java</file>
             <file>file:/C:/Users/Pc/Documents/GitHub/SimulacionMoto/SimulacionMoto/src/simulacionmoto/GeneraRandom.java</file>
+=======
+            <file>file:/C:/Users/ismae/Documents/GitHub/SimulacionMoto/SimulacionMoto/src/simulacionmoto/Moto.java</file>
+            <file>file:/C:/Users/ismae/Documents/GitHub/SimulacionMoto/SimulacionMoto/src/simulacionmoto/Configurador.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
