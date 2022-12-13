@@ -18,6 +18,7 @@ class BMS {
     Float voltajeMaxCelulas;
     Float voltajeReactivación;
     Float temperaturaSegura;
+    
 
     public BMS() {
         this.voltajeMax = 0.0f;

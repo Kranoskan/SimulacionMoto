@@ -27,10 +27,16 @@ class Moto {
     float mayorAceleracionRealizada;
     float voltajeMaximo;
     float mayorVoltajeAlcanzado;
+    boolean frenadaActiva;
+    boolean refrigeracionActiva;
+    float voltaje;
+    float refrigerante;
+    int cargasRefrigerante;
 
     public Moto(RestriccionesMotoYBMS restricciones) {
         velocidad=0;
         aceleracion=0;
+        voltaje=0;
         voltajeMaximo=restricciones.getVolt_max_bateria();
         cargaTotalBateria=restricciones.getCapacidadBateria();
         velLimite=restricciones.getVelocidad_max();
@@ -42,13 +48,18 @@ class Moto {
         mayorTemperaturaAlcanzada=0;
         mayorAceleracionRealizada=0;
         mayorVoltajeAlcanzado=0;
-         
+        
+        frenadaActiva=false;
+        refrigeracionActiva=false;
+        cargasRefrigerante=restricciones.getCapacidadEnfriado();
+        refrigerante=restricciones.getFuerzaEnfriado();
     }
     
     boolean hayBateria() {
         if(bateriaActual/cargaTotalBateria >= 0.05){ //consideremos que esto es cargaTotalBateria baja 
                                        // y que si llega a este porcentaje 
                                        //entra en modo "ahorro de cargaTotalBateria"
+                                       
             return true;
         }
         return false;
@@ -78,12 +89,9 @@ class Moto {
         Float velocidadAnterior=velocidad;
         Float deceleracion=((nuevaVelocidad-velocidadAnterior)/tiempo)/100;
         
-        
+        //como la deceleración es negativa, un consumo es como una recarga
+        consumirbateria(deceleracion,tiempo);//esto tendrá una eficiencia, pero no se sabe cual
         this.velocidad=nuevaVelocidad;
-       //No se si deberia comumir frenando, quizas deberia cargar la bateria
-        //incrementarTemperatura(incremento);
-        //incrementarVoltaje(incremento);
-        //consumirbateria(incremento);
         return 0;
     }
     
@@ -189,8 +197,37 @@ class Moto {
     private void incrementarVoltaje(float aceleracion,float tiempo) {
         Float kwPotenciaMotor=48.0f;
         Float constanteConversion=2.0f;
-       if(aceleracion*tiempo*kwPotenciaMotor>this.mayorVoltajeAlcanzado){
-           this.mayorVoltajeAlcanzado=aceleracion*tiempo*kwPotenciaMotor*constanteConversion;
+        voltaje=aceleracion*tiempo*kwPotenciaMotor;
+       if(voltaje>this.mayorVoltajeAlcanzado){
+           this.mayorVoltajeAlcanzado=voltaje;
        }
+    }
+
+    boolean cumpleRestriccionesBMS(BMS bms) {
+        boolean lasCumple=true;
+        if(refrigeracionActiva && temperatura<bms.getTemperaturaSegura()){
+            refrigeracionActiva=false;
+        }else{
+            if(temperatura>bms.getTemperaturaMax()){
+                refrigeracionActiva=true;
+            }
+            lasCumple=false;
+        }
+        if(frenadaActiva && voltaje<bms.getVoltajeReactivación()){
+            frenadaActiva=false;
+        }else{
+            if(voltaje>bms.getVoltajeMax()){
+                frenadaActiva=true;
+            }
+            lasCumple=false;
+        }
+        return lasCumple;
+    }
+
+    void chequeoRefrigeracion() {
+        if(refrigeracionActiva && cargasRefrigerante>0){
+            temperatura=temperatura-refrigerante;
+            cargasRefrigerante--;
+        }
     }
 }
