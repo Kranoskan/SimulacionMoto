@@ -95,15 +95,16 @@ class Piloto {
         Float velocidadMS;
         Float sumaVelocidades=0.0f;
         Float sumaDistancia=0.0f;
+        //la velocidad media se hace con una media armónica
         for(int i=0;i<velocidadSector.size();i++){
-            sumaVelocidades=sumaVelocidades+this.velocidadSector.get(i);
+            sumaVelocidades=sumaVelocidades+circuito.getDistanciaSectores().get(i%circuito.getNumSectores())/this.velocidadSector.get(i);
             sumaDistancia=sumaDistancia+circuito.getDistanciaSectores().get(i%circuito.getNumSectores());
             ///tiempo=tiempo+(circuito.getDistanciaSectores().get(i)/velocidadMS);
         }
-        Float velocidadMedia=sumaVelocidades/sumaDistancia;
+        Float velocidadMedia=sumaDistancia/sumaVelocidades;
         System.out.println("velocidad media: "+velocidadMedia+" Km/H");
         System.out.println("DistanciaRecorrida: "+sumaDistancia+" Metros");
-        tiempo=sumaDistancia/(velocidadMedia/3.6f); //Pasamos metros segundo a km hora
+        tiempo=(sumaDistancia/velocidadMedia)*3.6f; //Pasamos metros segundo a km hora
         System.out.println("Tiempo: "+tiempo+" s");
     }
     
