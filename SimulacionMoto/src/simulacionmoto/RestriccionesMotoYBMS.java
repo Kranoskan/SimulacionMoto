@@ -30,7 +30,7 @@ class RestriccionesMotoYBMS {
         this.volt_max_celulas = 0f;
         this.intensidad = 0f;
         this.velocidad_max = 0f;
-        this.potencia_motor = 0f;
+        this.potencia_motor = 48f;
         this.temperatura_max = 0f;
         this.peso = 120f;
         this.capaciadBateria = 200f;

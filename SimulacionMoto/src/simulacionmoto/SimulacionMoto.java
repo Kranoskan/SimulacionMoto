@@ -56,13 +56,13 @@ public class SimulacionMoto {
         System.out.println("-----------------GENERANDO PILOTOS DADOS LOS BMS DE LOS MEJORES PLIOTOS--------------------");
         ArrayList<Piloto> pilotosFactibles2= new ArrayList<>();
         ArrayList<BMS> configuracionesBMS=  new ArrayList<>();
-        for(int i=0;i<pilotosFactibles.size();i++){{
+        for(int i=0;i<pilotosFactibles.size();i++){
             configuracionesBMS.add(pilotosFactibles.get(i).getBms());
             GeneradorPilotos generadorPilotos2 = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotosFactibles2);
             generadorPilotos2.generarDadoUnBMS(configuracionesBMS.get(i));
         }
         
         System.out.println("----------------------FIN-------------------");
-    }
+    
     }
 }

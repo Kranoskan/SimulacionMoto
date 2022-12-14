@@ -44,7 +44,7 @@ class Piloto {
 
     void setComportamiento(Circuito circuito) {
         //inicalizamos los vectores
-        for(int i=0;i<circuito.getNumSectores();i++){
+        for(int i=0;i<circuito.getNumSectores()*numVueltas;i++){
             this.distanciaAceleradaSector.add(Float.valueOf(0));
             this.distanciaFrenadaSector.add(Float.valueOf(0));
             this.velocidadSector.add(Float.valueOf(0));
@@ -61,18 +61,18 @@ class Piloto {
                 //Array que contiene la distancia acelerada y la velocidad tras acelerar en el sector
                 ArrayList<Float> aceleracion= (ArrayList<Float>)generadorRandom.generarAceleracionAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector).clone();
                 Float newDist=aceleracion.get(0);
-                distanciaAceleradaSector.add(newDist);
+                distanciaAceleradaSector.set(i,newDist);
                 Float newVel=aceleracion.get(1);
-                velocidadSector.add(newVel);
+                velocidadSector.set(i,newVel);
                 moto.acelerar(aceleracion.get(0),aceleracion.get(1));
                     
             }else{
             //Array que contiene la distancia frenada y la velocidad tras frenar en el sector
                 ArrayList<Float> frenada=(ArrayList<Float>) generadorRandom.generarFrenadaAleatoria(distanciaSector,velocidadActual,velocidadMaximaSector).clone();
                 Float newFren=frenada.get(0);
-                distanciaFrenadaSector.add(newFren);
+                distanciaFrenadaSector.set(i,newFren);
                 Float newVel=frenada.get(1);
-                velocidadSector.add(newVel);
+                velocidadSector.set(i,newVel);
                 if(hayBMS){
                     moto.chequeoRefrigeracion();
                 }
@@ -95,9 +95,9 @@ class Piloto {
         Float velocidadMS;
         Float sumaVelocidades=0.0f;
         Float sumaDistancia=0.0f;
-        for(int i=0;i<circuito.getNumSectores();i++){
+        for(int i=0;i<velocidadSector.size();i++){
             sumaVelocidades=sumaVelocidades+this.velocidadSector.get(i);
-            sumaDistancia=sumaDistancia+circuito.getDistanciaSectores().get(i);
+            sumaDistancia=sumaDistancia+circuito.getDistanciaSectores().get(i%circuito.getNumSectores());
             ///tiempo=tiempo+(circuito.getDistanciaSectores().get(i)/velocidadMS);
         }
         Float velocidadMedia=sumaVelocidades/sumaDistancia;
@@ -119,6 +119,8 @@ class Piloto {
         //consumo= moto.getConsumo();
         bms.setTemperaturaMax(moto.getMayorTemperaturaAlcanzada());
         bms.setVoltajeMax(moto.getMayorVoltajeAlcanzado());
+        bms.setTemperaturaSegura(moto.getTemperaturaSegura());
+        bms.setVoltajeReactivación(moto.getVoltajeReactivacion());
     }
     //Comprobamos si son pilotos validos
     public boolean esFactible(BMS bms,RestriccionesMotoYBMS restricciones){
