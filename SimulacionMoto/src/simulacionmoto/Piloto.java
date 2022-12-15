@@ -103,7 +103,7 @@ class Piloto {
         //System.out.println(velocidadMedia);
         System.out.println("velocidad media: "+velocidadMedia+" Km/H");
         System.out.println("DistanciaRecorrida: "+circuito.getDistanciaTotal(numVueltas)+" Metros");
-        Float velocidadMS=velocidadMedia*3.6f;
+        Float velocidadMS=velocidadMedia/3.6f;
         tiempo=(Float.valueOf(circuito.getDistanciaTotal(numVueltas).toString())/velocidadMS); //Pasamos metros segundo a km hora
         System.out.println("Tiempo: "+tiempo+" s");
     }
