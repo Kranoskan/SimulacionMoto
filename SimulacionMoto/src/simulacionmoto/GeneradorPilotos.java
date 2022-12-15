@@ -88,7 +88,7 @@ class GeneradorPilotos {
     
     void mostrarXMejoresPilotos(ArrayList<Piloto> todosPilotos,int numero){
         System.out.println("Ordenados por mejores tiempos");
-        for(int i=1;i<numero;i++){
+        for(int i=0;i<numero;i++){
             System.out.print(todosPilotos.get(i).getTiempoVuelta()+" s "+todosPilotos.get(i).getBms().toString()+
                     " Distancia acelerada por sector"+todosPilotos.get(i).distanciaAceleradaSector.toString()+
                     " Distancia Frenada por sector"+todosPilotos.get(i).distanciaFrenadaSector.toString()+" Velocidad por sector "+todosPilotos.get(i).velocidadSector.toString());
