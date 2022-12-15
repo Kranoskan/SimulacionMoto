@@ -176,6 +176,8 @@ class Moto {
         System.out.println("Mayor temperatura alcanzada: "+this.mayorTemperaturaAlcanzada +" ºC");
         System.out.println("Consumo: "+this.getConsumo()+ " A/h");
         System.out.println("Mayor voltaje alcanzado: "+this.mayorVoltajeAlcanzado+" V");
+        System.out.println("Voltaje de reactivación: "+this.getVoltajeReactivacion()+" V");
+        System.out.println("Temperatura segura: "+this.getTemperaturaSegura()+" ºC");
     }
 
     private void incrementarTemperatura(float aceleracion,float tiempo) {

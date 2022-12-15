@@ -135,4 +135,12 @@ public class Circuito {
         return this.getCurvaSectores().size();
     }
     
+    public Double getDistanciaTotal(int numVueltas){
+        Double sumaDistancia=0.0;
+        for(int i=0;i<this.distanciaSectores.size();i++){
+            sumaDistancia=sumaDistancia+this.distanciaSectores.get(i);
+        }
+        return sumaDistancia*numVueltas;
+    }
+    
 }
