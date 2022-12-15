@@ -20,6 +20,10 @@ class GeneradorPilotos {
     Random random;
     ArrayList<Piloto> pilotos;
     ArrayList<Piloto> pilotosBMS;
+    /**
+     * StringBuilder con el Logger
+     */
+    private final StringBuilder log;
     
 
     
@@ -29,6 +33,7 @@ class GeneradorPilotos {
         this.restricciones = restricciones;
         this.pilotos=pilotos;
         pilotosBMS=new ArrayList<>();
+        log = new StringBuilder();
     }
 
     void generarSinBMS() {
@@ -83,13 +88,28 @@ class GeneradorPilotos {
     
     void mostrarXMejoresPilotos(ArrayList<Piloto> todosPilotos,int numero){
         System.out.println("Ordenados por mejores tiempos");
-        for(int i=1;i<todosPilotos.size();i++){
+        for(int i=1;i<numero;i++){
             System.out.print(todosPilotos.get(i).getTiempoVuelta()+" s "+todosPilotos.get(i).getBms().toString()+
                     " Distancia acelerada por sector"+todosPilotos.get(i).distanciaAceleradaSector.toString()+
-                    " Distancia Frenada por sector"+todosPilotos.get(i).distanciaFrenadaSector+" Velocidad por sector "+todosPilotos.get(i).velocidadSector);
+                    " Distancia Frenada por sector"+todosPilotos.get(i).distanciaFrenadaSector.toString()+" Velocidad por sector "+todosPilotos.get(i).velocidadSector.toString());
             //todosPilotos.get(i).mostrarComportamiento();
+            log.append("--------------------------------------MEJOR PILOTO nº: ").append(i).append(" \n");
+            log.append("TIEMPO: ").append(todosPilotos.get(i).getTiempoVuelta()).append(" s\n");
+            log.append("BMS: ").append(todosPilotos.get(i).getBms().toString()).append("\n");
+            log.append("DISTANCIA ACELERADA SECTOR: ").append(todosPilotos.get(i).distanciaAceleradaSector.toString()).append("\n");
+            log.append("DISTANCIA FRENADA SECTOR: ").append(todosPilotos.get(i).distanciaFrenadaSector.toString()).append("\n");
+            log.append("VELOCIDAD POR SECTOR: ").append(todosPilotos.get(i).velocidadSector.toString()).append("\n");
             System.out.println();
+            log.append("\n");
             
         }
+    }
+    
+    /**
+     * @Brief Getter del log
+     * @return Un StringBuilder con las cadenas de texto insertadas en el log
+     */
+    public StringBuilder getLog() {
+        return log;
     }
 }

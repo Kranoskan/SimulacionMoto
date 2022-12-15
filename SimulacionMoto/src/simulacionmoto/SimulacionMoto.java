@@ -72,10 +72,15 @@ public class SimulacionMoto {
                 //uso este array para sacar los pilotos porque pilotosFactiblesDadoBMS daba un fallo
             }
         }
-        System.out.println("-----------------MEJORES PILOTOS--------------------");
+        int numMejoresPilotos=5;
+        System.out.println("-----------------MEJORES "+numMejoresPilotos+" PILOTOS--------------------");
         generadorPilotos.ordenarPilotosTiempo(mejoresPilotos);
-        generadorPilotos.mostrarXMejoresPilotos(mejoresPilotos, 5);
-
+        
+        generadorPilotos.mostrarXMejoresPilotos(mejoresPilotos,numMejoresPilotos);
+        String ficheroSalida= "SalidaMejoresPilotos.txt";
+        Logger lg = new Logger(ficheroSalida, generadorPilotos.getLog().toString());
+         /////////////////////////LOG///////////////////////////
+        
         System.out.println("----------------------FIN-------------------");
     
     }
