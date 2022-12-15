@@ -53,11 +53,13 @@ public class SimulacionMoto {
         }
         //Por cada bms de cada piloto factible generamos mas pilotosFactibles aleatorios dados ese bms
         //En un futuro se podria implementar con los pilotos que generen mejor tiempo pero actualmente genera muy pocos factibles
-        System.out.println("-----------------GENERANDO PILOTOS DADOS LOS BMS DE LOS MEJORES PLIOTOS--------------------");
+        System.out.println("-----------------GENERANDO PILOTOS DADOS LOS BMS DE LOS MEJORES PILOTOS--------------------");
         ArrayList<Piloto> pilotosFactibles2= new ArrayList<>();
         ArrayList<BMS> configuracionesBMS=  new ArrayList<>();
         for(int i=0;i<pilotosFactibles.size();i++){
             configuracionesBMS.add(pilotosFactibles.get(i).getBms());
+            System.out.println("---------Generando pilotos para el siguiente BMS");
+            pilotosFactibles.get(i).getBms().toString();
             GeneradorPilotos generadorPilotos2 = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotosFactibles2);
             generadorPilotos2.generarDadoUnBMS(configuracionesBMS.get(i));
         }
