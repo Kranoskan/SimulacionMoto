@@ -91,6 +91,8 @@ class Moto {
         
         //como la deceleración es negativa, un consumo es como una recarga
         consumirbateria(deceleracion,tiempo);//esto tendrá una eficiencia, pero no se sabe cual
+        incrementarTemperatura(deceleracion,tiempo);
+        incrementarVoltaje(deceleracion,tiempo);
         this.velocidad=nuevaVelocidad;
         return 0;
     }
@@ -210,16 +212,17 @@ class Moto {
         }else{
             if(temperatura>bms.getTemperaturaMax()){
                 refrigeracionActiva=true;
+                lasCumple=false;
             }
-            lasCumple=false;
+            
         }
         if(frenadaActiva && voltaje<bms.getVoltajeReactivación()){
             frenadaActiva=false;
         }else{
             if(voltaje>bms.getVoltajeMax()){
                 frenadaActiva=true;
+                lasCumple=false;
             }
-            lasCumple=false;
         }
         return lasCumple;
     }
@@ -229,5 +232,20 @@ class Moto {
             temperatura=temperatura-refrigerante;
             cargasRefrigerante--;
         }
+    }
+
+    float getTemperaturaSegura() {
+        //no sé como calcular la temperatuta segura, he puesto esto
+        float temSec=mayorTemperaturaAlcanzada-10;
+        if(temSec<tempIni){
+            temSec=tempIni;
+        }
+        return temSec;
+    }
+    
+    float getVoltajeReactivacion() {
+        //y de esto tampoco sé como calcularlo
+        float voltReact=mayorVoltajeAlcanzado/2;
+        return voltReact;
     }
 }

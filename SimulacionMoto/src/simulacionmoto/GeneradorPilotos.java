@@ -43,6 +43,7 @@ class GeneradorPilotos {
     void generarDadoUnBMS(BMS bms){
         pilotos=new ArrayList<>();
         for (int i = 0; i < numPilotos; i++) {
+            restricciones = new RestriccionesMotoYBMS();
             Float temMax=bms.getTemperaturaMax();
             Float voltajeMax=bms.getVoltajeMax();
             restricciones.volt_max_bateria=voltajeMax;
