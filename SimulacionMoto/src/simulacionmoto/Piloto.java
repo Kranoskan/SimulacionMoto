@@ -91,20 +91,20 @@ class Piloto {
     }
     
     void calcularTiempoVuelta(Circuito circuito){
-      
-        Float velocidadMS;
+ 
         Float sumaVelocidades=0.0f;
-        Float sumaDistancia=0.0f;
         //la velocidad media se hace con una media armónica
         for(int i=0;i<velocidadSector.size();i++){
-            sumaVelocidades=sumaVelocidades+circuito.getDistanciaSectores().get(i%circuito.getNumSectores())/this.velocidadSector.get(i);
-            sumaDistancia=sumaDistancia+circuito.getDistanciaSectores().get(i%circuito.getNumSectores());
-            ///tiempo=tiempo+(circuito.getDistanciaSectores().get(i)/velocidadMS);
+            sumaVelocidades=sumaVelocidades+velocidadSector.get(i);
+            
         }
-        Float velocidadMedia=sumaDistancia/sumaVelocidades;
+        
+        Float velocidadMedia=sumaVelocidades/velocidadSector.size();
+        //System.out.println(velocidadMedia);
         System.out.println("velocidad media: "+velocidadMedia+" Km/H");
-        System.out.println("DistanciaRecorrida: "+sumaDistancia+" Metros");
-        tiempo=(sumaDistancia/velocidadMedia)*3.6f; //Pasamos metros segundo a km hora
+        System.out.println("DistanciaRecorrida: "+circuito.getDistanciaTotal(numVueltas)+" Metros");
+        Float velocidadMS=velocidadMedia*3.6f;
+        tiempo=(Float.valueOf(circuito.getDistanciaTotal(numVueltas).toString())/velocidadMS); //Pasamos metros segundo a km hora
         System.out.println("Tiempo: "+tiempo+" s");
     }
     
