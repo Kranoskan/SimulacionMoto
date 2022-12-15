@@ -86,10 +86,11 @@ class Piloto {
             
         }
         this.calcularTiempoVuelta(circuito);
+        this.crearBMS();
         //this.mostrarComportamiento();
         //moto.mostrarMayoresValores();
 
-        crearBMS();
+        
       
     }
     
@@ -117,6 +118,7 @@ class Piloto {
         bms.setVoltajeMax(moto.getMayorVoltajeAlcanzado());
         bms.setTemperaturaSegura(moto.getTemperaturaSegura());
         bms.setVoltajeReactivación(moto.getVoltajeReactivacion());
+        //System.out.println(bms.toString());
     }
     //Comprobamos si son pilotos validos
     public boolean esFactible(BMS bms,RestriccionesMotoYBMS restricciones){
@@ -187,7 +189,7 @@ class Piloto {
     }
     
     void mostrarComportamiento(){
-        System.out.println("-------------------------------------------------Comportamiento Piloto------------------------------------------");
+        System.out.println("------------Comportamiento Piloto -----------------");
         System.out.println("Distancia acelerada en cada sector");
         System.out.println(this.distanciaAceleradaSector.toString());
         System.out.println("Distancia distancia frenada en cada sector");
@@ -197,6 +199,7 @@ class Piloto {
         System.out.println("velocidad media: "+velocidadMedia+" Km/H");
         System.out.println("DistanciaRecorrida: "+circuito.getDistanciaTotal(numVueltas)+" Metros");
         System.out.println("Tiempo: "+tiempo+" s");
+        
         
     }
 
