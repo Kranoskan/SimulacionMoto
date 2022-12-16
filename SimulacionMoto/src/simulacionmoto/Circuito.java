@@ -123,6 +123,8 @@ public class Circuito {
                 }
                 
             }
+
+            vmaxPendienteAplicada=(double)Math.round(vmaxPendienteAplicada);
             this.velocidadMaximaCalculada.add(vmaxPendienteAplicada);
             this.velocidadMinimaCalculada.add(vmaxPendienteAplicada*Double.valueOf("0.5"));
 
