@@ -41,7 +41,7 @@ class Piloto {
         bms=new BMS();
         numVueltas=6;
         hayBMS=false; // inicialmenta creamos el piloto sin BMS
-        circuito=new Circuito();
+        circuito=new Circuito(restricciones);
     }
     
 

@@ -115,6 +115,7 @@ public class LectorArchivos {
             restricciones.setTemperatura_max(this.valores_motoybms.get(5));
             restricciones.setPeso(this.valores_motoybms.get(6));
             restricciones.setCapacidad(this.valores_motoybms.get(7));
+            restricciones.setAceleracionLateral(this.valores_motoybms.get(8));
             
       }
       catch(Exception e){

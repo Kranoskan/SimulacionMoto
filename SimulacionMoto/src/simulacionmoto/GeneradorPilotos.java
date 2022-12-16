@@ -23,7 +23,8 @@ class GeneradorPilotos {
     /**
      * StringBuilder con el Logger
      */
-    private final StringBuilder log;
+    private final StringBuilder logComportamiento;
+    private final StringBuilder logBMS;
     
 
     
@@ -33,7 +34,8 @@ class GeneradorPilotos {
         this.restricciones = restricciones;
         this.pilotos=pilotos;
         pilotosBMS=new ArrayList<>();
-        log = new StringBuilder();
+        logComportamiento = new StringBuilder();
+        logBMS=new StringBuilder();
     }
 
     void generarSinBMS() {
@@ -93,23 +95,62 @@ class GeneradorPilotos {
                     " Distancia acelerada por sector"+todosPilotos.get(i).distanciaAceleradaSector.toString()+
                     " Distancia Frenada por sector"+todosPilotos.get(i).distanciaFrenadaSector.toString()+" Velocidad por sector "+todosPilotos.get(i).velocidadSector.toString());
             //todosPilotos.get(i).mostrarComportamiento();
-            log.append("--------------------------------------MEJOR PILOTO nº: ").append(i).append(" \n");
-            log.append("TIEMPO: ").append(todosPilotos.get(i).getTiempoVuelta()).append(" s\n");
-            log.append("BMS: ").append(todosPilotos.get(i).getBms().toString()).append("\n");
-            log.append("DISTANCIA ACELERADA SECTOR: ").append(todosPilotos.get(i).distanciaAceleradaSector.toString()).append("\n");
-            log.append("DISTANCIA FRENADA SECTOR: ").append(todosPilotos.get(i).distanciaFrenadaSector.toString()).append("\n");
-            log.append("VELOCIDAD POR SECTOR: ").append(todosPilotos.get(i).velocidadSector.toString()).append("\n");
-            System.out.println();
-            log.append("\n");
+            //Logs BMS
+            logBMS.append("MEJOR PILOTO  ").append(i+1).append(" ;").append("\n");
+            logBMS.append("TIEMPO: ").append(";").append(redondear((double)todosPilotos.get(i).getTiempoVuelta())).append("\n");
+            logBMS.append("TemperaturaMax").append(";");
+            logBMS.append("TemperaturaSegura").append(";");
+            logBMS.append("VoltajeMax").append(";");
+            logBMS.append("VoltajeMaxCelulas").append(";");
+            logBMS.append("VoltajeReactivacion").append(";");
+            logBMS.append("\n");
             
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getTemperaturaMax())).append(";");
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getTemperaturaSegura())).append(";");
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeMax())).append(";");
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeMaxCelulas())).append(";");;
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeReactivación())).append(";");;
+            logBMS.append("\n");
+            //Los Comportamiento
+            logComportamiento.append("MEJOR PILOTO : ").append(i).append(" \n");
+            logComportamiento.append("DISTANCIA ACELERADA SECTOR: ").append(";");
+            for(int j=0;j<todosPilotos.get(i).distanciaAceleradaSector.size();j++){
+                logComportamiento.append(redondear((double)todosPilotos.get(i).distanciaAceleradaSector.get(j))).append(";");
+            }
+            logComportamiento.append("\n");
+            logComportamiento.append("DISTANCIA FRENADA SECTOR: ").append(";");
+            for(int j=0;j<todosPilotos.get(i).distanciaFrenadaSector.size();j++){
+                logComportamiento.append(redondear((double)todosPilotos.get(i).distanciaFrenadaSector.get(j))).append(";");
+            }
+            logComportamiento.append("\n");
+            logComportamiento.append("VELOCIDAD POR SECTOR: ").append(";");
+            for(int j=0;j<todosPilotos.get(i).velocidadSector.size();j++){
+                logComportamiento.append(redondear((double)todosPilotos.get(i).velocidadSector.get(j))).append(";");
+            }
+            logComportamiento.append("\n");
+            
+            System.out.println();
+ 
         }
     }
     
     /**
      * @Brief Getter del log
-     * @return Un StringBuilder con las cadenas de texto insertadas en el log
+     * @return Un StringBuilder con las cadenas de texto insertadas en el log comportamiento
      */
-    public StringBuilder getLog() {
-        return log;
+    public StringBuilder getLogComportamiento() {
+        return logComportamiento;
+    }
+    
+    /**
+     * @Brief Getter del log
+     * @return Un StringBuilder con las cadenas de texto insertadas en el log BMS
+     */
+    public StringBuilder getLogBMS() {
+        return logBMS;
+    }
+    
+    Double redondear(Double numero){
+        return Math.round(numero*100.0)/100.0;   
     }
 }
