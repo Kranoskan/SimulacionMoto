@@ -95,17 +95,28 @@ class GeneradorPilotos {
                     " Distancia acelerada por sector"+todosPilotos.get(i).distanciaAceleradaSector.toString()+
                     " Distancia Frenada por sector"+todosPilotos.get(i).distanciaFrenadaSector.toString()+" Velocidad por sector "+todosPilotos.get(i).velocidadSector.toString());
             //todosPilotos.get(i).mostrarComportamiento();
-            logBMS.append("--------------------------------------MEJOR PILOTO nº: ").append(i).append(" \n");
-            logBMS.append("TIEMPO: ").append(todosPilotos.get(i).getTiempoVuelta()).append(" s\n");
-            logBMS.append("BMS: ").append(todosPilotos.get(i).getBms().toString()).append("\n");
-            logBMS.append("\n");
+            logBMS.append("MEJOR PILOTO  ").append(i+1).append(" ;").append("\n");
+            logBMS.append("TIEMPO: ").append(";").append(redondear((double)todosPilotos.get(i).getTiempoVuelta())).append("\n");
+            logBMS.append("BMS: ").append(";").append(todosPilotos.get(i).getBms().toString()).append("\n");
             logComportamiento.append("--------------------------------------MEJOR PILOTO nº: ").append(i).append(" \n");
-            logComportamiento.append("DISTANCIA ACELERADA SECTOR: ").append(todosPilotos.get(i).distanciaAceleradaSector.toString()).append("\n");
-            logComportamiento.append("DISTANCIA FRENADA SECTOR: ").append(todosPilotos.get(i).distanciaFrenadaSector.toString()).append("\n");
-            logComportamiento.append("VELOCIDAD POR SECTOR: ").append(todosPilotos.get(i).velocidadSector.toString()).append("\n");
-            System.out.println();
+            logComportamiento.append("DISTANCIA ACELERADA SECTOR: ").append(";");
+            for(int j=0;j<todosPilotos.get(i).distanciaAceleradaSector.size();j++){
+                logComportamiento.append(redondear((double)todosPilotos.get(i).distanciaAceleradaSector.get(j))).append(";");
+            }
+            logComportamiento.append("\n");
+            logComportamiento.append("DISTANCIA FRENADA SECTOR: ").append(";");
+            for(int j=0;j<todosPilotos.get(i).distanciaFrenadaSector.size();j++){
+                logComportamiento.append(redondear((double)todosPilotos.get(i).distanciaFrenadaSector.get(j))).append(";");
+            }
+            logComportamiento.append("\n");
+            logComportamiento.append("VELOCIDAD POR SECTOR: ").append(";");
+            for(int j=0;j<todosPilotos.get(i).velocidadSector.size();j++){
+                logComportamiento.append(redondear((double)todosPilotos.get(i).velocidadSector.get(j))).append(";");
+            }
             logComportamiento.append("\n");
             
+            System.out.println();
+ 
         }
     }
     
@@ -123,5 +134,9 @@ class GeneradorPilotos {
      */
     public StringBuilder getLogBMS() {
         return logBMS;
+    }
+    
+    Double redondear(Double numero){
+        return Math.round(numero*100.0)/100.0;   
     }
 }

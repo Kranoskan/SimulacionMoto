@@ -124,7 +124,7 @@ public class Circuito {
                 
             }
 
-            vmaxPendienteAplicada=(double)Math.round(vmaxPendienteAplicada);
+            
             this.velocidadMaximaCalculada.add(vmaxPendienteAplicada);
             this.velocidadMinimaCalculada.add(vmaxPendienteAplicada*Double.valueOf("0.5"));
 
@@ -152,8 +152,19 @@ public class Circuito {
      * @return Un StringBuilder con las cadenas de texto insertadas en el log BMS
      */
     public StringBuilder getLogVelocidadesLimiteSectores() {
-        this.logVelocidadLímite.append(this.velocidadMaximaCalculada.toString());
+        for(int i=0;i<velocidadMaximaCalculada.size();i++){
+            this.logVelocidadLímite.append("Sector"+i);
+            this.logVelocidadLímite.append(";");
+            this.logVelocidadLímite.append(redondear(this.velocidadMaximaCalculada.get(i)));
+            this.logVelocidadLímite.append(";");
+            this.logVelocidadLímite.append("\n");
+        }
+
         return this.logVelocidadLímite;
+    }
+    
+    Double redondear(Double numero){
+        return Math.round(numero*100.0)/100.0;   
     }
     
 }
