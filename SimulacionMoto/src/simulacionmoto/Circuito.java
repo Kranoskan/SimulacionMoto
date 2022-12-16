@@ -17,6 +17,7 @@ public class Circuito {
      ArrayList<Float> pendienteSectores;
      ArrayList<Double> velocidadMaximaCalculada;
      ArrayList<Double> velocidadMinimaCalculada;
+     private final StringBuilder logVelocidadLímite;
 
     public Circuito() {
         this.distanciaSectores = new ArrayList();
@@ -24,6 +25,7 @@ public class Circuito {
         this.pendienteSectores = new ArrayList();
         this.velocidadMaximaCalculada = new ArrayList();
         this.velocidadMinimaCalculada = new ArrayList();
+        this.logVelocidadLímite=new StringBuilder();
   
     }
     
@@ -141,6 +143,15 @@ public class Circuito {
             sumaDistancia=sumaDistancia+this.distanciaSectores.get(i);
         }
         return sumaDistancia*numVueltas;
+    }
+    
+    /**
+     * @Brief Getter del log
+     * @return Un StringBuilder con las cadenas de texto insertadas en el log BMS
+     */
+    public StringBuilder getLogVelocidadesLimiteSectores() {
+        this.logVelocidadLímite.append(this.velocidadMaximaCalculada.toString());
+        return this.logVelocidadLímite;
     }
     
 }
