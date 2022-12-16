@@ -1,16 +1,21 @@
 MEJOR PILOTO  1 ;
-TIEMPO: ;1009.41
-BMS: ;BMS{voltajeMax=80.45346, temperaturaMax=150.98549, voltajeMaxCelulas=0.0, voltajeReactivación=40.22673, temperaturaSegura=140.98549}
+TIEMPO: ;1005.08
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
+167.78;157.78;75.61;0.0;37.81;
 MEJOR PILOTO  2 ;
-TIEMPO: ;1023.27
-BMS: ;BMS{voltajeMax=78.878365, temperaturaMax=166.46735, voltajeMaxCelulas=0.0, voltajeReactivación=39.439182, temperaturaSegura=156.46735}
+TIEMPO: ;1025.71
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
+118.52;108.52;68.05;0.0;34.03;
 MEJOR PILOTO  3 ;
-TIEMPO: ;1028.24
-BMS: ;BMS{voltajeMax=70.6896, temperaturaMax=129.75092, voltajeMaxCelulas=0.0, voltajeReactivación=35.3448, temperaturaSegura=119.750916}
+TIEMPO: ;1030.52
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
+156.65;146.65;77.67;0.0;38.84;
 MEJOR PILOTO  4 ;
-TIEMPO: ;1029.71
-BMS: ;BMS{voltajeMax=73.11905, temperaturaMax=145.95616, voltajeMaxCelulas=0.0, voltajeReactivación=36.559525, temperaturaSegura=135.95616}
+TIEMPO: ;1046.95
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
+112.7;102.7;68.94;0.0;34.47;
 MEJOR PILOTO  5 ;
-TIEMPO: ;1041.66
-BMS: ;BMS{voltajeMax=80.03517, temperaturaMax=144.95084, voltajeMaxCelulas=0.0, voltajeReactivación=40.017586, temperaturaSegura=134.95084}
+TIEMPO: ;1058.24
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
+124.33;114.33;70.79;0.0;35.39;
 

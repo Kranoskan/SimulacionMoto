@@ -77,13 +77,14 @@ public class SimulacionMoto {
         generadorPilotos.ordenarPilotosTiempo(mejoresPilotos);
         
         generadorPilotos.mostrarXMejoresPilotos(mejoresPilotos,numMejoresPilotos);
+        /////////////////////////LOG///////////////////////////
         String ficheroSalidaComportamiento= "SalidaComportamientoMejoresPilotos.csv";
         Logger lg1 = new Logger(ficheroSalidaComportamiento, generadorPilotos.getLogComportamiento().toString());
         String ficheroSalidaBMS="SalidaBMSMejoresPilotos.csv";
         Logger lg2=new Logger(ficheroSalidaBMS,generadorPilotos.getLogBMS().toString());
         String ficheroSalidaVelocidadesLimiteSectores="VelocidadesLimiteSectores.csv";
         Logger lg3=new Logger(ficheroSalidaVelocidadesLimiteSectores,circuito.getLogVelocidadesLimiteSectores().toString());
-         /////////////////////////LOG///////////////////////////
+        
         
         System.out.println("----------------------FIN-------------------");
     

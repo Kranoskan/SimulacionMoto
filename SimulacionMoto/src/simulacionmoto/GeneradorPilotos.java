@@ -94,11 +94,25 @@ class GeneradorPilotos {
             System.out.print(todosPilotos.get(i).getTiempoVuelta()+" s "+todosPilotos.get(i).getBms().toString()+
                     " Distancia acelerada por sector"+todosPilotos.get(i).distanciaAceleradaSector.toString()+
                     " Distancia Frenada por sector"+todosPilotos.get(i).distanciaFrenadaSector.toString()+" Velocidad por sector "+todosPilotos.get(i).velocidadSector.toString());
-            //todosPilotos.get(i).mostrarComportamiento();
+            todosPilotos.get(i).mostrarComportamiento();
+            //Logs BMS
             logBMS.append("MEJOR PILOTO  ").append(i+1).append(" ;").append("\n");
             logBMS.append("TIEMPO: ").append(";").append(redondear((double)todosPilotos.get(i).getTiempoVuelta())).append("\n");
-            logBMS.append("BMS: ").append(";").append(todosPilotos.get(i).getBms().toString()).append("\n");
-            logComportamiento.append("--------------------------------------MEJOR PILOTO nº: ").append(i).append(" \n");
+            logBMS.append("TemperaturaMax").append(";");
+            logBMS.append("TemperaturaSegura").append(";");
+            logBMS.append("VoltajeMax").append(";");
+            logBMS.append("VoltajeMaxCelulas").append(";");
+            logBMS.append("VoltajeReactivacion").append(";");
+            logBMS.append("\n");
+            
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getTemperaturaMax())).append(";");
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getTemperaturaSegura())).append(";");
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeMax())).append(";");
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeMaxCelulas())).append(";");;
+            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeReactivación())).append(";");;
+            logBMS.append("\n");
+            //Los Comportamiento
+            logComportamiento.append("MEJOR PILOTO : ").append(i).append(" \n");
             logComportamiento.append("DISTANCIA ACELERADA SECTOR: ").append(";");
             for(int j=0;j<todosPilotos.get(i).distanciaAceleradaSector.size();j++){
                 logComportamiento.append(redondear((double)todosPilotos.get(i).distanciaAceleradaSector.get(j))).append(";");
