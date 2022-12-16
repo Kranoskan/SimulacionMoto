@@ -24,6 +24,7 @@ class RestriccionesMotoYBMS {
     public Float tem_inicial;
     public  int cargasRefigerante;
     public Float fuerzaRefirgerante;
+    public Float aceleracionLateral;
 
     public RestriccionesMotoYBMS() {
         this.volt_max_bateria = 0f;
@@ -37,6 +38,7 @@ class RestriccionesMotoYBMS {
         this.tem_inicial=30f;
         cargasRefigerante=0;
         fuerzaRefirgerante=5f;
+        this.aceleracionLateral=0.0f;
     }
 
     ////////////////////////GETTERS//////////////////////////
@@ -75,6 +77,11 @@ class RestriccionesMotoYBMS {
     public Float getTem_inicial() {
         return tem_inicial;
     }
+
+    public Float getAceleracionLateral() {
+        return aceleracionLateral;
+    }
+    
     
     //////////////////////////SETTERS/////////////////////////////
     public void setVolt_max_bateria(Float volt_max_bateria) {
@@ -114,11 +121,15 @@ class RestriccionesMotoYBMS {
         this.tem_inicial = tem_inicial;
     }
 
-    @Override
-    public String toString() {
-        return "RestriccionesMotoYBMS{" + "volt_max_bateria=" + volt_max_bateria + ", volt_max_celulas=" + volt_max_celulas + ", intensidad=" + intensidad + ", velocidad_max=" + velocidad_max + ", potencia_motor=" + potencia_motor + ", temperatura_max=" + temperatura_max + ", peso=" + peso + ", capaciadBateria=" + capaciadBateria + ", tem_inicial=" + tem_inicial + '}';
+    public void setAceleracionLateral(Float aceleracionLateral) {
+        this.aceleracionLateral = aceleracionLateral;
     }
 
+    @Override
+    public String toString() {
+        return "RestriccionesMotoYBMS{" + "volt_max_bateria=" + volt_max_bateria + ", volt_max_celulas=" + volt_max_celulas + ", intensidad=" + intensidad + ", velocidad_max=" + velocidad_max + ", potencia_motor=" + potencia_motor + ", temperatura_max=" + temperatura_max + ", peso=" + peso + ", capaciadBateria=" + capaciadBateria + ", tem_inicial=" + tem_inicial + ", cargasRefigerante=" + cargasRefigerante + ", fuerzaRefirgerante=" + fuerzaRefirgerante + ", aceleracionLateral=" + aceleracionLateral + '}';
+    }
+    
     public boolean ConfiguracionPosible(){
         return false;
     }

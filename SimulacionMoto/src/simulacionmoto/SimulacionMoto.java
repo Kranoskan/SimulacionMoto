@@ -21,16 +21,15 @@ public class SimulacionMoto {
         //Declaracion de variables
         System.out.println("-----------------INICIO--------------------");
         Configurador confi=new Configurador("Parametros.txt");
-        Circuito circuito=new Circuito();
-
-        //Lectura de datos circuito
-        System.out.println("-----------------LEYENDO DATOS--------------------");
-        String rutaCircuito=confi.getRutaCircuito();
         LectorArchivos lector = new LectorArchivos();
-        lector.cargaDatosCircuito(rutaCircuito,circuito);
+        System.out.println("-----------------LEYENDO DATOS--------------------");
         //Lectura de datos motoyBMS
         RestriccionesMotoYBMS restricciones= new RestriccionesMotoYBMS();
         lector.cargaDatosMotoYBMS(confi.getRutaMotoYBMS(),restricciones);
+        //Lectura de datos circuito
+        Circuito circuito=new Circuito(restricciones);
+        String rutaCircuito=confi.getRutaCircuito();
+        lector.cargaDatosCircuito(rutaCircuito,circuito);
         System.out.println(restricciones.toString());
         
         System.out.println("-----------------CALCULADO RANGO DE VELOCIDADES DE LOS SECTORES--------------------");

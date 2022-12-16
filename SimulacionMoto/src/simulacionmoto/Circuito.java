@@ -12,90 +12,128 @@ import java.util.ArrayList;
  * @author Pc
  */
 public class Circuito {
-     ArrayList<Float> distanciaSectores;
-     ArrayList<Float> curvaSectores;
-     ArrayList<Float> pendienteSectores;
-     ArrayList<Double> velocidadMaximaCalculada;
-     ArrayList<Double> velocidadMinimaCalculada;
-     private final StringBuilder logVelocidadLímite;
+    /**
+    * Lista de Float con la distancia de cada sector
+    */
+    ArrayList<Float> distanciaSectores;
+    /**
+    * Lista de Float con la curvatura en grados de cada sector
+    */
+    ArrayList<Float> curvaSectores;
+    /**
+    * Lista de Float con la pendiente en cada sector
+    */
+    ArrayList<Float> pendienteSectores;
+    /**
+    * Lista de Double con la velocidad máxima que calcularemos a la que se podrá ir en cada sector
+    */
+    ArrayList<Double> velocidadMaximaCalculada;
+    /**
+    * Logger para escribir los datos de salida en un archivo csv
+    */
+    private final StringBuilder logVelocidadLímite;
+    /**
+     * Restricciones de la moto
+     */
+    RestriccionesMotoYBMS restricciones;
 
-    public Circuito() {
+    /**
+     * Constructor de la clase
+     */
+    public Circuito(RestriccionesMotoYBMS restricciones) {
         this.distanciaSectores = new ArrayList();
         this.curvaSectores = new ArrayList();
         this.pendienteSectores = new ArrayList();
         this.velocidadMaximaCalculada = new ArrayList();
-        this.velocidadMinimaCalculada = new ArrayList();
         this.logVelocidadLímite=new StringBuilder();
-  
+        this.restricciones=restricciones;
+       
     }
-    
     ////////////////////////////////Getters/////////////////////////////
+    /**
+     * Getter de la Lista de distancias de cada sector
+     * @return Una lista de Float con los datos
+     */
     public ArrayList<Float> getDistanciaSectores() {
         return distanciaSectores;
     }
-
+    /**
+     * Getter de la Lista de grado de curvaturas de cada sector
+     * @return Una lista de Float con los datos
+     */
     public ArrayList<Float> getCurvaSectores() {
         return curvaSectores;
     }
 
+    /**
+     * Getter de la Lista de pendientes de cada sector
+     * @return Una lista de Float con los datos
+     */
     public ArrayList<Float> getPendienteSectores() {
         return pendienteSectores;
     }
 
+    /**
+     * Getter de la Lista de velocidades máximas para cada sector calculadas
+     * @return Una lista de Double con los datos
+     */
     public ArrayList<Double> getVelocidadMaximaCalculada() {
         return velocidadMaximaCalculada;
     }
-
-    
-    public ArrayList<Double> getVelocidadMinimaCalculada() {    
-        return velocidadMinimaCalculada;
-    }
-
     ////////////////////////////////Setters/////////////////////////////
+    /**
+     * Setter de la Lista de distancias de cada sector 
+     * @param distanciaSectores
+     */
     public void setDistanciaSectores(ArrayList<Float> distanciaSectores) {
         this.distanciaSectores = distanciaSectores;
     }
-
+    /**
+     * Setter de la Lista de grado de curvaturas de cada sector 
+     * @param curvaSector
+     */
     public void setCurvaSector(ArrayList<Float> curvaSector) {
         this.curvaSectores = curvaSector;
     }
-
+    /**
+     * Setter de la Lista de pendientes de cada sector 
+     * @param pendienteSector
+     */
     public void setPendienteSector(ArrayList<Float> pendienteSector) {
         this.pendienteSectores = pendienteSector;
     }
-
+    /**
+     * Setter de la Lista de velocidades máximas para cada sector calculadas
+     * @param velocidadMaximaCalculada 
+     */
     public void setVelocidadMaximaCalculada(ArrayList<Double> velocidadMaximaCalculada) {
         this.velocidadMaximaCalculada = velocidadMaximaCalculada;
     }
-
-    public void setVelocidadMinimaCalculada(ArrayList<Double> velocidadMinimaCalculada) {
-        this.velocidadMinimaCalculada = velocidadMinimaCalculada;
-    }
-
+    /**
+     * Función para mostrar por pantalla toda la información del cirucito incluidas las velocidades maximas calculadas
+     */
     void mostrarPorPantalla(){
         for(int i=0;i<this.pendienteSectores.size();i++){
             System.out.print("Sector: "+i);
             System.out.print(" Distancia: "+this.distanciaSectores.get(i));
             System.out.print(" Curvatura: "+this.curvaSectores.get(i));
             System.out.print(" Pendiente: "+this.getPendienteSectores().get(i));
-            if(this.getVelocidadMinimaCalculada().isEmpty()){
-                System.out.print(" Vel min calculada: "+"NO CALCULADA");
+            if(this.getVelocidadMaximaCalculada().isEmpty()){
                 System.out.print(" Vel max calculada: "+"NO CALCULADA");
             }else{
-                System.out.print(" Vel min calculada: "+this.getVelocidadMinimaCalculada().get(i));
                 System.out.print(" Vel max calculada: "+this.getVelocidadMaximaCalculada().get(i));
             }
-            
-            
             System.out.println();
         }
     }
-    
+    /**
+     * Función para calcular las velocidades máximas en cada sector
+     */
     void calcularRangoVelocidades(){
         for(int i=0;i<this.distanciaSectores.size();i++){
             //valor de aceleracion lateral de una moto
-            Double aceleracionLateral=Double.valueOf("9");//buscado en tabla de datos de una pagina, parametrizar
-            Double constante=Double.valueOf("3.6");//Constante fija de la formula
+            Double aceleracionLateral=Double.valueOf(restricciones.getAceleracionLateral());//buscado en tabla de datos de una pagina, parametrizar
+            Double constante=Constantes.conversionKMHaMS;//Constante fija de la formula
             Double AR=aceleracionLateral*this.getCurvaSectores().get(i);
             Double vmax;
             Double vmaxPendienteAplicada;
@@ -106,11 +144,11 @@ public class Circuito {
             if(AR==0){//Si es una recta establecemos la velocidad maxima de la moto
                 
                 if(pendiente<0){//Si es cuesta abajo
-                    vmax=Double.valueOf("180");//aumentamos velocidad por la pendiente
-                    vmaxPendienteAplicada=Double.valueOf("180")*(1-pendiente);
+                    vmax=Double.valueOf(restricciones.getVelocidad_max());//aumentamos velocidad por la pendiente
+                    vmaxPendienteAplicada=vmax*(1-pendiente);
                 }else{//Si es cuesta arriba
-                    vmax=Double.valueOf("180");//disminuimos velocidad con por la pendiente
-                    vmaxPendienteAplicada=Double.valueOf("180")*(1-pendiente);
+                    vmax=Double.valueOf(restricciones.getVelocidad_max());//disminuimos velocidad con por la pendiente
+                    vmaxPendienteAplicada=vmax*(1-pendiente);
                 }
             }else{
           
@@ -123,11 +161,8 @@ public class Circuito {
                 }
                 
             }
-
-            
             this.velocidadMaximaCalculada.add(vmaxPendienteAplicada);
-            this.velocidadMinimaCalculada.add(vmaxPendienteAplicada*Double.valueOf("0.5"));
-
+           
             //System.out.print("Curvatura: "+this.getCurvaSectores().get(i)+" AR: "+AR+" Vmax "+vmax+" VmaxPendienteaplicada"+vmaxPendienteAplicada+" Pendiente: "+this.pendienteSectores.get(i));
             System.out.print("Pendiente: "+this.pendienteSectores.get(i)+" Vmax "+vmax+" pendiente aplicada -> "+vmaxPendienteAplicada);
             System.out.println();

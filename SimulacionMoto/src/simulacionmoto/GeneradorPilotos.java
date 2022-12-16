@@ -94,7 +94,7 @@ class GeneradorPilotos {
             System.out.print(todosPilotos.get(i).getTiempoVuelta()+" s "+todosPilotos.get(i).getBms().toString()+
                     " Distancia acelerada por sector"+todosPilotos.get(i).distanciaAceleradaSector.toString()+
                     " Distancia Frenada por sector"+todosPilotos.get(i).distanciaFrenadaSector.toString()+" Velocidad por sector "+todosPilotos.get(i).velocidadSector.toString());
-            todosPilotos.get(i).mostrarComportamiento();
+            //todosPilotos.get(i).mostrarComportamiento();
             //Logs BMS
             logBMS.append("MEJOR PILOTO  ").append(i+1).append(" ;").append("\n");
             logBMS.append("TIEMPO: ").append(";").append(redondear((double)todosPilotos.get(i).getTiempoVuelta())).append("\n");
