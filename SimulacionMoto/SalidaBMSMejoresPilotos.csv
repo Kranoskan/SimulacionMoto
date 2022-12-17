@@ -1,21 +1,41 @@
 MEJOR PILOTO  1 ;
-TIEMPO: ;1020.96
-TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
-163.21;153.21;69.48;0.0;34.74;
+TIEMPO: ;954,28
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+87,02;77,02;85,18;42,59;
 MEJOR PILOTO  2 ;
-TIEMPO: ;1022.67
-TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
-158.65;148.65;83.61;0.0;41.81;
+TIEMPO: ;974,82
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+111,77;101,77;72,94;36,47;
 MEJOR PILOTO  3 ;
-TIEMPO: ;1036.82
-TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
-119.28;109.28;85.45;0.0;42.73;
+TIEMPO: ;978,78
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+126,05;116,05;74,13;37,06;
 MEJOR PILOTO  4 ;
-TIEMPO: ;1052.61
-TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
-111.28;101.28;76.15;0.0;38.08;
+TIEMPO: ;985,22
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+127,92;117,92;73,06;36,53;
 MEJOR PILOTO  5 ;
-TIEMPO: ;1053.92
-TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeMaxCelulas;VoltajeReactivacion;
-127.98;117.98;79.94;0.0;39.97;
+TIEMPO: ;985,44
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+174,7;164,7;78,55;39,28;
+MEJOR PILOTO  6 ;
+TIEMPO: ;988,28
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+105,7;95,7;82,67;41,34;
+MEJOR PILOTO  7 ;
+TIEMPO: ;989,18
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+126,8;116,8;76,5;38,25;
+MEJOR PILOTO  8 ;
+TIEMPO: ;989,22
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+145,64;135,64;78,78;39,39;
+MEJOR PILOTO  9 ;
+TIEMPO: ;989,93
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+147,33;137,33;79,36;39,68;
+MEJOR PILOTO  10 ;
+TIEMPO: ;990,84
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+160,67;150,67;66,46;33,23;
 

@@ -101,14 +101,14 @@ class GeneradorPilotos {
             logBMS.append("TemperaturaMax").append(";");
             logBMS.append("TemperaturaSegura").append(";");
             logBMS.append("VoltajeMax").append(";");
-            logBMS.append("VoltajeMaxCelulas").append(";");
+            //logBMS.append("VoltajeMaxCelulas").append(";");
             logBMS.append("VoltajeReactivacion").append(";");
             logBMS.append("\n");
             
             logBMS.append(redondear((double)todosPilotos.get(i).getBms().getTemperaturaMax())).append(";");
             logBMS.append(redondear((double)todosPilotos.get(i).getBms().getTemperaturaSegura())).append(";");
             logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeMax())).append(";");
-            logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeMaxCelulas())).append(";");;
+            //logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeMaxCelulas())).append(";");;
             logBMS.append(redondear((double)todosPilotos.get(i).getBms().getVoltajeReactivación())).append(";");;
             logBMS.append("\n");
             //Los Comportamiento
