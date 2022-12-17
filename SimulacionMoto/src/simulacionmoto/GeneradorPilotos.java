@@ -90,6 +90,11 @@ class GeneradorPilotos {
     
     void mostrarXMejoresPilotos(ArrayList<Piloto> todosPilotos,int numero){
         System.out.println("Ordenados por mejores tiempos");
+        if(numero>todosPilotos.size()){
+            numero=todosPilotos.size();
+            System.out.print("!!!! No se han generado suficientes pilotos factibles !!!! \n");
+            System.out.print("Sólo se mostrarán: "+numero+" pilotos. \n");
+        }
         for(int i=0;i<numero;i++){
             System.out.print(todosPilotos.get(i).getTiempoVuelta()+" s "+todosPilotos.get(i).getBms().toString()+
                     " Distancia acelerada por sector"+todosPilotos.get(i).distanciaAceleradaSector.toString()+

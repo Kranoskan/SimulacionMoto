@@ -1,7 +1,6 @@
 rutaCircuito=Circuito.csv;
 rutaMotoyBMS=MotoBMS.csv;
-pesoMoto=190.0;
 aceleracionLateral=9;
-nPilotos=1000;
+nPilotos=10;
 nBMS=20;
 rutaPiloto="";
