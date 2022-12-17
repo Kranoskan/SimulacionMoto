@@ -71,7 +71,7 @@ public class SimulacionMoto {
                 //uso este array para sacar los pilotos porque pilotosFactiblesDadoBMS daba un fallo
             }
         }
-        int numMejoresPilotos=5;
+        int numMejoresPilotos=10;
         System.out.println("-----------------MEJORES "+numMejoresPilotos+" PILOTOS--------------------");
         generadorPilotos.ordenarPilotosTiempo(mejoresPilotos);
         

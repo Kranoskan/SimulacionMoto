@@ -36,7 +36,7 @@ class BMS {
     public BMS() {
         this.voltajeMax = 0.0f;
         this.temperaturaMax = 0.0f;
-        this.voltajeMaxCelulas = 0.0f;
+        //this.voltajeMaxCelulas = 0.0f;
         this.voltajeReactivación = 0.0f;
         this.temperaturaSegura = 0.0f;
     }
@@ -60,9 +60,9 @@ class BMS {
      * Getter del voltajeMaxCelulas
      * @return Float con el voltajeMaxCelulas
      */
-    public float getVoltajeMaxCelulas() {
+    /*public float getVoltajeMaxCelulas() {
         return voltajeMaxCelulas;
-    }
+    }*/
     /**
      * Getter del voltajeReactivacion
      * @return Float con el voltajeReactivacion
