@@ -124,7 +124,7 @@ class Piloto {
     public boolean esFactible(BMS bms,RestriccionesMotoYBMS restricciones){
         if(moto.getMayorTemperaturaAlcanzada()<restricciones.getTemperatura_max()){
             if(moto.getMayorVoltajeAlcanzado()<restricciones.getVolt_max_bateria()){
-                if(moto.getConsumo()<restricciones.getCapacidadBateria()){
+                if(moto.getConsumoRestante()<restricciones.getCapacidadBateria()){
                     return true;
                 }
             }   

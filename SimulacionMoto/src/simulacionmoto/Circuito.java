@@ -132,7 +132,7 @@ public class Circuito {
     void calcularRangoVelocidades(){
         for(int i=0;i<this.distanciaSectores.size();i++){
             //valor de aceleracion lateral de una moto
-            Double aceleracionLateral=Double.valueOf(restricciones.getAceleracionLateral());//buscado en tabla de datos de una pagina, parametrizar
+            Double aceleracionLateral=Double.valueOf(restricciones.getAceleracionLateral());
             Double constante=Constantes.conversionKMHaMS;//Constante fija de la formula
             Double AR=aceleracionLateral*this.getCurvaSectores().get(i);
             Double vmax;
@@ -144,10 +144,10 @@ public class Circuito {
             if(AR==0){//Si es una recta establecemos la velocidad maxima de la moto
                 
                 if(pendiente<0){//Si es cuesta abajo
-                    vmax=Double.valueOf(restricciones.getVelocidad_max());//aumentamos velocidad por la pendiente
+                    vmax=Double.valueOf(this.restricciones.getVelocidad_max());//aumentamos velocidad por la pendiente
                     vmaxPendienteAplicada=vmax*(1-pendiente);
                 }else{//Si es cuesta arriba
-                    vmax=Double.valueOf(restricciones.getVelocidad_max());//disminuimos velocidad con por la pendiente
+                    vmax=Double.valueOf(this.restricciones.getVelocidad_max());//disminuimos velocidad con por la pendiente
                     vmaxPendienteAplicada=vmax*(1-pendiente);
                 }
             }else{
@@ -169,11 +169,18 @@ public class Circuito {
         }
         System.out.println("Rangos de velocidades calculado");
     }
-    
+    /**
+     * Getter del número de sectores del circuito
+     * @return Entero con el numero de sectores
+     */
     public int getNumSectores(){
         return this.getCurvaSectores().size();
     }
-    
+    /**
+     * Getter de la distancia total del circuito
+     * @param numVueltas Le pasamos el número de vueltas que vamos a dar
+     * @return Double con la distancia total recorrida
+     */
     public Double getDistanciaTotal(int numVueltas){
         Double sumaDistancia=0.0;
         for(int i=0;i<this.distanciaSectores.size();i++){
@@ -197,7 +204,11 @@ public class Circuito {
 
         return this.logVelocidadLímite;
     }
-    
+    /**
+     * Método para redondear números con dos decimales para poder pasarlos a un csv
+     * @param numero A redondear
+     * @return Double con el número redondeado
+     */
     Double redondear(Double numero){
         return Math.round(numero*100.0)/100.0;   
     }

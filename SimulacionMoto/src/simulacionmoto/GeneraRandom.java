@@ -13,37 +13,53 @@ import java.util.Random;
  * @author Pc
  */
 public class GeneraRandom {
-    
-
+    /**
+     * Random para la generación de número aleatorios en una distribución uniforme
+     */
     Random random;
 
+    /**
+     * Constructor de la clase
+     */
     public GeneraRandom() {
-        random=new Random();
+        this.random=new Random();
     }
     
+    /**
+     * Función para generar una distancia acelerada y una velocidad aleatoria 
+     * @param distanciaSector Float con la distancia del sector
+     * @param velocidadActual Float con la velocidad actual de la moto
+     * @param velocidadMaximaSector Double con la velocidad máxima calculada del sector
+     * @return Lista de Float con la distanciaAcelerada en la primera posición y la velocidad en la segunda posición
+     */
     ArrayList<Float> generarAceleracionAleatoria(Float distanciaSector,Float velocidadActual, Double velocidadMaximaSector){
         ArrayList<Float> solucion=new ArrayList();
 
-        //Calculo de la distancia acelerada(un random entre distanciaSector*0,7 y distanciaSector) ya que interesa que acelere la mayor distancia 
-        Float distanciaAcelerada=random.nextFloat() * (distanciaSector - distanciaSector*0.75f) + distanciaSector*0.75f;
+        //Cálculo de la distancia acelerada(un random con una distribución uniforme [distanciaSector*ConstanteLimite, distanciaSector] ya que interesa que acelere la mayor distancia 
+        Float distanciaAcelerada=this.random.nextFloat() * (distanciaSector - distanciaSector*Constantes.constanteLimiteInicialVelocidad) + distanciaSector*0.75f;
         solucion.add(Float.valueOf(distanciaAcelerada.toString()));
         
-        //Calculo de la nueva velocidad,Generamos un random entre la velocidad actual y la velocidad maxima
-        Float velocidad=random.nextFloat() * (Float.valueOf(velocidadMaximaSector.toString()) - velocidadActual) + velocidadActual;
-    
+        //Cálculo de la nueva velocidad,Generamos un random con una distribución uniforme [velocidad actual,velocidad maxima]
+        Float velocidad=this.random.nextFloat() * (Float.valueOf(velocidadMaximaSector.toString()) - velocidadActual) + velocidadActual;
         solucion.add(velocidad);
         
         return solucion;
     }
     
-    
+    /**
+     * Función Función para generar una distancia frenada y una velocidad aleatoria 
+     * @param distanciaSector Float con la distancia del sector
+     * @param velocidadActual Float con la velocidad actual de la moto
+     * @param velocidadMaximaSector Double con la velocidad máxima calculada del sector
+     * @return Lista de Float con la distanciaFrenada en la primera posición y la velocidad en la segunda posición
+     */
     ArrayList<Float> generarFrenadaAleatoria(Float distanciaSector,Float velocidadActual, Double velocidadMaximaSector){
         ArrayList<Float> solucion=new ArrayList();
-        
-        Float distanciaFrenada=random.nextFloat() * (distanciaSector - 0) + 0;
+        //Cálculo de la distancia frenada mediante un random en una distribución uniforme [0,distanciaSector]
+        Float distanciaFrenada=this.random.nextFloat() * (distanciaSector - 0) + 0;
         solucion.add(Float.valueOf(distanciaFrenada.toString()));
-        
-        Float velocidad=random.nextFloat() * (velocidadActual - 0) + 0;
+        //Cáculo de la velocidad mediante un random en una distribución uniforme [0,velocidadActual]
+        Float velocidad=this.random.nextFloat() * (velocidadActual - 0) + 0;
         solucion.add(velocidad);
         
         return solucion;
