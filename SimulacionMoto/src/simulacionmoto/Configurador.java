@@ -28,6 +28,10 @@ public class Configurador {
      */
     ArrayList<Integer> nPilotos;
     /**
+     * Entero con el número de vueltas a dar al circuito
+     */
+    ArrayList<Integer> numVueltas;
+    /**
      * Constructor de la clase
      * @param ruta String con la ruta del fichero de parámetros
      */
@@ -35,6 +39,7 @@ public class Configurador {
         this.rutaArchivoCircuito = new ArrayList<>();
         this.rutaArchivoMotoYBMS = new ArrayList<>();
         this.nPilotos = new ArrayList<>();
+        this.numVueltas=new ArrayList<>();
         FileReader f=null;
         String linea;
         try{
@@ -56,12 +61,17 @@ public class Configurador {
                         }
                         break;
                     case "nPilotos":
-                        String[] v4=split[1].split(";");
-                        for(int i=0;i<v4.length;i++){
-                            this.nPilotos.add(Integer.parseInt(v4[i]));
+                        String[] v3=split[1].split(";");
+                        for(int i=0;i<v3.length;i++){
+                            this.nPilotos.add(Integer.parseInt(v3[i]));
                         }
                         break;
-                  
+                    case "numVueltas":
+                        String[] v4=split[1].split(";");
+                        for(int i=0;i<v4.length;i++){
+                            this.numVueltas.add(Integer.parseInt(v4[i]));
+                        }
+                        break;
                 }
             }
         }catch(IOException e){
@@ -88,5 +98,12 @@ public class Configurador {
      */
     int getNPilotos() {
         return this.nPilotos.get(0);
+    }
+    /**
+     * Getter del número de vueltas a dar al circuito
+     * @return Entero con el número de vueltas
+     */
+    int getNumVueltas(){
+        return this.numVueltas.get(0);
     }
 }

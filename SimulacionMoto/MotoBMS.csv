@@ -5,5 +5,7 @@ velocidad_max,180
 potencia_motor,48
 temperatura_max,180
 peso,100
-capacidad,800
+capacidad,200
 ace_Lateral,9
+fuerzaRefrigerante,5
+cargasRefrigerante,5

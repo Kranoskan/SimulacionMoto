@@ -74,7 +74,7 @@ class Moto {
     /**
      * Entero con el número de veces que puede refrigerar
      */
-    int cargasRefrigerante;
+    float cargasRefrigerante;
     /**
      * Float con la potencia del motor
      */

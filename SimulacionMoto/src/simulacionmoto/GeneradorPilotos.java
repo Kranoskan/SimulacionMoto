@@ -57,10 +57,10 @@ class GeneradorPilotos {
     /**
      * Función para generar pilotos sin haber establecido un BMS previo que los limite
      */
-    void generarSinBMS() {
+    void generarSinBMS(int numVueltas) {
         
         for (int i = 0; i < numPilotos; i++) {
-            Piloto newPiloto= new Piloto(restricciones);
+            Piloto newPiloto= new Piloto(restricciones,numVueltas);
             newPiloto.setComportamiento(circuito);
             //Aquellos pilotos que no sobrepasen las restricciones moto y BMS serán declarados como factibles
             if(newPiloto.esFactible(newPiloto.getBms(),restricciones)){
@@ -76,7 +76,7 @@ class GeneradorPilotos {
      * Función para generar pilotos en base a un BMS que los limita
      * @param bms BMS con las restricciones a aplicar en la generación
      */
-    void generarDadoUnBMS(BMS bms){
+    void generarDadoUnBMS(BMS bms,int numVueltas){
         for (int i = 0; i < numPilotos; i++) {
             //Establecemos las restricciones sacandolas del BMS que recibimos
             restricciones = new RestriccionesMotoYBMS();
@@ -84,7 +84,7 @@ class GeneradorPilotos {
             Float voltajeMax=bms.getVoltajeMax();
             restricciones.volt_max_bateria=voltajeMax;
             restricciones.temperatura_max=temMax;
-            Piloto newPiloto= new Piloto(restricciones);
+            Piloto newPiloto= new Piloto(restricciones,numVueltas);
             newPiloto.setBMSQ(true);
             newPiloto.setComportamiento(circuito);
             //Aquellos pilotos que no sobrepasen las restricciones moto y BMS serán declarados como factibles

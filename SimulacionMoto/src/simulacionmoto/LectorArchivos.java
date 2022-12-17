@@ -124,6 +124,8 @@ public class LectorArchivos {
             restricciones.setPeso(this.valores_motoybms.get(6));
             restricciones.setCapacidad(this.valores_motoybms.get(7));
             restricciones.setAceleracionLateral(this.valores_motoybms.get(8));
+            restricciones.setFuerzaRefirgerante(this.valores_motoybms.get(9));
+            restricciones.setCargasRefigerante(this.valores_motoybms.get(10));
             
       }
       catch(Exception e){
