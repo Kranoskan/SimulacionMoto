@@ -1,37 +1,41 @@
 MEJOR PILOTO  1 ;
-TIEMPO: ;1015.96
+TIEMPO: ;996.56
 TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
-142.93;132.93;69.16;34.58;
+176.45;166.45;84.33;42.17;
 MEJOR PILOTO  2 ;
-TIEMPO: ;1034.94
+TIEMPO: ;1006.7
 TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
-125.35;115.35;79.19;39.6;
+112.73;102.73;79.97;39.99;
 MEJOR PILOTO  3 ;
-TIEMPO: ;1056.27
+TIEMPO: ;1010.01
 TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
-138.11;128.11;79.87;39.93;
+138.75;128.75;77.68;38.84;
 MEJOR PILOTO  4 ;
-TIEMPO: ;1065.21
+TIEMPO: ;1037.54
 TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
-127.85;117.85;70.94;35.47;
+91.74;81.74;82.93;41.47;
 MEJOR PILOTO  5 ;
-TIEMPO: ;1080.19
+TIEMPO: ;1046.88
 TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
-159.6;149.6;80.61;40.3;
+105.46;95.46;74.73;37.36;
 MEJOR PILOTO  6 ;
-TIEMPO: ;1084.4
+TIEMPO: ;1058.81
 TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
-86.94;76.94;83.39;41.69;
+89.54;79.54;79.17;39.59;
 MEJOR PILOTO  7 ;
-TIEMPO: ;1432.57
+TIEMPO: ;1064.24
 TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
-114.76;104.76;76.45;38.22;
+119.88;109.88;71.12;35.56;
 MEJOR PILOTO  8 ;
-TIEMPO: ;1438.33
+TIEMPO: ;1064.35
 TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
-91.8;81.8;80.48;40.24;
+96.93;86.93;80.74;40.37;
 MEJOR PILOTO  9 ;
-TIEMPO: ;1558.3
+TIEMPO: ;1075.45
 TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
-123.64;113.64;77.75;38.88;
+148.63;138.63;77.68;38.84;
+MEJOR PILOTO  10 ;
+TIEMPO: ;1075.69
+TemperaturaMax;TemperaturaSegura;VoltajeMax;VoltajeReactivacion;
+86.8;76.8;85.87;42.93;
 

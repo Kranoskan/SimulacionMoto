@@ -23,7 +23,7 @@ public class SimulacionMoto {
         Configurador confi=new Configurador("Parametros.txt");
         LectorArchivos lector = new LectorArchivos();
         System.out.println("-----------------LEYENDO DATOS--------------------");
-        //Lectura de datos motoyBMS
+        //Lectura de datos motoyBMSS
         RestriccionesMotoYBMS restricciones= new RestriccionesMotoYBMS();
         lector.cargaDatosMotoYBMS(confi.getRutaMotoYBMS(),restricciones);
         //Lectura de datos circuito
@@ -42,8 +42,8 @@ public class SimulacionMoto {
         ArrayList<Piloto> mejoresPilotos= new ArrayList<>();
         
         GeneradorPilotos generadorPilotos = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotosFactibles);
-        generadorPilotos.generarSinBMS();
-        //Pilotos que cumplen las restricciones maximas de lamoto y bms
+        generadorPilotos.generarSinBMS(confi.getNumVueltas());
+        //Pilotos que cumplen las restricciones maximas de la moto y bms
         System.out.println("-----------------PILOTOS FACTIBLES--------------------");
         for(int i=0;i<pilotosFactibles.size();i++){
             System.out.println("+++++++++++++++Piloto Factble "+i+" ++++++++++++: ");
@@ -51,7 +51,8 @@ public class SimulacionMoto {
             pilotosFactibles.get(i).moto.mostrarMayoresValores();
             System.out.println("Tiempo de vuelta: "+pilotosFactibles.get(i).tiempo+" s");
             //pilotosFactibles.get(i).mostrarComportamiento();
-            mejoresPilotos.add(pilotosFactibles.get(i));//Guardamos todos los piloto en un array para luego sacar los mejores
+            mejoresPilotos.add(pilotosFactibles.get(i));
+            //Guardamos todos los piloto en un array para luego sacar los mejores
         }
         //Por cada bms de cada piloto factible generamos mas pilotosFactibles aleatorios dados ese bms
         //En un futuro se podria implementar con los pilotos que generen mejor tiempo pero actualmente genera muy pocos factibles
@@ -65,10 +66,10 @@ public class SimulacionMoto {
             System.out.println(configuracionesBMS.get(i).toString());
             
             GeneradorPilotos generadorPilotos2 = new GeneradorPilotos(circuito,numPilotos,restricciones,pilotosFactiblesDadoBMS);
-            generadorPilotos2.generarDadoUnBMS(configuracionesBMS.get(i));
+            generadorPilotos2.generarDadoUnBMS(configuracionesBMS.get(i),confi.getNumVueltas());
             for(int k=0;k<generadorPilotos2.pilotosBMS.size();k++){
                 mejoresPilotos.add(generadorPilotos2.pilotosBMS.get(k));
-                //uso este array para sacar los pilotos porque pilotosFactiblesDadoBMS daba un fallo
+                //Los guardamos
             }
         }
         int numMejoresPilotos=10;
@@ -83,7 +84,6 @@ public class SimulacionMoto {
         Logger lg2=new Logger(ficheroSalidaBMS,generadorPilotos.getLogBMS().toString());
         String ficheroSalidaVelocidadesLimiteSectores="VelocidadesLimiteSectores.csv";
         Logger lg3=new Logger(ficheroSalidaVelocidadesLimiteSectores,circuito.getLogVelocidadesLimiteSectores().toString());
-        
         
         System.out.println("----------------------FIN-------------------");
     

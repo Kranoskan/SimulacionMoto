@@ -18,10 +18,6 @@ class BMS {
      */
     Float temperaturaMax;
     /**
-     * Float con el voltaje máximo de las celulas de la batería
-     */
-    Float voltajeMaxCelulas;
-    /**
      * Float con el voltaje de reactivación de la batería
      */
     Float voltajeReactivación;
@@ -36,7 +32,6 @@ class BMS {
     public BMS() {
         this.voltajeMax = 0.0f;
         this.temperaturaMax = 0.0f;
-        //this.voltajeMaxCelulas = 0.0f;
         this.voltajeReactivación = 0.0f;
         this.temperaturaSegura = 0.0f;
     }
@@ -94,14 +89,6 @@ class BMS {
         this.temperaturaMax = temperaturaMax;
     }
     /**
-     * Setter del voltajeMaxceulas
-     * @param Float con el voltajeMaxCelulas 
-     */
-    public void setVoltajeMaxCelulas(float voltajeMaxCelulas) {
-        this.voltajeMaxCelulas = voltajeMaxCelulas;
-    }
-
-    /**
      * Setter del voltajeReactivacion
      * @param Float con el voltajeReactivación 
      */
@@ -121,7 +108,6 @@ class BMS {
      */
     @Override
     public String toString() {
-        return "BMS{" + "voltajeMax=" + voltajeMax + ", temperaturaMax=" + temperaturaMax + ", voltajeMaxCelulas=" + voltajeMaxCelulas + ", voltajeReactivaci\u00f3n=" + voltajeReactivación + ", temperaturaSegura=" + temperaturaSegura + '}';
+        return "BMS{" + "voltajeMax=" + voltajeMax + ", temperaturaMax=" + temperaturaMax + ", voltajeReactivaci\u00f3n=" + voltajeReactivación + ", temperaturaSegura=" + temperaturaSegura + '}';
     }
-    
 }

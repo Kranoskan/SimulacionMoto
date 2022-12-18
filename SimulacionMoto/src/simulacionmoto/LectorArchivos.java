@@ -9,7 +9,6 @@ package simulacionmoto;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -17,24 +16,28 @@ import java.util.ArrayList;
  * @author ismae
  */
 public class LectorArchivos {
-    
+    /**
+     * Lista de Float para leer los datos del circuito (distancia,curvatura y pendiente)
+     */
     ArrayList<ArrayList<Float>> circuito;
+    /**
+     * Lista de Float para leer los datos de los valores máximos que pueden tomar una moto y un BMS
+     */
     public ArrayList<Float> valores_motoybms;
-    public int volt_max_bateria;
-    public int volt_max_celulas;
-    public int intensidad;
-    public int velocidad_max;
-    public int potencia_motor;
-    public int temperatura_max;
-    public int peso;
-    public int capacidad;
-    
+  
+    /**
+     * Constructor de la clase
+     */
     public LectorArchivos(){
-        circuito = new ArrayList<>();
-        valores_motoybms = new ArrayList<>();
+        this.circuito = new ArrayList<>();
+        this.valores_motoybms = new ArrayList<>();
         
     }
-    
+    /**
+     * Función para cargar los datos del circuito
+     * @param ruta String con la ruta del circuito
+     * @param cir Circuito con el circuito en el que almacenar los datos
+     */
     public void cargaDatosCircuito(String ruta,Circuito cir ){
         File archivo = null;
         FileReader fr = null;
@@ -80,7 +83,11 @@ public class LectorArchivos {
          }
       }
     }
-    
+    /**
+     * Función para cargar los datos del archivo de restricciones de la moto y del bms
+     * @param ruta String con la ruta del archivo
+     * @param restricciones RestriccionesMotoYBMS para almacenar las restricciones
+     */
     public void cargaDatosMotoYBMS(String ruta,RestriccionesMotoYBMS restricciones){
         File archivo = null;
         FileReader fr = null;
@@ -107,6 +114,7 @@ public class LectorArchivos {
                 
                 this.valores_motoybms.add(valor);
             }
+            //asignamos los vaores leídos
             restricciones.setVolt_max_bateria(this.valores_motoybms.get(0));
             restricciones.setVolt_max_celulas(this.valores_motoybms.get(1));
             restricciones.setIntensidad(this.valores_motoybms.get(2));
@@ -116,6 +124,8 @@ public class LectorArchivos {
             restricciones.setPeso(this.valores_motoybms.get(6));
             restricciones.setCapacidad(this.valores_motoybms.get(7));
             restricciones.setAceleracionLateral(this.valores_motoybms.get(8));
+            restricciones.setFuerzaRefirgerante(this.valores_motoybms.get(9));
+            restricciones.setCargasRefigerante(this.valores_motoybms.get(10));
             
       }
       catch(Exception e){
@@ -135,45 +145,18 @@ public class LectorArchivos {
          }
       }
     }
-    
+    /**
+     * Getter del circuito con los datos insertados
+     * @return Lista de Float con los datos del circuito
+     */
     public ArrayList<ArrayList<Float>> getCircuito(){
         return circuito;
     }
-
+    /**
+     * Getter de los datos de restricciones de Moto y BMS
+     * @return Lista de float con los valores de Moto y BMS
+     */
     public ArrayList<Float> getValores_motoybms() {
         return valores_motoybms;
     }
-
-    public int getVolt_max_bateria() {
-        return volt_max_bateria;
-    }
-
-    public int getVolt_max_celulas() {
-        return volt_max_celulas;
-    }
-
-    public int getIntensidad() {
-        return intensidad;
-    }
-
-    public int getVelocidad_max() {
-        return velocidad_max;
-    }
-
-    public int getPotencia_motor() {
-        return potencia_motor;
-    }
-
-    public int getTemperatura_max() {
-        return temperatura_max;
-    }
-
-    public int getPeso() {
-        return peso;
-    }
-
-    public int getCapacidad() {
-        return capacidad;
-    }
-   
 }
